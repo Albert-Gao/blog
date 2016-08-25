@@ -4,6 +4,7 @@ tags:
   - fetch
   - javascript
   - tutorial
+  - howto
 id: 67
 categories:
   - Blog

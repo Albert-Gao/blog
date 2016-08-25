@@ -3,6 +3,7 @@ title: Understand when to use pointer in C and the memory model in programming.
 id: 82
 categories:
   - Blog
+  - tips
 date: 2016-08-13 18:02:45
 tags:
   - memory

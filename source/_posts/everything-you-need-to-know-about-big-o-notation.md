@@ -2,6 +2,7 @@
 title: Everything you need to know about Big O notation
 tags:
   - algorithm
+  - tips
 id: 17
 categories:
   - Blog

@@ -1,15 +1,16 @@
 ---
-title: What is a closure in javascript and why they are wrong?
+title: What is a closure in JavaScript and why they are wrong?
 tags:
   - closure
   - javascript
+  - quiz
 id: 128
 categories:
   - Blog
 date: 2016-08-21 02:05:56
 ---
 
-Javascript is a de facto dominance in the modern web development. And its dynamic nature makes it very easy to learn, and, and very easy to fail :) One of the most famous confusion out there is the concept of closure. And in fact,  you really shouldn't read the accepted answer on the [stack overflow](http://stackoverflow.com/questions/111102/how-do-javascript-closures-work)**.** Because it doesn't explain well as many other posts on the internet. Through this post, I will explain closure in a very straightforward way and tell you why they are wrong. Let's begin.
+JavaScript is a de facto dominance in the modern web development. And its dynamic nature makes it very easy to learn, and, and very easy to fail :) One of the most famous confusion out there is the concept of closure. And in fact,  you really shouldn't read the accepted answer on the [stack overflow](http://stackoverflow.com/questions/111102/how-do-javascript-closures-work)**.** Because it doesn't explain well as many other posts on the internet. Through this post, I will explain closure in a very straightforward way and tell you why they are wrong. Let's begin.
 
 <!--more-->
 
@@ -40,7 +41,7 @@ function outside() {
 
 outside()();  // "I love javascript."
 ```
-Now we use the  Immediately-Invoked Function Expression (IIFE), since the `outside()` will return a function, we just simply add another `()` after it, to invoke that function. The result is the same,  and it is easy to understand. Nothing strange here.
+Now we use the Immediately-Invoked Function Expression (IIFE), since the `outside()` will return a function, we just simply add another `()` after it, to invoke that function. The result is the same,  and it is easy to understand. Nothing strange here.
 
 ## Here we get a miracle:
 Let's go even further.
@@ -101,7 +102,7 @@ We executed `trueOutside()` for 3 times, Let's put down your questions first sin
 outside()();   // 2
 ```
 
-It is still output a 2, it never change! It is always two! In fact, if it becomes 5, the javascript will completely be an non-sense language.
+It is still output a 2, it never change! It is always two! In fact, if it becomes 5, the JavaScript will completely be an non-sense language.
 
 There is another post from a famous writer who tries to use scoping chain to explain this, but it doesn't make sense as the reason above. Since even the interpreter tries to find the variable `text` follow the scoping chain, it won't succeed since that `outside()` function is not valid anymore.
 
@@ -140,12 +141,12 @@ Why it can accumulate? It is just that simple since **<span style="color: #0000f
 This is pretty much of closure. Maybe there is another famous example you have seen, which is the following, a closure when looping. Resulting in a very strange result.
 ```javascript
 var funcs = [];
-for (var i = 0; i &lt; 3; i++) {          // let's create 3 functions
+for (var i = 0; i < 3; i++) {          // let's create 3 functions
     funcs[i] = function() {            // and store them in funcs
         console.log("My value: " + i); // each should log its value.
     };
 }
-for (var j = 0; j &lt; 3; j++) {
+for (var j = 0; j < 3; j++) {
     funcs[j]();                        // and now let's run each one to see
 }
 ```
@@ -165,4 +166,4 @@ My value: 3
 My value: 3
 ```
 
-Yes, this is javascript, always hits you with a unexpected pose. :) It is about the closure, but it is easier to solve to using the concept of "context". We'll talk about this at later post.
+Yes, this is JavaScript, always hits you with a unexpected pose. :) It is about the closure again, but it is easier to understand using the concept of "context". You can check it at [this post](/2016/08/25/why-not-making-functions-within-a-loop-in-javascript/), I will dissect it step by step. By far the most detailed explanation online xD Yes, since I checked tons of them before.

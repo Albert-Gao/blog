@@ -4,6 +4,7 @@ tags:
   - academic
   - memory
   - stackoverflow
+  - quiz
 id: 73
 categories:
   - Blog

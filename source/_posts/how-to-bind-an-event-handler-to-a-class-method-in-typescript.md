@@ -3,6 +3,7 @@ title: How to bind an event handler to a class method in Typescript?
 tags:
   - pitfall
   - typescript
+  - howto
 id: 98
 categories:
   - Blog

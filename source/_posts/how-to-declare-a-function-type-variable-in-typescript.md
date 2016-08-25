@@ -2,6 +2,7 @@
 title: How to declare a function type variable in Typescript?
 tags:
   - typescript
+  - howto
 id: 48
 categories:
   - Blog

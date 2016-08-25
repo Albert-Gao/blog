@@ -5,6 +5,7 @@ title: >-
 tags:
   - tutorial
   - typescript
+  - howto
 id: 36
 categories:
   - Blog

@@ -4,6 +4,7 @@ tags:
   - academic
   - binary
   - decimal
+  - tips
 id: 28
 categories:
   - Blog
