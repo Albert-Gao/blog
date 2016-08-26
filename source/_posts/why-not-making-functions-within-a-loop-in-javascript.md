@@ -93,7 +93,7 @@ for (i = 0; i < 3; i++) {              // let's create 3 functions
     })();
 }
 for (var j = 0; j < 3; j++) {
-    funcs[j]();                        // and now let's run each one to see
+    funcs[j];                        // and now let's run each one to see
 }
 ```
 Here, we use the Immediately-Invoked Function Expression (IIFE), to execute this newly created function, the closure will have the function and its created environment right? Let's execute this function right at the place it's been called! So, no matter what changes afterwards, the functions will get called at this very moment when variable `i` has changed. And when it executes later on, the closure will remember its execution context, Hahahaha, you damn interpreter, I get what I want.
@@ -118,7 +118,7 @@ for (i = 0; i < 3; i++) {              // let's create 3 functions
     funcs[i] = create(i);
 }
 for (j = 0; j < 3; j++) {
-    funcs[j]();                        // and now let's run each one to see
+    funcs[j];                        // and now let's run each one to see
 }
 ```
 
@@ -145,7 +145,7 @@ for (i = 0; i < 3; i++) {              // let's create 3 functions
     funcs[i] = create(i);
 }
 for (j = 0; j < 3; j++) {
-    funcs[j]();                        // and now let's run each one to see
+    funcs[j];                        // and now let's run each one to see
 }
 ```
 
