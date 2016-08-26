@@ -1,10 +1,12 @@
 ---
 title: Setup Nginx step by step
-date: 2016-08-26 16:47:17
 tags:
   - nginx
   - tutorial
   - linux
+categories:
+  - Blog
+date: 2016-08-26 16:47:17
 ---
 
 The last time, we have installed a linux system and have [done some preparation to make it ready to use](/2016/08/23/7-steps-you-should-do-when-setup-a-fresh-new-Ubuntu-server/). Now we will install a Nginx on it, and then your private server will become a web server and you can broadcast your ideas to the whole internet :)
