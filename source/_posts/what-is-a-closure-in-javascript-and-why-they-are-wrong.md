@@ -2,7 +2,7 @@
 title: What is a closure in JavaScript and why they are wrong?
 tags:
   - closure
-  - javascript
+  - JavaScript
   - quiz
 id: 128
 categories:
@@ -10,15 +10,15 @@ categories:
 date: 2016-08-21 02:05:56
 ---
 
-JavaScript is a de facto dominance in the modern web development. And its dynamic nature makes it very easy to learn, and, and very easy to fail :) One of the most famous confusion out there is the concept of closure. And in fact,  you really shouldn't read the accepted answer on the [stack overflow](http://stackoverflow.com/questions/111102/how-do-javascript-closures-work)**.** Because it doesn't explain well as many other posts on the internet. Through this post, I will explain closure in a very straightforward way and tell you why they are wrong. Let's begin.
+JavaScript is a de facto dominance in the modern web development. And its dynamic nature makes it very easy to learn, and, and very easy to fail :) One of the most famous confusion out there is the concept of closure. And in fact,  you really shouldn't read the accepted answer on the [stack overflow](http://stackoverflow.com/questions/111102/how-do-JavaScript-closures-work)**.** Because it doesn't explain well as many other posts on the internet. Through this post, I will explain closure in a very straightforward way and tell you why they are wrong. Let's begin.
 
 <!--more-->
 
 ## Always start with code:
 
-```javascript
+```JavaScript
 function outside() {
-    var text = "I love javascript."
+    var text = "I love JavaScript."
 
     function inside() {
         console.log(text);
@@ -27,28 +27,28 @@ function outside() {
     inside();
 };
 
-outside(); // "I love javascript."
+outside(); // "I love JavaScript."
 ```
 The result is straightforward as the above, it will print that `text` variable. Let's push it a little bit.
-```javascript
+```JavaScript
 function outside() {
-    var text = "I love javascript."
+    var text = "I love JavaScript."
 
     return function() {
         console.log(text);
     };
 };
 
-outside()();  // "I love javascript."
+outside()();  // "I love JavaScript."
 ```
 Now we use the Immediately-Invoked Function Expression (IIFE), since the `outside()` will return a function, we just simply add another `()` after it, to invoke that function. The result is the same,  and it is easy to understand. Nothing strange here.
 
 ## Here we get a miracle:
 Let's go even further.
 
-```javascript
+```JavaScript
 function outside() {
-    var text = "I love javascript."
+    var text = "I love JavaScript."
 
     return function() {
         console.log(text);
@@ -56,7 +56,7 @@ function outside() {
 };
 
 var trueOutside = outside();
-trueOutside(); // "I love javascript."
+trueOutside(); // "I love JavaScript."
 ```
 
 Wow, something interesting happened, let's break them into pieces:
@@ -81,7 +81,7 @@ We'll talk more about the execution environment later. Let's check another commo
 
 To be honest, This is deadly wrong. Because **it is nothing to do with the parent function and nothing to do with accessing  behavior either,** Let's prove it with the following code.
 
-```javascript
+```JavaScript
 function outside() {
     var text = 1;
 
@@ -98,7 +98,7 @@ trueOutside(); // 4
 ```
 We executed `trueOutside()` for 3 times, Let's put down your questions first since we will explain later, let's follow the above definition, it said the inner function can access to the parent scope even when it is closed, OK, now we executed the parent function `outside()` :
 
-```javascript
+```JavaScript
 outside()();   // 2
 ```
 
@@ -118,7 +118,7 @@ The magic happens when you assign the returned function to that variable `trueOu
 
 So, it is easy to understand now, the closure `trueOutside`, it not only contains that returned anonymous function, but also it contains the variable `text`, since it was exist when the closure was created. So it can executed well.  And it can explained the last example I showed you before. Let's review it.
 
-```javascript
+```JavaScript
 function outside() {
     var text = 1;
 
@@ -139,7 +139,7 @@ Why it can accumulate? It is just that simple since **<span style="color: #0000f
 ## Not the end
 
 This is pretty much of closure. Maybe there is another famous example you have seen, which is the following, a closure when looping. Resulting in a very strange result.
-```javascript
+```JavaScript
 var funcs = [];
 for (var i = 0; i < 3; i++) {          // let's create 3 functions
     funcs[i] = function() {            // and store them in funcs
@@ -152,7 +152,7 @@ for (var j = 0; j < 3; j++) {
 ```
 What you expect the output to be? Since the variable `i` has increased step by step during the loop and the value had stored step by step into that function. It should output the following,
 
-```javascript
+```JavaScript
 My value: 0
 My value: 1
 My value: 2
@@ -160,10 +160,10 @@ My value: 2
 
 But instead, it will output like this:
 
-```javascript
+```JavaScript
 My value: 3
 My value: 3
 My value: 3
 ```
 
-Yes, this is JavaScript, always hits you with a unexpected pose. :) It is about the closure again, but it is easier to understand using the concept of "context". You can check it at [this post](/2016/08/25/why-not-making-functions-within-a-loop-in-javascript/), I will dissect it step by step. By far the most detailed explanation online xD Yes, since I checked tons of them before.
+Yes, this is JavaScript, always hits you with a unexpected pose. :) It is about the closure again, but it is easier to understand using the concept of "context". You can check it at [this post](/2016/08/25/why-not-making-functions-within-a-loop-in-JavaScript/), I will dissect it step by step. By far the most detailed explanation online xD Yes, since I checked tons of them before.
