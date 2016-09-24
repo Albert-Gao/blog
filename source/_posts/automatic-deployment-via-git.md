@@ -7,6 +7,7 @@ date: 2016-09-21 21:18:40
 ---
 
 If you use a static blog system as me or a static site. You may consider which deployment suits you better, sftp maybe a stable old-school way. Today let's use git to complete this quest. No, not push-then-pull, you can actually push only :)
+Furthermore, via this approach, you have a taste to the world of continuous deployment. :) Let's do this.
 
 <!--more-->
 
