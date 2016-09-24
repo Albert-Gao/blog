@@ -3,10 +3,11 @@ title: Understand when to use pointer in C and the memory model in programming.
 id: 82
 categories:
   - Blog
-  - tips
 date: 2016-08-13 18:02:45
 tags:
   - memory
+  - academic
+  - pointer
 ---
 
 Pointer in C is a powerful weapon, it can let us feel that we can manipulate the memory directly (Literally, not that true since the barrier as virtual memory and page table, but we can consider it like this.) And we know that you can use **`&`** to refer a memory address of a variable, and use **`*`** to deference an address to retrieve the inside value. And the relations between pointer and array, you can blahblahblah for a whole day.
