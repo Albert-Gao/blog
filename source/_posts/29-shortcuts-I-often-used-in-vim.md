@@ -46,6 +46,7 @@ This is the most exciting part of VIM. Let's say you want to move to some specia
 
 ## Copy
 >In VIM, we don't say 'copy', we say 'yank'.
+
 * **y** : Yank (copy) the selected contents
 * **yy** : Yank a line
 * **yw** : Yank a word
