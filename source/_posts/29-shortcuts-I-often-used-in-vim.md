@@ -1,7 +1,11 @@
 ---
-title: 29-shortcuts-I-often-used-in-vim
+title: 29 shortcuts I often used in VIM
 date: 2016-10-04 17:44:39
 tags:
+  - tutorial
+  - VIM
+categories:
+  - Blog
 ---
 
 VIM is a great editor, but it will confused you at first since its unique design. But I still think you should learn it since it seems a must-have for every developer nowadays. Especially when you need to deal with some bash-heavy works.
