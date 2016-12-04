@@ -6,7 +6,7 @@ tags:
   - valgrind
 ---
 
-Valgrind is a famous tool to debug your memory leak, but what sad is it only supports Linux, yeah, not a perfect support on Mac. But with the new Windows 10 Anniversary update, it all gonna happen. And works way much better than Mac with OS X. Let's rock!
+Valgrind is a famous tool to debug your memory leak, but what sad is it only supports Linux, yeah, not a perfect support even on Mac. But with the new Windows 10 Anniversary update, it all gonna happen. And works way much better than Mac with OS X. Let's rock!
 
 <!--more-->
 
@@ -34,7 +34,7 @@ It is a Ubuntu, so you might simply use the command. `sudo apt-get install valgr
 --1791:0:aspacem    at m_aspacemgr/aspacemgr-linux.c:1502 (add_segment)
 --1791:0:aspacem  Exiting now.
 ```
-You may abort at this stage, since it is a beta feature, and the translation from in the Sys-call level may seems a big deal. And after googling, you decide to abort. But, the story never ends like this :)
+You may abort at this stage, since it is a beta feature, and the translation in the Sys-call level may seems a big deal. And after googling, you decide to abort. But, the story never ends like this :)
 
 ## How to deal with it?
 A brief first:
@@ -45,18 +45,20 @@ The idea is simple, the procedures is still easy but take a little bit longer th
 1. Open `bash` in Windows.
 2. Update your Ubuntu package lists by `sudo apt-get update`
 3. Install SVN first via this command: `sudo apt-get install svn`
-4. Find a folder you want to put the valgrind, anywhere is OK, we just need to compile.
-5. Download source code of Valgrind via SVN `svn co svn://svn.valgrind.org/valgrind/tru=nk valgrind`. It will download the codes and put them into a new folder called `valgrind` right under then folder you create or locate in step 3.
-6. Install the library used when compiling by `sudo apt-get install automake`
-7. Go to the folder of Valgrind via `cd valgrind/`
-8. Running the official bash script first by using `./autogen.sh`
-9. Configure via `./configure`.
-10. From now on, things will get much more normal. first, install `make` via `sudo apt-get install make`.
-11. Then `make`, this command will build the files from many modules.
-12. `make install`, it will copy compiled files into appropriate locations.
-13. It's done already, but feel free to use `make clean`, it will delete all the temporary files generated while compiling.
-14. A `make distclean` will make things much better.
-15. Use `valgrind` as you wish.
+4. Ran Lottem confirmed you need to install subversion next: `sudo apt-get install subversion`
+5. Find a folder you want to put the valgrind, anywhere is OK, we just need to compile.
+6. Download source code of Valgrind via SVN `svn co svn://svn.valgrind.org/valgrind/trunk valgrind`. It will download the codes and put them into a new folder called `valgrind` right under then folder you create or locate in step 3.
+7. Install the library used when compiling by `sudo apt-get install automake`
+8. Ran Lottem confirmed that you need to `sudo apt-get install build-essential`
+9. Go to the folder of Valgrind via `cd valgrind/`
+10. Running the official bash script first by using `./autogen.sh`
+11. Configure via `./configure`.
+12. From now on, things will get much more normal. first, install `make` via `sudo apt-get install make`.
+13. Then `make`, this command will build the files from many modules.
+14. `make install`, it will copy compiled files into appropriate locations.
+15. It's done already, but feel free to use `make clean`, it will delete all the temporary files generated while compiling.
+16. A `make distclean` will make things much better.
+17. Use `valgrind` as you wish.
 
 ## Happily ever after
 I have built a linked list to test the leak, it works exactly the same way as linux, even better than Mac, OS X, yes, I mean it. The valgrind on OS X will tell you have some leak problems while there is no leak.
@@ -69,17 +71,6 @@ camus@ALBERTSURFACEB:/mnt/d/github/C_Playground$ valgrind ./main
 ==2529== Command: ./main
 ==2529==
 
-1.00
-2.00
-3.00
-4.00
-5.00
-
-2.00
-3.00
-4.00
-5.00
-
 3.00
 4.00
 5.00
@@ -88,7 +79,6 @@ camus@ALBERTSURFACEB:/mnt/d/github/C_Playground$ valgrind ./main
 5.00
 
 5.00
-
 
 ==2529==
 ==2529== HEAP SUMMARY:
