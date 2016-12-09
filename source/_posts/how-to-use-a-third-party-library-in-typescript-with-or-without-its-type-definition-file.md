@@ -1,7 +1,5 @@
 ---
-title: >-
-  How to use a third party library in Typescript with or without its type
-  definition file?
+title: How to use a third party library in Typescript with or without its type definition file?
 tags:
   - tutorial
   - typescript

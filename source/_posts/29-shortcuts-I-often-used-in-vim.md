@@ -3,7 +3,7 @@ title: 29 shortcuts I often used in VIM
 date: 2016-10-04 17:44:39
 tags:
   - tutorial
-  - VIM
+  - vim
 categories:
   - Blog
 ---

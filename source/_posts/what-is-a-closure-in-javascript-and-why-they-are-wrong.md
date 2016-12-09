@@ -2,7 +2,7 @@
 title: What is a closure in JavaScript and why they are wrong?
 tags:
   - closure
-  - JavaScript
+  - javascript
   - quiz
 id: 128
 categories:

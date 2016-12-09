@@ -3,10 +3,10 @@ title: Using React the ES5 and ES6 Way
 date: 2016-09-24 14:54:19
 tags:
   - tutorial
-  - JavaScript
-  - React
-  - ES5
-  - ES6
+  - javascript
+  - react
+  - es5
+  - es6
 ---
 
 There are two ways to use React, the old `createClass` or the fancy ES6 `extend` way. We should go the ES6 way since it gives much more native JavaScript feeling rather than react feeling when you coding. But there are so much examples out there which follows the classic way. It is good to give a look to both of them side by side to provide a more clear understanding. Yes, you can apply ES6 syntax to `createClass` as well, but we won't cover that here.
