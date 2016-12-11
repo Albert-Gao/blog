@@ -44,7 +44,7 @@ The idea is simple, the procedures is still easy but take a little bit longer th
 
 1. Open `bash` in Windows.
 2. Update your Ubuntu package lists by `sudo apt-get update`
-3. Install SVN first via this command: `sudo apt-get install svn`
+~~3. Install SVN first via this command: `sudo apt-get install svn`~~
 4. Ran Lottem confirmed you need to install subversion next: `sudo apt-get install subversion`
 5. Find a folder you want to put the valgrind, anywhere is OK, we just need to compile.
 6. Download source code of Valgrind via SVN `svn co svn://svn.valgrind.org/valgrind/trunk valgrind`. It will download the codes and put them into a new folder called `valgrind` right under then folder you create or locate in step 3.
@@ -54,8 +54,8 @@ The idea is simple, the procedures is still easy but take a little bit longer th
 10. Running the official bash script first by using `./autogen.sh`
 11. Configure via `./configure`.
 12. From now on, things will get much more normal. first, install `make` via `sudo apt-get install make`.
-13. Then `make`, this command will build the files from many modules.
-14. `make install`, it will copy compiled files into appropriate locations.
+13. Then `make`, this command will build the files from many modules. Add `sudo` if failed (Thanks Waleed Mahmoud).
+14. `make install`, it will copy compiled files into appropriate locations. Add `sudo` if failed (Thanks Waleed Mahmoud).
 15. It's done already, but feel free to use `make clean`, it will delete all the temporary files generated while compiling.
 16. A `make distclean` will make things much better.
 17. Use `valgrind` as you wish.
