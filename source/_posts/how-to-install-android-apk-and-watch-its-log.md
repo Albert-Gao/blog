@@ -1,5 +1,5 @@
 ---
-title: How to install android apk and watch its log
+title: How to install android apk and check its log
 date: 2016-12-13 14:56:48
 tags:
   - howto
@@ -24,12 +24,9 @@ When you are developing some cross platform apps, React native, Phonegap, Kivy, 
     - When you have multiple devices and emulators connected to your laotop, the above commands won't work, you need to tell `abd` explicitly which destination you want to install.
     1. Check all the available devices: `adb devices`, It should give you some result like below:
     ```bash
-    albert:Desktop albertgao$ adb devices
     List of devices attached
     emulator-5554	device
     300453532e029200	device
-
-    albert:Desktop albertgao$ 
     ```
     2. install to specific one: `adb -s 300453532e029200 install -r abc.apk`
 
