@@ -48,7 +48,7 @@ describe("Start to test function A", function(){
         // Your tests for case 2
     })
 })
-``` 
+```
 
 ### Write your tests in `it()`
 Your real code for tests locates in `it()`, it has a same function signature as `describe()`.
@@ -59,7 +59,7 @@ describe("Start to test function A", function(){
         expect(addTwo(1, 1)).to.be.equal(2)
     })
 })
-``` 
+```
 
 Furthermore, if you are writing an asynchronous testing. Which means your testing code may ends later, but the whole block won't wait your tests to finish. You can pass a `done` to the callback function of `it()` to fix it.
 
@@ -117,7 +117,7 @@ assert.typeOf(foo, 'string'); // without optional message
 assert.typeOf(foo, 'string', 'foo is a string'); // with optional message
 assert.equal(foo, 'bar', 'foo equal `bar`');
 assert.lengthOf(foo, 3, 'foo`s value has a length of 3');
-assert.lengthOf(beverages.tea, 3, 'beverages has 3 types of tea');```
+assert.lengthOf(beverages.tea, 3, 'beverages has 3 types of tea');
 ```
 
 ### Expect
