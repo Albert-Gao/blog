@@ -4,12 +4,10 @@ tags:
   - algorithm
   - tips
 id: 17
-categories:
-  - Blog
 date: 2016-08-09 20:06:28
 ---
 
-### Brief
+## 1. Brief
 
 You can always find O(n), O(log n) over the internet when people talking about the efficiency of the codes. Like any other magic which you will encounter, it will give you a big question mark. I assemble all the information I have, from my lectures, book readings, online information, personal understanding, then write down this article. Medium measures you can finish this article in 6 minutes, here are what you will get after the precious 6 minutes:
 
@@ -20,11 +18,11 @@ A big plus: You don’t need any background to read this! Even a very beginner c
 
 <!--more-->
 
-### What is Big O?
+## 2. What is Big O?
 
 It is a way to determine the efficiency of a program, or more specific, an algorithm. In most cases, it is about how efficient the process time is. But you should know that algorithm analysis is a fundamental computer science topic, algorithm analysis does not only involve time efficiency, it involves space(memory) efficiency as well. **But Big O is all about the time efficiency in most cases (it can represent the space complexity).**
 
-### The growth function:
+## 3. The growth function:
 
 The most frustrating problem I have faced when I first learn Big O notation is that how can people judge some complex algorithm using such simple notation. What is the black magic? The answer is “the growth function”.
 
@@ -39,7 +37,7 @@ Before start the next section, Let’s assume the growth function for the sortin
 
 > f(n)=2n^2+4n+6
 
-### The asymptotic complexity
+## 4. The asymptotic complexity
 
 But we can’t use this kind of way to measure every algorithm, so, instead of knowing the accurate efficiency, **we just need to know the “asymptotic complexity”, which is defined by the dominant term of a growth function.** A dominant term is a term which increases most quickly as the size of problem increases. For the above growth function, let’s draw a table:
 
@@ -57,13 +55,13 @@ Can we say the asymptotic complexity for the above formula is O(2n^2)? In fact, 
 
 Now you know why the Wikipedia says: Big O notation is a mathematical notation.
 
-### Why I need Big O?
+## 5. Why I need Big O?
 
 Some people may argue that we don’t need to know the Big O. Nowadays, the CPU and memory are both have strong parameters. Some algorithm which is slow today may become faster tomorrow due to the hardware upgrade. With the above table, you can know that the huge gap between the growth rate of O(2n^2)=O(n^2) and O(4n)=O(n). You should keep this in mind:
 
 > An algorithm can ugly enough to slow down the whole system and it is much easier for you to find a more efficient algorithm than to find a faster CPU.
 
-### How to measure the codes using Big O?
+## 6. How to measure the codes using Big O?
 
 After understanding thing what’s really under the hood. Now let’s see some rules you can apply when analyzing. ( To be honest, Most of them are summarized by my programming teacher Micheal Albert xD ).
 
@@ -77,7 +75,7 @@ After understanding thing what’s really under the hood. Now let’s see some r
 
 You should be warned that some declarations may include initializations and some of these may be complex enough to factor into the efficiency of an algorithm.
 
-### One example to rule them all
+## 7. One example to rule them all
 
 Let’s take some Java code for example (finally, a coder can contribute something xD)
 
@@ -116,7 +114,7 @@ In fact, with the growth function knowledge, you can write down the growth funct
 
 At last, for the first for loop, we get an O(n) inside an O(n). How to compute? We can simply apply rule 6\. Now we get the answer: O(n^2). How excited! Just that simple.
 
-### The fast one and slow one:
+## 8. The fast one and slow one:
 
 Now we know how to analysis, we should know which one is faster. I will give you the order, from the fastest to slowest.
 
@@ -126,7 +124,7 @@ I will show you a picture so you can understand the huge differences among these
 
 ![graph for different Big O](https://cdn-images-1.medium.com/max/800/1*wnoU5pp2sKf0ZQbgUFfSJg.jpeg)
 
-### Some extension on the bounds
+## 9. Some extension on the bounds
 
 Let’s start from our beloved function:
 
@@ -143,7 +141,7 @@ Other important notations:
 
 And of course, there is also a Little-o notation which is common in mathematics but rarer in computer science.
 
-### End of story
+## 10. End of story
 
 Now I hope you have sufficient knowledge to determine the Big O of an actual algorithm.
 I will write more blogs relates to computer science and programming, in this “step by step with all the background” way.

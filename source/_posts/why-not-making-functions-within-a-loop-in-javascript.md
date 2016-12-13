@@ -5,8 +5,6 @@ tags:
   - closure
   - javascript
   - quiz
-categories:
-  - Blog
 ---
 
 Do you know JSLint? A tool which can help you write quality JavaScript code, it is developed by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford). Who is the father of JavaScript, he surely has sufficient background to judge. :) And JSLint is very strict, and you can call it rigid sometimes, but he always has the point. If you have used the tool before, you may have noticed some errors, one of them may look like this : **"Don't make functions within a loop"**. OK, let's fix it, wait, what?
@@ -14,7 +12,7 @@ Do you know JSLint? A tool which can help you write quality JavaScript code, it 
 Yes, it may sound absurd at first, let's dive into to find out what the father wants to say xD
 
 <!--more-->
-## Weird code
+## 1. Weird code
 If you have follow me here from this article [What is a closure in JavaScript and why they are wrong](/2016/08/21/what-is-a-closure-in-javascript-and-why-they-are-wrong/). You may still curious about the following code. And if you don't know closure, you really should check [that article](/2016/08/21/what-is-a-closure-in-javascript-and-why-they-are-wrong/) first.
 
 ```javascript
@@ -47,7 +45,7 @@ My value: 3
 
 And before you run this code, Mr Douglas has already warned you, "**"Don't make functions within a loop"**". Yes, he make a point, but why?
 
-## Dissect the mystery.
+## 2. Dissect the mystery.
 **It is simple because, in that anonymous function created in the loop, you have referred a variable which belongs to the outside scope, so the next time when you execute this function, the variable `i` is 3.** You will ask, what? Haven't we store that value during the loop? Let's rewrite the above code a little.
 
 ```javascript
@@ -80,10 +78,10 @@ You know the `variable hoist` and `scope` in JavaScript, right? Which is JavaScr
 
 >You see? The concept of **closure** in JavaScript makes it very dangerous to make new functions inside a loop. So, Mr Douglas has given us his advice with JSLint.
 
-## How to solve it?
+## 3. How to solve it?
 Since we know the cause, we can solve it by many ways. They are sharing the same concept: avoid the closure pitfall.
 
-### I love functions and I will create it at any cost!
+### 3.1 I love functions and I will create it at any cost!
 ```javascript
 var i = 0;
 var funcs = [];
@@ -103,7 +101,7 @@ My value: 0
 My value: 1
 My value: 2
 ```
-### Father is not happy.
+### 3.2 Father is not happy.
 But if you use JSLint, Mr Douglas will throw you a faceful errors. Still the same `no functions inside loop` along with a new complaint about how you use the IIFE. Oh, no, let's solve it the way father loves xD.
 
 ```javascript
@@ -149,10 +147,10 @@ for (j = 0; j < 3; j++) {
 }
 ```
 
-### Does the father happy?
+### 3.3 Does the father happy?
 OK, if you use JSHint, mostly good, but if you use JSLint, still there are some complaints, I told you before, `rigid`, some of the complaints may seems really weird like `unexpected ++`, yes, he means when you create that for loop, shouldn't use `i++`, WHAT?!?!?! Yes, father thinks you should use `i+=1`... OK, more of this is out of topic.
 
-## Finally
+## 4. Finally
 Now you know why not making functions within a loop.
 
 >Since the concept 'closure' in JavaScript will it tricky when dealing with the functions created inside a loop. You should always try to create the function first or execute it immediately after the creation.

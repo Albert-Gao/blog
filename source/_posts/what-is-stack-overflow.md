@@ -6,8 +6,6 @@ tags:
   - stackoverflow
   - quiz
 id: 73
-categories:
-  - Blog
 date: 2016-08-12 16:45:13
 ---
 

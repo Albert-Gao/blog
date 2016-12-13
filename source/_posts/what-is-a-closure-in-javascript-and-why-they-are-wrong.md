@@ -5,8 +5,6 @@ tags:
   - javascript
   - quiz
 id: 128
-categories:
-  - Blog
 date: 2016-08-21 02:05:56
 ---
 
@@ -14,7 +12,7 @@ JavaScript is a de facto dominance in the modern web development. And its dynam
 
 <!--more-->
 
-## Always start with code:
+## 1. Always start with code:
 
 ```JavaScript
 function outside() {
@@ -43,7 +41,7 @@ outside()();  // "I love JavaScript."
 ```
 Now we use the Immediately-Invoked Function Expression (IIFE), since the `outside()` will return a function, we just simply add another `()` after it, to invoke that function. The result is the same,  and it is easy to understand. Nothing strange here.
 
-## Here we get a miracle:
+## 2. Here we get a miracle:
 Let's go even further.
 
 ```JavaScript
@@ -69,7 +67,7 @@ It should throws an error - "`text is not defined`". Since the variable `text` i
 
 It hard to understand, especially when you come from a traditional programming language like C, C#, Java, you will be very confused at this stage, the reason is that you try to use the common memory model in the above languages such as <span style="color: #000000;">**stack**</span> to adopt to this scenario. What's in your mind is, when the `trueOutside()` runs, the `outside()` is not on the stack, since it has been executed so should be removed from the stack. Thus, when `trueOutside()` tries to execute, that variable `text` shouldn't be there, so the result should be a "`text is not defined`".
 
-## **Why they are wrong?**
+## 3. **Why they are wrong?**
 
 This is the reason why I told you not to follow that accepted answer on stack overflow, since it is tried so hard to adopt the stack theory like "as if a 'stack frame' were allocated on the heap"... Totally absurd even for an analogy.
 
@@ -106,7 +104,7 @@ It is still output a 2, it never change! It is always two! In fact, if it become
 
 There is another post from a famous writer who tries to use scoping chain to explain this, but it doesn't make sense as the reason above. Since even the interpreter tries to find the variable `text` follow the scoping chain, it won't succeed since that `outside()` function is not valid anymore.
 
-## Where is the magic?
+## 4. Where is the magic?
 
 The magic happens when you assign the returned function to that variable `trueOutside`,  I said before, the `trueOutside` has become a closure. According to [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures), the closure has the following properties.
 
@@ -136,7 +134,7 @@ trueOutside(); // 4
 
 Why it can accumulate? It is just that simple since **<span style="color: #0000ff;">the variable</span> `trueOutside`<span style="color: #0000ff;">has created a new execution context for that inner function, and it stores all the status inside itself without affecting the original parent function</span> `outside()`.**
 
-## Not the end
+## 5. Not the end
 
 This is pretty much of closure. Maybe there is another famous example you have seen, which is the following, a closure when looping. Resulting in a very strange result.
 ```JavaScript

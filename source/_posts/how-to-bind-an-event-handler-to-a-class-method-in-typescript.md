@@ -5,8 +5,6 @@ tags:
   - typescript
   - howto
 id: 98
-categories:
-  - Blog
 date: 2016-08-15 00:12:39
 ---
 

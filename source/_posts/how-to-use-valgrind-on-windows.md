@@ -2,6 +2,7 @@
 title: How to use Valgrind on Windows
 date: 2016-09-28 11:58:28
 tags:
+  - howto
   - tutorial
   - valgrind
 ---
@@ -10,10 +11,10 @@ Valgrind is a famous tool to debug your memory leak, but what sad is it only sup
 
 <!--more-->
 
-## What, Linux in a Windows?
+## 1. What, Linux in a Windows?
 It is easy since in the new update, windows has Ubuntu as a subsystem. And it is neither a virtual machine nor some kind of a container. It is a subsystem, roughly speaking, all the functions will finally invoked by Windows sys-call. So this is a 1st class, blazing fast solution. But the prerequisite is you need a new **Windows 10 version 1607 (Build 14393.187) or above**.
 
-## How to install and use it?
+## 2. How to install and use it?
 When you search online, you will find that you need to join the Windows Insider program and open the developer mode. But no, you don't need to.
 1. press `win+s` to open Cortana.
 2. search for `windows features`, open `Turn Windows features On or Off.`
@@ -23,7 +24,7 @@ When you search online, you will find that you need to join the Windows Insider 
 6. Then you need to configure your default user and password to the system. **This is just for this built-in Ubuntu, not Windows**
 7. Afterwards, every time you need `bash`, you just open CLI then `bash` and enter, splendid!
 
-## Try it first time.
+## 3. Try it first time.
 It is a Ubuntu, so you might simply use the command. `sudo apt-get install valgrind`. Yes, it will work as a charm. But only for this part. If you want to use it, it will totally not work.
 
 ```bash
@@ -36,7 +37,7 @@ It is a Ubuntu, so you might simply use the command. `sudo apt-get install valgr
 ```
 You may abort at this stage, since it is a beta feature, and the translation in the Sys-call level may seems a big deal. And after googling, you decide to abort. But, the story never ends like this :)
 
-## How to deal with it?
+## 4.How to deal with it?
 A brief first:
 >You just need to compile Valgrind by yourself on your own machine."
 
@@ -60,7 +61,7 @@ The idea is simple, the procedures is still easy but take a little bit longer th
 16. A `make distclean` will make things much better.
 17. Use `valgrind` as you wish.
 
-## Happily ever after
+## 5.Happily ever after
 I have built a linked list to test the leak, it works exactly the same way as linux, even better than Mac, OS X, yes, I mean it. The valgrind on OS X will tell you have some leak problems while there is no leak.
 
 ```bash

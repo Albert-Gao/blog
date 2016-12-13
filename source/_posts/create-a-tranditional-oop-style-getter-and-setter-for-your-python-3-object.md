@@ -10,7 +10,7 @@ tags:
 It would be very nature if you want to encapsulate the getter and setter logic to the properties of your class. And it's very easy via python 3 thanks to the new [decorators](https://docs.python.org/3/library/functions.html#property). Let's see how it works.
 
 <!--more-->
-## What we wanna achieve
+## 1. What we wanna achieve
 We wanna something like this:
 ```python
 a = lovelypython()
@@ -28,7 +28,7 @@ class lovelypython():
 
 But let's say you want to modify the getter logic to every time when the user retrieve the `myname` property, you want to add a suffix of `is awesome`. It should ring you a bell to the getter and setter in java, c# or other traditional OOP languages. You can achieve that for python 3 as well.
 
-## a plain object first
+## 2. a plain object first
 ```python
 class lovelypython():
     def __init__(self):
@@ -40,7 +40,7 @@ It is a simple python class which initialize a private property, pay attention t
 
 Notice that this is just a naming convention, people can still access this property to modify it.
 
-## Expose the public property (make the getter)
+## 3. Expose the public property (make the getter)
 Now let's say that you want to use `myname` as the public property name to expose. Then you just need to use the new `@property` decorator.
 
 Let's add this new method to your `lovelypython` class:
@@ -70,7 +70,7 @@ TypeError: 'str' object is not callable
 
 Interesting, right? But it solves our getter thing aside, let's tackle the setter.
 
-## Create the setter
+## 4. Create the setter
 The setter is easy as well:
 
 ```python
@@ -88,7 +88,7 @@ print(lp.myname)
 # output -> Gao is awesome
 ```
 
-## See them all.
+## 5. See them all.
 The whole code block is below:
 
 ```python

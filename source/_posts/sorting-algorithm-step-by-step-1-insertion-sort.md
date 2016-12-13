@@ -11,7 +11,7 @@ The best way to learn a sorting algorithm is not coding, but demonstrates it. In
 
 <!--more-->
 
-## An simple example
+## 1. An simple example
 
 The example is always a good way to learn. Let's start from a new array `arr` `[7,5,2,8]`:
 
@@ -53,11 +53,11 @@ As usual, we compare from right to the leftmost. It seems that all the items are
 
 And when we increase the index by 1 to 4, it becomes `out of index`, so we stop, and now the array is sorted.
 
-## Algorithm brief
+## 2. Algorithm brief
 
 Insertion sort is just this easy, you start from the **2nd** item, we bump it out, and compare to all its ancestors to the leftmost item. Everytime we found a item which is bigger than the bumped item, we move it to right by one cell. Until we finishing comparing all its ancestors, we **insert** the bumped item back the blank space. And we repeat this one by one, until we hit the last item in the array. And the array is sorted.
 
-## The C version of insertion sort 
+## 3. The C version of insertion sort 
 
 Just give you the code, and everybody is happy.
 
@@ -79,7 +79,7 @@ void insertion_sort(int *arr, int size) {
 }
 ```
 
-## Fancy notation
+## 4. Fancy notation
 
 Insertion sort is like what we did in reality, we compare item to each other. Then put them in the right place. But how do we know its efficiency? We use the big O notation, which simply indicates the time complexity of an algorithm:
 

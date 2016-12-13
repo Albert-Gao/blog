@@ -6,8 +6,6 @@ tags:
   - tutorial
   - howto
 id: 67
-categories:
-  - Blog
 date: 2016-08-11 19:13:49
 ---
 
@@ -189,7 +187,9 @@ npm install whatwg-fetch --save
 ## 7.1 What is the whatwg- prefix here?
 
 Some of you may wonder why this library has such a strange prefix. Here is why:
-> The Web Hypertext Application Technology Working Group (WHATWG) is a growing community of people interested in evolving the Web. It focuses primarily on the development of HTML and APIs needed for Web applications.>
+
+> The Web Hypertext Application Technology Working Group (WHATWG) is a growing community of people interested in evolving the Web. It focuses primarily on the development of HTML and APIs needed for Web applications.
+>
 > The WHATWG was founded by individuals of Apple, the Mozilla Foundation, and Opera Software in 2004, after a W3C workshop. Apple, Mozilla and Opera were becoming increasingly concerned about the W3C’s direction with XHTML, lack of interest in HTML and apparent disregard for the needs of real-world authors.
 
 Yes, they are the standard! And they even list `fetch()` as a second line of their main focus standards.  And you can check the full details of this API [here](https://fetch.spec.whatwg.org/).

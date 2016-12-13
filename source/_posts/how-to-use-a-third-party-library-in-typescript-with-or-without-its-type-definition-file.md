@@ -5,8 +5,6 @@ tags:
   - typescript
   - howto
 id: 36
-categories:
-  - Blog
 date: 2016-08-10 23:00:53
 ---
 
@@ -29,13 +27,13 @@ No matter which function your are using, '$' or 'jQuery', it just doesn't work. 
 Just click this link [https://github.com/typings/typings](https://github.com/typings/typings) , install it via NPM, and find the according definition file.
 
 ```
-# Install the Typings CLI package first.
+### Install the Typings CLI package first.
 npm install typings --global
 
-# Search for the typeing file you need.
+### Search for the typeing file you need.
 typings search jquery
 
-# Install non-global typings.
+### Install non-global typings.
 typings install jquery --save
 ```
 

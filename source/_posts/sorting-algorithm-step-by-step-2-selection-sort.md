@@ -12,7 +12,7 @@ Previously, we have been through the insertion sort, an interesting idea, this t
 
 <!--more-->
 
-## Start with example:
+## 1. Start with example:
 Let's start with the following array:
 
 `[7,3,9,8,2,6]`
@@ -47,7 +47,7 @@ We repeat this step for the rest numbers from `8` to `9`, this will result in a 
 
 `[2,3,6,7,8,9]`
 
-## Dig it
+## 2. Dig it
 Selection sort is surely more easier than insertion sort, since it's as same as human mind. We compare items one by one, and for each comparison, we compare target number with the rest array. But everything comes with a cost, it is simple, so it is not fast.
 
 - **Selection sort** (n == length of the array)
@@ -57,7 +57,7 @@ Selection sort is surely more easier than insertion sort, since it's as same as 
 
 Remeber that insertion sort can give a `O(n)` in its best case while selection sort consistently preforms in a `O(n^2)`. For the comparison sorting algorithm, we have already meet 2 methods. Is this the best we can do? Except for compare item one by one, what else could we do to improve the performance? Let the story continue in the 3rd story.
 
-## End with code
+## 3. End with code
 
 ```c
 void selection_sort(int *arr, int size) {

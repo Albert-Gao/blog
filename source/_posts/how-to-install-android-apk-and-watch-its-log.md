@@ -13,7 +13,7 @@ When you are developing some cross platform apps, React native, Phonegap, Kivy, 
 
 <!--more-->
 
-## Install you app
+## 1. Install you app
 - install to the emulator: `adb -e install -r abc.apk`
 - install to the device: `adb -d install -r abc.apk`
 - Some tips:
@@ -30,7 +30,7 @@ When you are developing some cross platform apps, React native, Phonegap, Kivy, 
     ```
     2. install to specific one: `adb -s 300453532e029200 install -r abc.apk`
 
-## Check the log
+## 2. Check the log
 - via the CLI
     - Mac or Linux: `adb logcat | grep “msg for filter”`
     - Windows: `adb logcat | FINDSTR “msg for filter"`

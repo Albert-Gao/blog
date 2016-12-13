@@ -13,7 +13,7 @@ There are two ways to use React, the old `createClass` or the fancy ES6 `extend`
 
 <!--more-->
 
-## Declare a new component:
+## 1. Declare a new component:
 ```JavaScript
 //ES5
 var MyComponent = React.createClass({
@@ -39,7 +39,7 @@ const MyComponent = props => {
 }
 ```
 
-## props and state gets better
+## 2. props and state gets better
 `props` with the ES6 take advantage of the new syntax, makes it more JavaScript-favor, it's now more like a built-in property of a class rather than some return value from a function.
 ```JavaScript
 //ES5
@@ -107,7 +107,7 @@ MyComponent.defaultProps = {
 };
 ```
 
-## context may a little bit different
+## 3. context may a little bit different
 In fact, this section has nothing to do with the syntax, it is something about the `createClass`. It will auto-bind the `this`, but we need to manage this via ES6.
 ```JavaScript
 //ES5
@@ -169,5 +169,5 @@ class MyComponent extends React.Component {
 ```
 It works simply because arrow functions can use the same lexical scope as the codes around it.
 
-## End of story
+## 4. End of story
 React is fun to use. Hope it helps some one. You can see by the above examples that when you use the ES6 syntax, most of the time, you are dealing with the JavaScript syntax itself rather than learning some react built-in functions. Which feels super good.

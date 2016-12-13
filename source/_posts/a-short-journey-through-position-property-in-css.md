@@ -5,8 +5,6 @@ tags:
   - position
   - tutorial
 id: 104
-categories:
-  - Blog
 date: 2016-08-15 14:43:50
 ---
 
@@ -14,7 +12,7 @@ CSS has lots of layout skills to master. `position`, `float`, multi-column, `fl
 
 <!--more-->
 
-## position: static
+## 1. position: static
 
 This name faithfully represent the behavior of his value. It is static, it is the default value. Something interesting about it is that
 
@@ -26,7 +24,7 @@ In fact, it just ignores all of them. It will just stack over each other.
 
 You can see it from the above picture, even you add the `top` property, the three blocks won't  care about it.
 
-## position: relative
+## 2. position: relative
 
 From some aspects, you can consider `position:relative` is as same as `position:static`, why? You can see it from the picture below. Yes,
 
@@ -47,7 +45,7 @@ The third interesting thing about position:relative is that **it creates a coord
 
 ![](/images/Screen-Shot-2016-08-15-at-13.37.10.png)
 
-## position:absolute
+## 3. position:absolute
 
 You might think this should be an easy one. Elements with this property will consider top bottom left right properties. And position themselves exactly to the place where the 4 offset properties sets. But it is very very interesting also.
 
@@ -86,7 +84,7 @@ Let's see it in action.
 
 And it is very easy to understand, right? it fits your requirements very well, and naturally stretch itself to fit requirements.
 
-## position:fixed
+## 4. position:fixed
 
 Finally we can deal with something ordinary.
 
@@ -96,6 +94,6 @@ Just a caveat here:
 
 **Remember to set the padding of contents element. Otherwise the element with `position:fixed` will make some contents can't be read** since it just stay in your reading flow.
 
-## End of story
+## 5. End of story
 
 That's it. Hope it will give you a good brief about the `position` property in CSS. Thanks for reading!

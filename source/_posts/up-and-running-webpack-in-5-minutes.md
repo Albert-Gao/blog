@@ -4,8 +4,6 @@ tags:
   - tutorial
   - webpack
 id: 123
-categories:
-  - Blog
 date: 2016-08-17 22:06:13
 ---
 
@@ -13,11 +11,11 @@ Front end world has an incredible evolution speed. Especially for the tooling, n
 
 <!--more-->
 
-## 1\. What is webpack?
+## 1. What is webpack?
 
 Roughly speaking, it is a tool for bundling your codes. You give it many files, it return you as one file. But it is much more than that, let's continue.
 
-## 2\. What is the difference between webpack and gulp/grunt browserify?
+## 2. What is the difference between webpack and gulp/grunt browserify?
 
 There are several differences:
 
@@ -26,7 +24,7 @@ There are several differences:
 3.  It can only manipulate javascript files, if you need more, you need to use **loaders**.
 4.  It contains all the common features you need and more. It even get a local server.
 
-## 3\. Aha, a configuration-over-coding package, seems we need to learn a lot
+## 3. Aha, a configuration-over-coding package, seems we need to learn a lot
 
 Yes and no, you need to know all the properties to use it well, but you can start using it just by introducing just a few properties. Let's take a look at a what does this `webapck.config.js` looks like.
 
@@ -54,7 +52,7 @@ module.exports = {
 ```
 It feels... pretty easy, right? xD The next section will tell you how can these properties match with your work flow.
 
-## 4\. What happens when it need to processing files?
+## 4. What happens when it need to processing files?
 
 I will not go into every single properties in this section, I will show you just the very properties you need to up and running. And yes, this is not the actual procedure when the code is running, it is just a way to make sense of the configuration by mapping the running stage.
 
@@ -86,7 +84,7 @@ module.exports = {
 };
 ```
 
-## 5\. QA:
+## 5. QA:
 
 ### 5.1 I can't debug with the bundled js file! Give me sourcemap.
 
@@ -117,7 +115,7 @@ module: {
 
 Yes, it can. I have worked with a project which I import lots of modules. Some modules imported in the entry file, some of them imported in another file. Webpack can bundle all of them. You don't need to worry it.
 
-## 6\. Summary
+## 6. Summary
 
 Now I strongly suggest to check the [official site](http://webpack.github.io) for more detail, because now you have a clear picture on how the configuration file works, you can understand the documents as well. And they are all well written.
 

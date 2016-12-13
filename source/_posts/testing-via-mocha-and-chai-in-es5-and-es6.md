@@ -14,17 +14,17 @@ Testing is a crucial part for developing, for JavaScript as well. Since the foun
 
 <!--more-->
 
-## About the versions:
+## 1. About the versions:
 - "node.js": "4.6.2",
 - "babel-preset-latest": "6.16.0",
 - "babel-register": "6.18.0",
 - "chai": "3.5.0",
 - "mocha": "3.2.0"
 
-## 1 minute for Mocha
+## 2. One minute for Mocha
 There are so many little piece in Mocha, but you should know the following 3 for your first test. And conquer the rest at the [homepage of Mocha](https://mochajs.org/), not that long.
 
-### Make your context via `describe()`
+### 2.1 Make your context via `describe()`
 Your testing suites may consist of many parts. And you could distinguish them in a clear manner via `describe()`, you needs 2 parameters for it, the first one is the description and the second one is a function which will contain your tests afterwards.
 
 ```JavaScript
@@ -50,7 +50,7 @@ describe("Start to test function A", function(){
 })
 ```
 
-### Write your tests in `it()`
+### 2.2 Write your tests in `it()`
 Your real code for tests locates in `it()`, it has a same function signature as `describe()`.
 
 ```JavaScript
@@ -72,7 +72,7 @@ describe("Start to test function A", function(){
 })
 ```
 
-### You can hook your tests to do some preparation
+### 2.3 You can hook your tests to do some preparation
 With its default “BDD”-style interface, Mocha provides the hooks before(), after(), beforeEach(), and afterEach(). These should be used to set up preconditions and clean up after your tests.
 
 ```JavaScript
@@ -102,10 +102,10 @@ describe('hooks', function() {
 })
 ```
 
-## 1 minute to Chai
+## 3. One minute to Chai
 Chai focus on assertion, it provides with 3 types of assertions. Codes below are from [http://Chaijs.com/guide/styles](Chaijs.com/guide/styles)
 
-### Assert
+### 3.1 Assert
 This one has a similar feeling as the build-in `assert` in node.js.
 
 ```JavaScript
@@ -120,7 +120,7 @@ assert.lengthOf(foo, 3, 'foo`s value has a length of 3');
 assert.lengthOf(beverages.tea, 3, 'beverages has 3 types of tea');
 ```
 
-### Expect
+### 3.2 Expect
 The BDD style assertion of `expect()` enable you to represent your tests in a more human-reading-friendly way.
 
 ```JavaScript
@@ -134,7 +134,7 @@ expect(foo).to.have.length(3);
 expect(beverages).to.have.property('tea').with.length(3);
 ```
 
-### Should
+### 3.3 Should
 Provides another approach to address your tests description. May have some issues when used with Internet Explorer, so be aware of browser compatibility.
 
 ```JavaScript
@@ -148,7 +148,7 @@ foo.should.have.length(3);
 beverages.should.have.property('tea').with.length(3);
 ```
 
-### Languages chains
+### 3.4 Languages chains
 You can chain your description via the following methods. Here is a little disadvantage of using `Chai`. Non-native speaker may have a trouble on combine these words to a sentence, but seems not a big deal, they are very basic English.
 
 - to
@@ -166,10 +166,10 @@ You can chain your description via the following methods. Here is a little disad
 - same
 
 
-## Set up for ES5 Testing
+## 4. Set up for ES5 Testing
 Very easy to set up.
 
-### First, you install them
+### 4.1 First, you install them
 ```bash
 # use NPM
 npm init --yes
@@ -180,7 +180,7 @@ yarn init --yes
 yarn add mocha chai --dev
 ```
 
-### Second, import them in your tests and write a simple test
+### 4.2 Second, import them in your tests and write a simple test
 Create a file named `test.js` locates in `test/` in your project folder.
 ```JavaScript
 var expect = require("chai").expect
@@ -197,7 +197,7 @@ describe("Test the behavior of addTwo()", function () {
 })
 ```
 
-### Third, write your function which needs to test.
+### 4.3 Third, write your function which needs to test.
 The above tests will fail since there is no such `addTwo()`. It doesn't matter, we will add one now.
 Create a file named `index.js` locates in the root of your project folder with the following codes:
 ```JavaScript
@@ -206,7 +206,7 @@ export addTwo = function (num1, num2) {
 }
 ```
 
-### Fourth, add the following section to your `package.json`.
+### 4.4 Fourth, add the following section to your `package.json`.
 If you already have a `scripts` section, you can replace it with the following one.
 ```JavaScript
 "scripts": {
@@ -214,7 +214,7 @@ If you already have a `scripts` section, you can replace it with the following o
 },
 ```
 
-### Run your tests via command line
+### 4.5 Run your tests via command line
 ```bash
 npm run test
 
@@ -224,7 +224,7 @@ npm test
 
 You can do the second trick since the `test` is a reserved keyword of NPM.
 
-## See the fancy result
+## 5. See the fancy result
 ```bash
 > testMocha@1.0.0 test /Users/albertgao/codes/node/testMocha
 > ./node_modules/mocha/bin/mocha test/*.js || exit 0
@@ -236,10 +236,10 @@ You can do the second trick since the `test` is a reserved keyword of NPM.
   2 passing (8ms)
 ```
 
-## Set up for ES6 Testing
+## 6. Set up for ES6 Testing
 Testing for ES6 takes few more steps since you need to transpile your ES6 code to ES5.
 
-### First, you install them
+### 6.1 First, you install them
 ```bash
 # use NPM
 npm init --yes
@@ -250,7 +250,7 @@ yarn init --yes
 yarn add mocha chai --dev
 ```
 
-### Second, import them in your tests and write a simple test
+### 6.2 Second, import them in your tests and write a simple test
 Create a file named `test.js` locates in `test/` in your project folder.
 ```JavaScript
 import chai from "chai"
@@ -277,7 +277,7 @@ But I saw a request on Github, which will enable `import "chai/should" in the fu
 
 Second, I didn't use `arrow functions` here since the nature of the arrow function, you will lose the context binding, let's say you want to use the built-in `this.timeout(200)` to structure your tests. Then you shouldn't use the arrow function even you are written in `ES6`. But if not, feel free to use it.
 
-### Third, write your function which needs to test.
+### 6.3 Third, write your function which needs to test.
 The above tests will fail since there is no such `addTwo()`. It doesn't matter, we will add one now.
 Create a file named `index.js` locates in the root of your project folder with the following codes:
 ```JavaScript
@@ -288,7 +288,7 @@ let addTwo = (num1, num2) => {
 export {addTwo}
 ```
 
-### Fourth, add the Babel support
+### 6.4 Fourth, add the Babel support
 ```bash
 # use npm
 npm install babel-preset-latest babel-register --save-dev
@@ -297,7 +297,7 @@ npm install babel-preset-latest babel-register --save-dev
 yarn add babel-preset-latest babel-register -D
 ```
 
-### Fifth, create a `.babelrc` file at the root of your project folder
+### 6.5 Fifth, create a `.babelrc` file at the root of your project folder
 With the following contents:
 ```JavaScript
 {
@@ -305,7 +305,7 @@ With the following contents:
 }
 ```
 
-### Sixth, add the following section to your `package.json`.
+### 6.6 Sixth, add the following section to your `package.json`.
 If you already have a `scripts` section, you can replace it with the following one.
 ```JavaScript
 "scripts": {
@@ -314,7 +314,7 @@ If you already have a `scripts` section, you can replace it with the following o
 ```
 The idea here is easy, Mocha just uses `babel-register` to transpile the file on the fly. Via this approach, you can write you tests and codes both in ES6, and tests them without pre-transpiling the code.
 
-### Run your tests via command line
+### 6.7 Run your tests via command line
 ```bash
 npm run test
 
@@ -324,7 +324,7 @@ npm test
 
 You can do the second trick since the `test` is a reserved keyword of NPM.
 
-## See the fancy result
+## 7. See the fancy result
 ```bash
 > testMocha@1.0.0 test /Users/albertgao/codes/node/testMocha
 > ./node_modules/mocha/bin/mocha test/*.js --require babel-register --reporter spec || exit 0
@@ -336,7 +336,7 @@ You can do the second trick since the `test` is a reserved keyword of NPM.
   2 passing (8ms)
 ```
 
-## Why not Jasmine?
+## 8. Why not Jasmine?
 A little off-topic talking before ending. Why not Jasmine? It is good, it is full featured. Has built-in assert, mock(spy), ajax call, etc. And it's easy to configure too. Sometimes just as same as Mocha, but with Mocha, you can choose your own favourite assertion library, like `Chai` or `better-assert`. And choose mock library like `Sinon.js`, and even for the reporter part, you can use different reporter for a different outlook, even for exporting a HTML report.
 
 So the main differences between `Mocha` and `Jasmine` is that you don't this so called `javascript fatigue` anymore with `Jasmine`. But this is just why we love `JavaScript`, right? (Not wierd, think about it. :)

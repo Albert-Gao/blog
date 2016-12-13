@@ -7,7 +7,7 @@ tags:
   - howto
 ---
 
-## Brief:
+## 1. Brief:
 - Kivy is a framework which enable you to write cross platform app via python, and buildozer is a tool to package your code. Their documentation really sucks, this is why I wrote this to save you tons of time.
 - Kivy provides a bundle package for OS X, which you can use a executable file named `kivy` to run your code instead of the native `python` one. But if you prefer the pythonic way (as I do), You could use this tested solution as a reference.
 - Tested for Kivy 1.9.1, OS X Sierra 10.12.1 and Python 3.5, for python part, I tested 3.5.0, 3.5.1, 3.5.2;
@@ -16,7 +16,7 @@ tags:
 
 <!--more-->
 
-## Step by step:
+## 2. Step by step:
 - install Homebrew (a package manager for macOS) using the following command if you haven't
     - `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 - Install all the dependencies that Kivy needs via Homebrew
@@ -32,7 +32,7 @@ tags:
 - Running!
     - `python3 your_app.py`
 
-## A tested Hello world for those who needs:
+## 3. A tested Hello world for those who needs:
 ```python
 import kivy
 kivy.require('1.9.1') # replace with your current kivy version

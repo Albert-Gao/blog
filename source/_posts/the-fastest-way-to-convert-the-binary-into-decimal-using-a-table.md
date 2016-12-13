@@ -6,8 +6,6 @@ tags:
   - decimal
   - tips
 id: 28
-categories:
-  - Blog
 date: 2016-08-10 21:01:49
 ---
 

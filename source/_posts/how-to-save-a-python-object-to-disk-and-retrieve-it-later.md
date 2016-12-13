@@ -2,6 +2,7 @@
 title: How to save a python object to disk and retrieve it later?
 date: 2016-12-02 11:37:24
 tags:
+  - howto
   - tutorial
   - python
   - howto
@@ -11,14 +12,14 @@ Objects are somethings which exists at run time, if we want to maintain its stat
 
 <!--more-->
 
-## About the procedures:
+## 1. About the procedures:
 The cases here are very simple, just 2:
 - **Serialization:** Save an object to disk with a binary form
 - **Deserialization:** Retrieve an object from a file
 
 Python comes with a handy library called `pickle` which tackles this situation nicely.
 
-## Serialization : Save an object to the disk
+## 2. Serialization : Save an object to the disk
 We need to use `pickle.dump()` method:
     
 ```python
@@ -34,7 +35,7 @@ with open("super.file", "wb") as f:
 
 You should notice that the file I will write the object to is named `super.file` rather than `super.txt` to imply that this file will be binary based rather than plain text.
 
-## Deserialization : Convert the file to python object
+## 3. Deserialization : Convert the file to python object
 We will use `pickle.load()` method.
 
 and it is as simple as `pickle.dump()` :
@@ -53,6 +54,6 @@ with open("super.file", "rb") as f:
     self.some_property = dump.some_property
 ```
 
-## End
+## 4. End
 With this `pickle` library under your belt, you could wrap it to make your own persistence solution in a decent manner.
 Notice that this is just a simple intro to the `pickle` library. There are more methods for you to explorer. The official documents can be found here: [Python 2.7](https://docs.python.org/2.7/library/pickle.html) or [Python 3.5](https://docs.python.org/3.5/library/pickle.html).
