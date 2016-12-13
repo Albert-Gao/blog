@@ -77,7 +77,7 @@ Remember:
 We'll talk more about the execution environment later. Let's check another common mistake. You can see many definitions online as the following one from the famous [W3School](http://www.w3schools.com/js/js_function_closures.asp):
 > A closure is a function having access to the parent scope, even after the parent function has closed.
 
-To be honest, This is deadly wrong. Because **it is nothing to do with the parent function and nothing to do with accessing  behavior either,** Let's prove it with the following code.
+To be honest, this is deadly wrong. Because **it is nothing to do with the parent function and nothing to do with accessing  behaviour either,** Let's prove it with the following code.
 
 ```JavaScript
 function outside() {
@@ -100,7 +100,7 @@ We executed `trueOutside()` for 3 times, Let's put down your questions first sin
 outside()();   // 2
 ```
 
-It is still output a 2, it never change! It is always two! In fact, if it becomes 5, the JavaScript will completely be an non-sense language.
+It still outputs a 2, it never changes! It is always two! In fact, if it becomes 5, the JavaScript will completely be a non-sense language.
 
 There is another post from a famous writer who tries to use scoping chain to explain this, but it doesn't make sense as the reason above. Since even the interpreter tries to find the variable `text` follow the scoping chain, it won't succeed since that `outside()` function is not valid anymore.
 
@@ -114,7 +114,7 @@ The magic happens when you assign the returned function to that variable `trueOu
 *   **<span style="color: #0000ff;">the environment in which that function was created.</span>**
 *   <span style="color: #0000ff;">The environment consists of any local variables that were in-scope at the time that the closure was created.</span>
 
-So, it is easy to understand now, the closure `trueOutside`, it not only contains that returned anonymous function, but also it contains the variable `text`, since it was exist when the closure was created. So it can executed well.  And it can explained the last example I showed you before. Let's review it.
+So, it is easy to understand now, the closure `trueOutside`, it not only contains that returned anonymous function, but also it contains the variable `text`, since it was exist when the closure was created. So, it can executed well.  And it can be explained the last example I showed you before. Let's review it.
 
 ```JavaScript
 function outside() {
