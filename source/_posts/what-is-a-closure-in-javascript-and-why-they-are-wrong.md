@@ -164,4 +164,4 @@ My value: 3
 My value: 3
 ```
 
-Yes, this is JavaScript, always hits you with a unexpected pose. :) It is about the closure again, but it is easier to understand using the concept of "context". You can check it at [this post](/2016/08/25/why-not-making-functions-within-a-loop-in-JavaScript/), I will dissect it step by step. By far the most detailed explanation online xD Yes, since I checked tons of them before.
+Yes, this is JavaScript, always hits you with a unexpected pose. :) It is about the closure again, but it is easier to understand using the concept of "context". You can check it at [this post](/2016/08/25/why-not-making-functions-within-a-loop-in-javascript/), I will dissect it step by step. By far the most detailed explanation online xD Yes, since I checked tons of them before.
