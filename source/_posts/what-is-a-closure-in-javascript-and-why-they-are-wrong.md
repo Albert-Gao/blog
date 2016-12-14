@@ -1,5 +1,5 @@
 ---
-title: What is a closure in JavaScript and why they are wrong?
+title: What is a closure in JavaScript and why most people have the wrong idea?
 tags:
   - closure
   - javascript
