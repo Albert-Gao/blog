@@ -30,7 +30,7 @@ In a word, 2 steps:
 ### Step 1:
 Add the following sections to your [Launch Configurations](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations).
 
-```json
+```javascript
 {
     "name": "Run ES6 Tests",
     "type": "node",
@@ -68,7 +68,7 @@ It just has 1 more step than the above one, transpile the ES6 code. But the resu
 ### Step 1:
 Add the following sections to your [Launch Configurations](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations).
 
-```json
+```javascript
 {
     "name": "Run Tests",
     "type": "node",
