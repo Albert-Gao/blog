@@ -1,5 +1,5 @@
 ---
-title: How to debug mocha tests in Visual Studio Code with ES6
+title: How to debug ES6 mocha tests in Visual Studio Code
 date: 2016-12-16 23:37:35
 tags:
   - debug
