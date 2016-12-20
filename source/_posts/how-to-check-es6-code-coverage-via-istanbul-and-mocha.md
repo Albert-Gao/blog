@@ -50,7 +50,7 @@ But, we found the latest version, using alpha is not recommend, but it solved th
 or
 
 - `yarn remove istanbul`
-- `yarn add istanbul@1.1.0-alpha.1 -D --dev`
+- `yarn add istanbul@1.1.0-alpha.1 --dev`
 
 ## 4. Create your report
 - `./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test/*.js -- --require babel-register"`
