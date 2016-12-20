@@ -3,7 +3,6 @@ title: A short journey through position property in CSS
 tags:
   - css
   - position
-  - tutorial
 id: 104
 date: 2016-08-15 14:43:50
 ---

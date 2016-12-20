@@ -2,9 +2,7 @@
 title: Create a tranditional java style getter and setter for your python 3 object
 date: 2016-12-02 15:13:37
 tags:
-  - howto
   - python
-  - tutorial
 ---
 
 It would be very nature if you want to encapsulate the getter and setter logic to the properties of your class. And it's very easy via python 3 thanks to the new [decorators](https://docs.python.org/3/library/functions.html#property). Let's see how it works.

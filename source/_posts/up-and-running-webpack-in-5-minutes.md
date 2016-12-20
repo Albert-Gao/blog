@@ -1,7 +1,6 @@
 ---
 title: Up and running Webpack in 5 minutes
 tags:
-  - tutorial
   - webpack
 id: 123
 date: 2016-08-17 22:06:13

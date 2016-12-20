@@ -4,8 +4,6 @@ date: 2016-11-23 22:32:58
 tags:
   - sort
   - algorithm
-  - tutorial
-  - academic
 ---
 
 Previously, we have been through the insertion sort, an interesting idea, this time, let's look into something relatively normal. Selection sort, which is an algorithm very similar to the mind of human being when doing a sort.

@@ -1,7 +1,7 @@
 ---
 title: Automatic Deployment via Git
 tags:
-  - tutorial
+  - cd
   - git
 date: 2016-09-21 21:18:40
 ---

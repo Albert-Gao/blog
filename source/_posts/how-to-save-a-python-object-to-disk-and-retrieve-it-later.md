@@ -2,10 +2,7 @@
 title: How to save a python object to disk and retrieve it later?
 date: 2016-12-02 11:37:24
 tags:
-  - howto
-  - tutorial
   - python
-  - howto
 ---
 
 Objects are somethings which exists at run time, if we want to maintain its status across sessions, we need some intermediate technology such as serialization. With serialization you could flush the objects to the disk to make it persistent and deserialize it afterwards to convert it back from binary form to a runtime object.

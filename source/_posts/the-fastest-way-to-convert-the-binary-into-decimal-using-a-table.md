@@ -1,10 +1,8 @@
 ---
 title: The fastest way to convert the binary into decimal using a table
 tags:
-  - academic
   - binary
   - decimal
-  - tips
 id: 28
 date: 2016-08-10 21:01:49
 ---

@@ -4,7 +4,6 @@ date: 2016-08-25 18:43:10
 tags:
   - closure
   - javascript
-  - quiz
 ---
 
 Do you know JSLint? A tool which can help you write quality JavaScript code, it is developed by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford). Who is the father of JavaScript, he surely has sufficient background to judge. :) And JSLint is very strict, and you can call it rigid sometimes, but he always has the point. If you have used the tool before, you may have noticed some errors, one of them may look like this : **"Don't make functions within a loop"**. OK, let's fix it, wait, what?

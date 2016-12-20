@@ -1,8 +1,8 @@
 ---
 title: Setup Nginx step by step
 tags:
+  - setup
   - nginx
-  - tutorial
   - linux
 date: 2016-08-26 16:47:17
 ---

@@ -3,7 +3,6 @@ title: What is a closure in JavaScript and why most people have the wrong idea?
 tags:
   - closure
   - javascript
-  - quiz
 id: 128
 date: 2016-08-21 02:05:56
 ---

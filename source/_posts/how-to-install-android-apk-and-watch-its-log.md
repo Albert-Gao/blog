@@ -2,8 +2,6 @@
 title: How to install android apk and check its log
 date: 2016-12-13 14:56:48
 tags:
-  - howto
-  - tutorial
   - android
   - adb
   - logcat

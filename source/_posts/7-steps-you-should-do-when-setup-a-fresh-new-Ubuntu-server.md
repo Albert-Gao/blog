@@ -1,7 +1,7 @@
 ---
 title: 7 steps you should do when setup a fresh new Ubuntu server
 tags:
-  - tutorial
+  - setup
   - ubuntu
   - linux
 date: 2016-08-23 20:04:00

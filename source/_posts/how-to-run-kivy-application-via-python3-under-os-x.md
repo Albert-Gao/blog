@@ -3,8 +3,7 @@ title: How to run kivy application via python3 under OS X
 date: 2016-11-20 17:29:10
 tags:
   - kivy
-  - tutorial
-  - howto
+  - python
 ---
 
 ## 1. Brief:

@@ -2,9 +2,8 @@
 title: How to make ajax call with native fetch API in javascript
 tags:
   - fetch
+  - ajax
   - javascript
-  - tutorial
-  - howto
 id: 67
 date: 2016-08-11 19:13:49
 ---

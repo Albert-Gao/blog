@@ -2,7 +2,6 @@
 title: Using React the ES5 and ES6 Way
 date: 2016-09-24 14:54:19
 tags:
-  - tutorial
   - javascript
   - react
   - es5

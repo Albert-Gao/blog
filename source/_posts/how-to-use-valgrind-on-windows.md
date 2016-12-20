@@ -2,8 +2,6 @@
 title: How to use Valgrind on Windows
 date: 2016-09-28 11:58:28
 tags:
-  - howto
-  - tutorial
   - valgrind
 ---
 

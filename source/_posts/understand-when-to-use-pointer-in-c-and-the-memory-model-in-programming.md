@@ -4,7 +4,6 @@ id: 82
 date: 2016-08-13 18:02:45
 tags:
   - memory
-  - academic
   - pointer
 ---
 

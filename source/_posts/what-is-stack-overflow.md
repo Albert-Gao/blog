@@ -1,10 +1,8 @@
 ---
 title: What is stack overflow?
 tags:
-  - academic
   - memory
   - stackoverflow
-  - quiz
 id: 73
 date: 2016-08-12 16:45:13
 ---

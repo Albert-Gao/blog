@@ -3,8 +3,7 @@ title: How to package android apk via buildozer with Kivy
 date: 2016-11-19 16:50:09
 tags:
   - kivy
-  - tutorial
-  - howto
+  - android
   - buildozer
 ---
 

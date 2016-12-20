@@ -4,8 +4,6 @@ date: 2016-11-08 23:36:51
 tags:
   - sort
   - algorithm
-  - tutorial
-  - academic
 ---
 The best way to learn a sorting algorithm is not coding, but demonstrates it. Insertion sort is such a good start to practice your sorting. The first confusion may start from the name, "insertion", most of the time, we are talking about insert new item into a collection. But in sorting, the overall array is just there, no more and no less. Why do we call it "insertion sort"?
 
