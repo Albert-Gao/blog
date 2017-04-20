@@ -14,7 +14,7 @@ Recently, I have refactored a legacy code base. It's a mobile app written via py
 
 Most the experiences below comes from my previous practices of mobile dev, web dev and back-end dev. But without any surprising, they all fit in this project. And they should be adoptable to all languages as well.
 
-Remeber one thing before reading:
+Remember one thing before reading:
 > None of the following practice is time consuming. All of them should be merged into your mindset. And becomes the way you code. If you find them take too much time to do, try practicing more.
 <!--more-->
 
@@ -60,10 +60,11 @@ To make your folder tidy is a key to success. It means find things much more fas
 
 Besides the `tests` folder, folders like `UI` and `Lib1` is a module which means you need to put a empty `__init__.py` in it in order to `import` its module.
 
-What's the difference between `Lib1` and `Utils`?
+### What's the difference between `Lib1` and `Utils`?
+
 `Lib1` are something you need for your fundamental features, `DataStore`, `Routes`, etc. `Utils` just like a `util` class, which provide with bunch of function which is ready to use like `get_current_time_in_XXX_form()`.
 
-**Two things here:**
+### Two things here:
 1. I don't like the idea that the test files should sit by the side of your file-to-be-tested. I like them to sit in the `tests` folder. But feel free to change if you love that convention. It's good too since it's easy for refactoring. But I just like the visual clean way. :)
 
 2. Separate the UI and logic is a no brainer. But separating the UI, separate them in a component based logic. And you will locate the problem very easily via this hierarchy.
