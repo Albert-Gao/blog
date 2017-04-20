@@ -12,10 +12,10 @@ Recently, I have refactored a legacy code base. It's a mobile app written via py
 
 >We don't only deliver products, but also clean code base. That's what we do for a living. 
 
-Most the experiences below comes from my previous practices of mobile dev, web dev and back-end dev. But without any surprising, they all fit in this project. And they should be adoptable to all languages as well.
+Most the experiences below comes from my previous practices of mobile dev, web dev and back-end dev. But without any surprising, they all fit in this project. And they should be adaptable to all languages as well.
 
 Remember one thing before reading:
-> None of the following practice is time consuming. All of them should be merged into your mindset. And becomes the way you code. If you find them take too much time to do, try practicing more.
+> None of the following practice is time-consuming. All of them should be merged into your mindset. And becomes the way you code. If you find them take too much time to do, try practicing more.
 <!--more-->
 
 ## 1.TDD from beginning
@@ -26,10 +26,10 @@ This is a new code base, use TDD to code it, there is no wasting time in testing
 This is a huge benefit. And by doing TDD, you won't be able to write a function which has tons of lines inside. Great. In most cases without TDD, when you found it's too hard to test a function or you need to mock a lot, that properly means your codes are coupled too much you need to fix them ASAP.
 
 ## 2.Begin with the base libraries rather than UI
-Somebody from the BDD world loves to start from the perspective of user that means start with the UI. But I prefer the inside-out way, test the all the base module first, then to the UI. The reason is when you go to the UI part, the data is already prepared. So you just need to test the styling part, interaction part which are belongs to the UI. Sounds like more separated logic: implement the business logic, then the UI to represent that logic.
+Somebody from the BDD world loves to start from the perspective of a user that means start with the UI. But I prefer the inside-out way, test the all the base module first, then to the UI. The reason is when you go to the UI part, the data is already prepared. So you just need to test the styling part, interaction part which belong to the UI. Sounds like more separated logic: implement the business logic, then the UI to represent that logic.
 
 ## 3.Folder structure is crucial
-To make your folder tidy is a key to success. It means find things much more faster, and quite a visual pleasure. I used the following one.
+To make your folder tidy is a key to success. It means to find things much faster, and quite a visual pleasure. I used the following one.
 
 ```bash
 # [] == folder
@@ -58,11 +58,11 @@ To make your folder tidy is a key to success. It means find things much more fas
 --------test_Tools.py
 ```
 
-Besides the `tests` folder, folders like `UI` and `Lib1` is a module which means you need to put a empty `__init__.py` in it in order to `import` its module.
+Besides the `tests` folder, folders like `UI` and `Lib1` is a module which means you need to put an empty `__init__.py` in it in order to `import` its module.
 
 ### What's the difference between `Lib1` and `Utils`?
 
-`Lib1` are something you need for your fundamental features, `DataStore`, `Routes`, etc. `Utils` just like a `util` class, which provide with bunch of function which is ready to use like `get_current_time_in_XXX_form()`.
+`Lib1` are something you need for your fundamental features, `DataStore`, `Routes`, etc. `Utils` just like a `util` class, which provide with a bunch of function which is ready to use like `get_current_time_in_XXX_form()`.
 
 ### Two things here:
 1. I don't like the idea that the test files should sit by the side of your file-to-be-tested. I like them to sit in the `tests` folder. But feel free to change if you love that convention. It's good too since it's easy for refactoring. But I just like the visual clean way. :)
@@ -101,7 +101,7 @@ from Utils import DEFAULTS
 ```
 
 ## 5.Naming convention means a lot.
-Every linting tool has a naming convention, it makes your code more readable. In python, it means a lot too. You just don't want to code to look like a Java code, right? PEP8 is your friend here, and when it comes to naming widgets, I personally love the combination of [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) and python rule. That means put the type of the widget at the front then with its name, it will make your widgets super clear. A old habbit from my old VB6 coding experiences.
+Every linting tool has a naming convention, it makes your code more readable. In python, it means a lot too. You just don't want to code to look like a Java code, right? PEP8 is your friend here, and when it comes to naming widgets, I personally love the combination of [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) and python rule. That means put the type of the widget at the front then with its name, it will make your widgets super clear. An old habit from my old VB6 coding experiences.
 
 ```python
 # A text field
@@ -114,10 +114,10 @@ pic_user.source = "/pics/head.png"
 lst_posts.disabled = False
 ```
 
-You can distinguish a variable between a UI component and a python variable very easily just by looking at its name.
+You can distinguish a variable between an UI component and a python variable very easily just by looking at its name.
 
 ## 6.Fixture is your solution to reduce boilerplate codes
-There are always something you need to prepare when you try to test. A clean object or an object with some specific values. Let's say that you want to test 3 cases for an object, with a json value, with string or a class. You can combine them into one `fixture`. 
+There are always something you need to prepare when you try to test. A clean object or an object with some specific values. Let's say that you want to test 3 cases for an object, with a JSON value, with string or a class. You can combine them into one `fixture`. 
 
 ```python
 @pytest.fixture(params=[test_json, test_string, test_class])
@@ -152,7 +152,7 @@ Now you can change the name of your file as often as you want, and no typo will 
 You can use `Enum` as well, they are available to python 3 and a package to python 2.
 
 ## 8.Do test your modules with only constants
-Follow the above one, what happened after you have separated your default values into one file? You need to test them! Why? Because when you change them, it may make your whole code base crash because you don't how much code are out there which rely all the variables. And the test is easy.
+Follow the above one, what happened after you have separated your default values into one file? You need to test them! Why? Because when you change them, it may make your whole code base crash because you don't how much code are out there which rely on all the variables. And the test is easy.
 
 Let's say you have a class like this:
 ```python
@@ -172,30 +172,30 @@ def test_if_there_are_str_typed_names_attributes_in_DEFAULT_class():
 ```
 
 With this test case, you can ensure 3 things:
-1. There is a attribute named `ALL_CACHE_FOLDER` in the class `DEFAULT_STORE_NAME`
+1. There is an attribute named `ALL_CACHE_FOLDER` in the class `DEFAULT_STORE_NAME`
 2. This attribute is `str`.
 3. It is not empty.
 
 ## 9.xFail some cases to let things going
-Sometimes the tests could be failed even your own code is right. It may caused by a 3rd party library. As long as it won't crash your code, there is no need to stuck here. You can safely make it using the decorator `@pytest.mark.xfail`. Then deal with it later.
+Sometimes the tests could be failed even your own code is right. It may cause by a 3rd party library. As long as it won't crash your code, there is no need to stuck here. You can safely make it using the decorator `@pytest.mark.xfail`. Then deal with it later.
 
 ## 10.Refactor the test cases after code refactoring
-When I start to test, I like to start with test if there is a module of something like that, to form the folder structure first. Something like below.
+When I start to test, I like to start with a test if there is a module of something like that, to form the folder structure first. Something like below.
 
 ```python
 def test_if_there_is_a_MainTab_module():
    from UI.MainScreen.MainTab import MainTab
 ```
 
-But soon as your tests grow, you will learn the constraints here, you need to `import` this module in every test function. It will make it slow and meaningless, you can surely `import` them at the head of file or use a fixture to wrap them.
+But soon as your tests grow, you will learn the constraints here, you need to `import` this module in every test function. It will make it slow and meaningless, you can surely `import` them at the head of the file or use a fixture to wrap them.
 
 ## 11.Use test coverage tools to detect non-tested branch
-Via TDD, it should be not that hard to get a 100% coverage very easily. But sometimes due to the framework you are using, it might be a little bit tricky to test all your code base (Like testing the UI part of a Kivy app). Then you need to test them as much as possible. Use a test coverage tool to find the branch that haven't tested by the tests and decrease the number of them.
+Via TDD, it should be not that hard to get a 100% coverage very easily. But sometimes due to the framework you are using, it might be a little bit tricky to test all your code base (Like testing the UI part of a Kivy app). Then you need to test them as much as possible. Use a test coverage tool to find the branch that hasn't tested by the tests and decrease the number of them.
 
 ## 12.Explain your intention in the test function name
 > We love documents when we learn things, but we hate documents when we write our own codes.
 
-Anything worse than don't know what a variable is, is the unclear of a test. If you can't figure it out by seconds, you are wasting time. Something I love from the Javascript world is that how clear an intention of a test could be, something like this:
+Anything worse than doesn't know what a variable is, is unclear of a test. If you can't figure it out by seconds, you are wasting time. Something I love from the Javascript world is that how clear an intention of a test could be, something like this:
 ```JavaScript
 describe("A suite is just a function", function() {
   var a;
@@ -221,5 +221,6 @@ Every time after a refactoring, run your whole test cases again. At first, you w
 
 Since most of your codes are covered by test cases. The easiness to check if one change will affect another is such a pleasure.
 
+
 ## 14.End
-Consider that maintainability is such important, some times even more important than so-called performance issue. We want our code base to be tidy since this is our job, this is what we do for a living. Shipping ugly code will not only hurt yourself, but your team as well.
+Consider that maintainability is such important, some times even more important than so-called performance issue. We want our code base to be tidy since this is what we do for a living. Shipping ugly code will not only hurt yourself, but your team as well. This is something time couldn't teach you, you could only learn by adopting them.
