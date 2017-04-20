@@ -8,7 +8,7 @@ tags:
    - architecture
 ---
 
-Recently, I have refactored a legacy code base. It's a mobile app written via python and using a framework named [Kivy](https://kivy.org/#home). It's quite a happy process since the old one is good start for a refactoring, one folder to hold all files, one file to hold all logic, useless-over-complex logic, everything clued together, `global` comes from nowhere, no naming conventions. 
+Recently, I have refactored a legacy code base. It's a mobile app written via python and using a framework named [Kivy](https://kivy.org/#home). It's quite a happy experience since the old one is good start for a refactoring, one folder to hold all files, one file to hold all logic, useless-over-complex logic, everything clued together, `global` comes from nowhere, no naming conventions. 
 
 >We don't only deliver products, but also clean code base. That's what we do for a living. 
 
@@ -17,7 +17,7 @@ Most the experiences below comes from my previous practices of mobile dev, web d
 <!--more-->
 
 ## TDD from beginning
-This is a new code base, use TDD to code it, there is no wasting time in testing compare to find a bug in a nasty code base.
+This is a new code base, use TDD to code it, there is no wasting time in testing compare to try to locate a bug in a nasty code base.
 
 >The best benefit you will gain from TDD is the confidence when you try to refactor your code base.Because you have fully prepared for the regression tests. 
 
