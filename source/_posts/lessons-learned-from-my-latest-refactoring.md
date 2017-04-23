@@ -14,8 +14,6 @@ Recently, I have refactored a legacy code base. It's a mobile app written via py
 
 Most the experiences below comes from my previous practices of mobile dev, web dev and back-end dev. But without any surprising, they all fit in this project. And they should be adaptable to all languages as well.
 
-Remember one thing before reading:
-> None of the following practice is time-consuming. All of them should be merged into your mindset. And becomes the way you code. If you find them take too much time to do, try practicing more.
 <!--more-->
 
 ## 1.TDD from beginning
