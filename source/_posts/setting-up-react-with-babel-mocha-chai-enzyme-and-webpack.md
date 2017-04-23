@@ -1,4 +1,17 @@
-I'm not big fan of black magic, especially when I set up my development environment. Every module I have installed, I want to know exactly what problem does it solve. And every feature I have used, I want to know how to customize it to suit my needs. You could use [create-react-app](https://github.com/facebookincubator/create-react-app), but I like to manage all the things by own hands. And when you know what you need, it is not that hard. 
+---
+title: Setting up React with Babel, Mocha, Chai, Enzyme and Webpack
+date: 2017-04-23 02:56:50
+tags:
+   - test
+   - react
+   - babel
+   - mocha
+   - chai
+   - enzyme
+   - webpack
+---
+
+I'm not a big fan of black magic, especially when I set up my development environment. Every module I have installed, I want to know exactly what problem does it solve. And every feature I have used, I want to know how to customize it to suit my needs. You could use [create-react-app](https://github.com/facebookincubator/create-react-app), but I like to manage all the things by own hands. And when you know what you need, it is not that hard. 
 
 Now let's set up a React environment with Tests, ES6 and bundle enabled (With HMR).
 
@@ -38,7 +51,7 @@ Now we will add `babel` via the following command:
    - `babel-cli` is a built-in CLI which can be used to compile files from the command line.
    - `babel-preset-env` is a presets for determining the Babel plugins and polyfills you need based on your supported environments.
    - `babel-preset-react`: A preset for react related thing such as `jsx` and `flow.js`.
-- Create a `.babelrc` file at the root of your folder, you can include it in the `package.json` as well if you prefer less files at your root.
+- Create a `.babelrc` file at the root of your folder, you can include it in the `package.json` as well if you prefer fewer files at your root.
    - `--save-dev` means we need these libs when we develop, but not for the production. And they'll appear in the `devDependencies` section of your `package.json`
 
 ```json
