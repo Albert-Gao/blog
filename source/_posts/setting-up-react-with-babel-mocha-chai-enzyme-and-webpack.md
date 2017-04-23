@@ -313,7 +313,7 @@ module.exports = {
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:9876',
         'webpack/hot/only-dev-server',
-        './app/app.js'
+        './src/app.js'
     ],
     output: {
         filename: "bundle.js",
@@ -323,7 +323,7 @@ module.exports = {
     module:{
         rules:[{
             test: /\.jsx?$/,
-            include:[path.resolve(__dirname, 'app')],
+            include:[path.resolve(__dirname, 'src')],
             exclude: [path.resolve(__dirname,"node_modules")],
             loader: "babel-loader"
         }]
@@ -337,7 +337,6 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-
         new webpack.NamedModulesPlugin(),
     ],
 }
