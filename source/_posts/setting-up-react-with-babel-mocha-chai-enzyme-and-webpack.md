@@ -257,9 +257,6 @@ The logic is mostly the same, but we will determine if the HMR setting is on, if
 Thirdly, now use `npm start` to start your `webpack-dev-server`, if you have followed my tutorial so far, remember to stop and restart the server since we have changed its settings.
 After the server has started, go changing the `HelloComponent.js` file, try changing the `Hello world` to `Hello HMR`, look at your browser, the content will change without refresh the page. That means the states of your components will be maintained, cool!
 
-**Notice**:
-Sometimes, after you did the things above, the HMR may not work while no errors are thrown (Via the developer console of Chrome). It said `[HMR]Update modules...blah blah blah` with `[HMR]App is up to date.` But nothing changed, if you refresh, it will show you the updates. The problem may due to the module handling problem. You may split your babel configuration to multiple places. And one of them may not set `["env",{"modules":false}]`, it maybe the `query` or `options` part in your `webpack.config.js` file. A recommendation here is to only manage your `babel` configuration in the `.babelrc`. Remove the other splitting one.
-
 ## 9. Story not end.
 But if you try to run the test case via `npm test`, it will throw you an error:
 
