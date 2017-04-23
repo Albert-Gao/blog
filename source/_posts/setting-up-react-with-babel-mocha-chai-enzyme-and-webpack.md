@@ -11,7 +11,7 @@ tags:
    - webpack
 ---
 
-I'm not a big fan of black magic, especially when I set up my development environment. Every module I have installed, I want to know exactly what problem does it solve. And every feature I have used, I want to know how to customize it to suit my needs. You could use [create-react-app](https://github.com/facebookincubator/create-react-app), but I like to manage all the things by own hands. And when you know what you need, it is not that hard. 
+I'm not a big fan of black magic, especially when I set up my development environment. Every module I have installed, I want to know exactly what problem does it solve. And every feature I have used, I want to know how to customize it to suit my needs. You could use [create-react-app](https://github.com/facebookincubator/create-react-app), but I like to manage all the things by my own hands. And when you know what you need, it is not that hard. 
 
 Now let's set up a React environment with Tests, ES6 and bundle enabled (With HMR).
 
@@ -19,12 +19,12 @@ We'll go through every step and explain why we need that module.
 
 <!--more-->
 
-# 1.First of all, what we want?
+## 1.First of all, what we want?
 - We want to write React via ES6, so we need to `babel` as our transpiler
 - We want to test our app via `Mocha`, and using `Chai` to make the assertion
 - We will use `Enzyme` to test our React Component.
 - We want to use ES6 to write our test cases as well.
-- We want to bundle our project via `Webpack`.
+- We want to bundle our project via `Webpack v2`.
 - We will use the Hot Module Replacement (HMR) feature from Webpack to speed up our process.
 
 ## 2.Create the folder structure
@@ -111,7 +111,7 @@ All the settings here are self-explained via their names. the `app.js` is the en
 - And we want to enable `source-map` as a developing tool.
 - Finally, we want a `devServer` which use the configuration we want.
 
-## 5.Check if React works.
+## 6.Check if React works.
 Create 3 files:
 - `app.js` in the `src` folder: This is the entry of our project.
 
@@ -160,7 +160,7 @@ export class Hello extends React.Component{
 Run command `npm start`, and open `http://localhost:9876`, you will see your hello world.
 Webpack dev server will build and display your app.
 
-## 5.Add testing libraries
+## 7.Add testing libraries
 `npm install  --save-dev mocha chai enzyme babel-register react-test-renderer`
 - `babel-register` is a plugin for `Mocha` to use on the fly to transpile your ES6 test files
 - `react-test-renderer` is a plugin for `React 15.5.+`, since there is a breaking changing here, you need this plugin for `enzyme` to run.
@@ -195,7 +195,7 @@ It will test if there is an `h1` tag in our `<Hello/>` module, it should pass.
 ```
 
 
-## 6.Add Hot Module Replacement support
+## 8.Add Hot Module Replacement support
 HMR could speed up your workflow dramatically. Since it will update the changed modules on the fly without refreshing your page. Cool. It is provided by `webpack`. But you need to add some code in order to enjoy it.
 
 Firstly, add the following setting to our previous `webpack.config.js`, the original settings **remain the same**:
@@ -260,7 +260,7 @@ After the server has started, go changing the `HelloComponent.js` file, try chan
 **Notice**:
 Sometimes, after you did the things above, the HMR may not work while no errors are thrown (Via the developer console of Chrome). It said `[HMR]Update modules...blah blah blah` with `[HMR]App is up to date.` But nothing changed, if you refresh, it will show you the updates. The problem may due to the module handling problem. You may split your babel configuration to multiple places. And one of them may not set `["env",{"modules":false}]`, it maybe the `query` or `options` part in your `webpack.config.js` file. A recommendation here is to only manage your `babel` configuration in the `.babelrc`. Remove the other splitting one.
 
-## 7. Story not end.
+## 9. Story not end.
 But if you try to run the test case via `npm test`, it will throw you an error:
 
 ```bash
@@ -302,7 +302,7 @@ Then, change the `test` command in your `package.json` to use it:
 
 Re-run the test via `npm test`, it should work again.
 
-## 8. The whole webpack.config.js
+## 10. The whole webpack.config.js
 
 ```javascript
 var path = require('path')
@@ -343,5 +343,5 @@ module.exports = {
 }
 ```
 
-### 9. Happy ending.
+### 11. Happy ending.
 Now everything should work as expected, and you are good to go.
