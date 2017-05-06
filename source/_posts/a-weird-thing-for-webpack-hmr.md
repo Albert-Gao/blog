@@ -1,5 +1,5 @@
 ---
-title: A weird thing for webpack's HMR
+title: Why the Webpack's HMR doesn't work even when there is no error
 date: 2017-04-24 10:33:49
 tags:
   - webpack
