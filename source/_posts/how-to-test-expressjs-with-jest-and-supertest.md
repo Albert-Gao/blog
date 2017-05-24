@@ -86,5 +86,48 @@ Does the imperative programming style and synchronous looking make you feel happ
 1. Use `async` to the function before you want to use `await`
 2. You need the `babel-preset-env` package to use this.
 
-## 5. End
+## 5. Why not the Supertest way?
+You may ask since we already use supertest, why not the supertest way?
+
+I've got a working example with flaw as the following:
+
+```javascript
+const request = require('supertest');
+const app = require('../../src/app')
+
+describe('Test the root path', () => {
+    test('It should response the GET method', () => {
+        return request(app).get('/').expect(200).end();
+    });
+})
+```
+
+Two things again:
+1. `done` doesn't work here.
+2. Without that `return`, the test will always pass.
+
+The flaw is that you will get warnings in your console:
+```bash
+  console.warn node_modules/superagent/lib/request-base.js:191
+    Warning: superagent request was sent twice, because both .end() and .then() were called. Never call .end() if you use promises
+
+  console.warn node_modules/superagent/lib/node/index.js:754
+    Warning: .end() was called twice. This is not supported in superagent
+
+ PASS  tests/backend/sever.test.js
+  Test the root path
+    ✓ It should response the GET method (29ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.403s
+Ran all test suites.
+  console.warn node_modules/superagent/lib/node/index.js:663
+    superagent: double callback bug
+```
+
+Anyone has a solution is welcome to comment, thanks. :)
+
+## 6. End
 That's all, hope it help. :)
