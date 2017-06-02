@@ -9,7 +9,7 @@ tags:
   - es6
 ---
 
-I recently changed from Mocha, Chai and supertest to Jest. Pretty lovely experiences, cost a while to figure out the right way to test an express route, but when it works, it works like a charm. I share my experiences here, hope it helps.
+I recently changed from `Mocha`, `Chai` to `Jest`. Pretty lovely experiences, cost a while to figure out the right way to test an express route, but when it works, it works like a charm. I share my experiences here, hope it helps. I love its assertion function more than `Chai`, seems more concise to me.
 
 <!--more-->
 
@@ -107,9 +107,10 @@ Does the imperative programming style and synchronous looking make you feel happ
 2. You need the `babel-preset-env` package to use this.
 
 ## 6. Why not the Supertest way?
-You may ask since we already use supertest, why not the supertest way?
+Supertest way is still available. You just need to `return` the statement and remember not use `.end()` and the end.
+Thanks **Adam Beres-Deak** for the hint!
 
-I've got a working example with flaw as the following:
+A working example is as the following:
 
 ```javascript
 const request = require('supertest');
@@ -117,35 +118,12 @@ const app = require('../../src/app')
 
 describe('Test the root path', () => {
     test('It should response the GET method', () => {
-        return request(app).get('/').expect(200).end();
+        return request(app).get('/').expect(200);
     });
 })
 ```
 
 Notice that without that `return`, the test will always pass.
-
-The flaw is that you will get warnings in your console:
-```bash
-  console.warn node_modules/superagent/lib/request-base.js:191
-    Warning: superagent request was sent twice, because both .end() and .then() were called. Never call .end() if you use promises
-
-  console.warn node_modules/superagent/lib/node/index.js:754
-    Warning: .end() was called twice. This is not supported in superagent
-
- PASS  tests/backend/sever.test.js
-  Test the root path
-    ✓ It should response the GET method (29ms)
-
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        1.403s
-Ran all test suites.
-  console.warn node_modules/superagent/lib/node/index.js:663
-    superagent: double callback bug
-```
-
-Anyone has a solution is welcome to comment, thanks. :)
 
 ## 7. End
 That's all, hope it help. :)
