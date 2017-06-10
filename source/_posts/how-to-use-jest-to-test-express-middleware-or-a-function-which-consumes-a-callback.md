@@ -8,7 +8,7 @@ tags:
   - express
 ---
 
-Jest's document says that you could use `done` as a parameter to test a function which takes a callback function as a parameter, but is it really the answer to every case? I happened to solve a problem with a different approach. The solution here is not only apply to express middleware, but also to any function which consumes a callback.
+Jest's document says that you could use `done` as a parameter to test a function which takes a callback function as a parameter, but is it really the answer to every case? Sometimes, errors in your assertion in your callback will yield a timeout with meaningless call stack. I happened to solve a problem with a different approach. The solution here is not only apply to express middleware, but also to any function which consumes a callback.
 
 <!--more-->
 
@@ -112,5 +112,25 @@ This time, when there is an error. You will get a meaningful stack and message.
 >      at tests/backend/unit/fblogin/issueJWT.test.js:48:34
 >      at tryCatcher (node_modules/bluebird/js/release/util.js:16:23)
 
-## 5. End of story.
+## 5. Use async / await to make it clear
+The above solution may seems too heavy. But you can use `async / await` to make it a little bit concise.
+
+```javascript
+test('Should return a JWT with proper value if nothing wrong happened', async () => {
+        const result = await new Promise((resolve) => {
+            issueJWT(request, response, (err) => {
+                if (!err) { resolve(response.locals.token); }
+            });
+        });
+
+        const tokenPayload = jwt.decode(result, { complete: true, }).payload;
+
+        expect(tokenPayload).toHaveProperty('iat');
+        expect(tokenPayload).toHaveProperty('exp');
+        expect(tokenPayload).toHaveProperty('id');
+        expect(tokenPayload).toHaveProperty('iss');
+    });
+``` 
+
+## 6. End of story.
 A rule of thumb is, whenever your test pass, try to make it fail then check. :)
