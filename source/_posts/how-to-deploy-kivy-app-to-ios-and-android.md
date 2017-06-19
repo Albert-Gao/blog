@@ -110,7 +110,8 @@ $ ./toolchain.py create Salect /Users/albertgao/codes/work/handset
 
 10. Now when you run the project, you will see the error in the console.
 
-11. Everytime you change your code, the code will be synced to the Xcode folder, and it will contain all files in your project and there is no way to configure the exception. Only solution here is to create a folder-in-the-middle to solve the problem.
+11. Every time you change your code, the code will be synced to the Xcode folder, and it will contain all files in your project and there is no way to configure the exception. Only solution here is to create a folder-in-the-middle to solve the problem.
 
-# End:
+# End
+
 That's all. Hope it helps :)
