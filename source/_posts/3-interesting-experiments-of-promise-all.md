@@ -6,7 +6,7 @@ tags:
   - promise
 ---
 
-We use `Promise.all()` in javascript when we want to do something after resolving a promise queue. Let's use 3 examples to see the use cases. I use `node v6.10.2` to do the DEMO.
+We use `Promise.all()` in javascript when we want to do something after resolving a promise queue. Let's use 3 examples to see the use cases. And hopefully you could understand more about the execution order of some variations. I use the built-in Promise of `node v6.10.2` to do the DEMO.
 
 <!--more-->
 
@@ -97,7 +97,7 @@ all [ 'test1', 'a2-error' ]
 
 ### 2.3 A variation
 
-So based on the above knowledge, if you use the change the `.catch` part of `a2` from `return 'a2-error'` to `throw e`.
+So based on the above knowledge, if you change the `.catch` part of `a2` from `return 'a2-error'` to `throw e`.
 
 The execution order will be:
 
