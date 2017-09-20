@@ -84,8 +84,8 @@ def should_not_empty(target):
     if isinstance(target, str):
         if not str:
             raise bottle.HTTPResponse(
-                json.dumps({'error': "JSON seems invalid"}),
-                400,
+                body=json.dumps({'error': "No such item"}),
+                status=400,
                 headers={'Content-type': 'application/json'}
             )
 ```
