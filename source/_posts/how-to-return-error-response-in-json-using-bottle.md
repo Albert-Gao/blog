@@ -77,7 +77,7 @@ Because you are not in that router function `get_item()`, so even you return a `
 
 And not like `Express.js` in node, there is no explicit `next()` or `res` for you to pass as a context. Bottle use a global variable called `bottle.response`. Not work too even you return that. Still like return a value if you are not in a router function.
 
-# The proper way to this is
+# The proper way to do this is
 
 ```python
 def should_not_empty(target):
