@@ -78,48 +78,50 @@ You know the `variable hoist` and `scope` in JavaScript, right? Which is JavaScr
 >You see? The concept of **closure** in JavaScript makes it very dangerous to make new functions inside a loop. So, Mr Douglas has given us his advice with JSLint.
 
 ## 3. How to solve it?
-Since we know the cause, we can solve it by many ways. They are sharing the same concept: avoid the closure pitfall.
+Since we know the cause, we can solve it now, by using the same concept.
 
 ### 3.1 I love functions and I will create it at any cost!
+
+You may think that since the `i` is a primitive value, we could simple declare a new variable inside that function in loop and assign the `i` to it. Something like
+
+```javascript
+for (i = 0; i < 3; i++) {
+    funcs[i] = function() {
+        var my_i = i
+        console.log("My value: " + my_i);
+    };
+}
+```
+
+It won't work, still give you three `My value: 3`.
+
+The reason is still as previous:
+
+> When the anonymous function get executed, when it tries to evaluate my_i, it need to read from `i`, and `i` is already `3`
+
+So, one way to solve this is to create another closure to save that temporary value. So it leads us to the following code:
+
 ```javascript
 var i = 0;
+var j = 0;
 var funcs = [];
-for (i = 0; i < 3; i++) {              // let's create 3 functions
-    funcs[i] = (function() {            // and store them in funcs
-        console.log("My value: " + i); // each should log its value.
-    })();
-}
-for (var j = 0; j < 3; j++) {
-    funcs[j];                        // and now let's run each one to see
-}
-```
-Here, we use the Immediately-Invoked Function Expression (IIFE), to execute this newly created function, the closure will have the function and its created environment right? Let's execute this function right at the place it's been called! So, no matter what changes afterwards, the functions will get called at this very moment when variable `i` has changed. And when it executes later on, the closure will remember its execution context, Hahahaha, you damn interpreter, I get what I want.
 
-```javascript
-My value: 0
-My value: 1
-My value: 2
-```
-### 3.2 Father is not happy.
-But if you use JSLint, Mr Douglas will throw you a faceful errors. Still the same `no functions inside loop` along with a new complaint about how you use the IIFE. Oh, no, let's solve it the way father loves xD.
-
-```javascript
-var i = 0,
-    j = 0,
-    funcs = [],
-    create = function (i) {
-        console.log("My value: " + i);
-    };
-
-for (i = 0; i < 3; i++) {              // let's create 3 functions
-    funcs[i] = create(i);
+function printValue(num) {
+    return function() {
+        console.log("My value: ", num);
+    }
 }
+
+for (i = 0; i < 3; i++) {
+    funcs[i] = printValue(i);
+}
+
 for (j = 0; j < 3; j++) {
-    funcs[j];                        // and now let's run each one to see
+    funcs[j]();
 }
 ```
 
-We still get what we want.
+We get what we want.
 
 ```javascript
 My value: 0
@@ -127,26 +129,9 @@ My value: 1
 My value: 2
 ```
 
-What have we done? Just simple, we create the function at first, and then, use it inside that loop, we can use the following code as well, all the same.
+What have we done? Simple, we create the function at first, and then, use it to the loop index inside that loop.
 
-```javascript
-var i = 0,
-    j = 0,
-    funcs = [];
-
-function create (i) {
-    console.log("My value: " + i);
-};
-
-for (i = 0; i < 3; i++) {              // let's create 3 functions
-    funcs[i] = create(i);
-}
-for (j = 0; j < 3; j++) {
-    funcs[j];                        // and now let's run each one to see
-}
-```
-
-### 3.3 Does the father happy?
+### 3.2 Does the father happy?
 OK, if you use JSHint, mostly good, but if you use JSLint, still there are some complaints, I told you before, `rigid`, some of the complaints may seems really weird like `unexpected ++`, yes, he means when you create that for loop, shouldn't use `i++`, WHAT?!?!?! Yes, father thinks you should use `i+=1`... OK, more of this is out of topic.
 
 ## 4. Finally
