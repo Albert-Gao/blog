@@ -11,7 +11,7 @@ tags:
    - webpack
 ---
 
-I'm not a big fan of black magic, especially when I set up my development environment. Every module I have installed, I want to know exactly what problem does it solve. And every feature I have used, I want to know how to customize it to suit my needs. You could use [create-react-app](https://github.com/facebookincubator/create-react-app), but I like to manage all the things by my own hands. And when you know what you need, it is not that hard. 
+I'm not a big fan of black magic, especially when I set up my development environment. Every module I have installed, I want to know exactly what problem does it solve. And every feature I have used, I want to know how to customize it to suit my needs. You could use [create-react-app](https://github.com/facebookincubator/create-react-app), but I like to manage all the things by my own hands because I always have so many things which I want to tweak my way.
 
 Now let's set up a React environment with Tests, ES6 and bundle enabled (With HMR).
 
@@ -24,7 +24,7 @@ We'll go through every step and explain why we need that module.
 - We want to test our app via `Mocha`, and using `Chai` to make the assertion
 - We will use `Enzyme` to test our React Component.
 - We want to use ES6 to write our test cases as well.
-- We want to bundle our project via `Webpack v2`.
+- We want to bundle our project via `Webpack`.
 - We will use the Hot Module Replacement (HMR) feature from Webpack to speed up our process.
 
 ## 2.Create the folder structure
@@ -170,7 +170,7 @@ Create a `test_Hello.js` in the `tests` folder:
 ```javascript
 import chai from 'chai'
 import React from 'react'
-import {Hello} from '../app/HelloComponent'
+import {Hello} from '../src/HelloComponent'
 import {shallow} from 'enzyme'
 
 let expect = chai.expect
@@ -242,11 +242,11 @@ const render = (Component) => {
     );
 };
 
-render(First)
+render(Hello)
 
 // Hot Module Replacement API
 if (module.hot) {
-    module.hot.accept('./Components', () => {
+    module.hot.accept('./HelloComponent', () => {
         render(Hello)
     });
 }
