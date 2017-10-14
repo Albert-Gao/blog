@@ -67,7 +67,21 @@ It will   show variable values inline in editor while debugging. Which is pretty
 
 Open `settings`, `CMD+,` on `Mac`, search `debug`
 
+## Hide the NPM warnings when tests fails
+
+If you run test via NPM command and always saw that verbose NPM warnings when the test fails, you might not be that happy. Th reason is an old convention, if the program return 1 when exit which means something wrong happens. But here we just don't want to see that.
+
+So hope the following tips could satisfy you. Just add  a ` || true` to the end of the script.
+
+```json
+"scripts": {
+        "test": "NODE_ENV=test ./node_modules/.bin/jest  || true",
+}
+```
+Or, you can do it when you run the command by adding an extra parameter `--silent`,
+
+something like: `npm run test --silent`
 
 # End
 
-Hope it helps.
+Hope it helps. :)
