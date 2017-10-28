@@ -11,6 +11,7 @@ We use `Promise.all()` in javascript when we want to do something after resolvin
 <!--more-->
 
 ## 0. Preparation
+
 Of course, we can use `Promise` to achieve the same goal with less coding. But I think the HTTP example will make more sense. And very easy too.
 
 First thing first, a server with 2 API. Just return a value with an HTTP status code.
