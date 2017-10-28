@@ -179,7 +179,7 @@ Well, remember the following:
 
 1. `React.cloneElement` receives a 3rd parameter as the `children` of the element to clone.
 1. Use `React.isValidElement()` to verify if the variable is a `react element` or not.
-1. Anything passes the 1st check, `if (typeof child.type === 'string')`, it must be a HTML tag. otherwise, it's your element.
+1. Anything passes the 1st check, `if (typeof child.type === 'string')`, it must be a HTML tag. otherwise, it's your own component.
 1. `if (child.hasOwnProperty('children'))` means it has children. You need to pass it recursively.
 1. `React.Children.count(children)` could count the number of the children.
 1. `React.Children.only(children)` will make sure you only want to receive one `child`, otherwise, it will throw an error.
@@ -187,7 +187,7 @@ Well, remember the following:
 
 ## End
 
-Hope it helps. 
+Hope it helps.
 
 And, if you have interests, check my new lib [`veasy`](https://github.com/Albert-Gao/veasy): 
 
