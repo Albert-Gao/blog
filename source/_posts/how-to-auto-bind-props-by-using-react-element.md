@@ -193,4 +193,6 @@ And, if you have interests, check my new lib [`veasy`](https://github.com/Albert
 
 >A comprehensive react form solution which aims to eliminate all tedious logic. :)
 
+It uses the auto bind strategy to recursively bind the state to each component which includes in the `schema`.
+
 Thanks for reading. :)
