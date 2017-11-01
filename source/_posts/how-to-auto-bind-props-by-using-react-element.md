@@ -65,7 +65,7 @@ And when it's not a `string`, `React` will call the related function to generate
 
 ## React.Children API
 
-You know there is a `prop.children` for you to access the children, most of the time, you just directly render it or call it in render function. But when you want to modify its behavior, you need to `React.Children`, it will iterate through the `children` or `count` it.
+You know there is a `prop.children` for you to access the children, most of the time, you just directly render it or call it in render function. But when you want to modify its behavior, you need to use `React.Children`, it will iterate through the `children` or `count` it.
 
 ## Let's solve a problem
 
@@ -177,11 +177,11 @@ And some element may not have `name` prop at all!
 
 Well, remember the following:
 
-1. `React.cloneElement` receives a 3rd parameter as the `children` of the element to clone.
 1. Use `React.isValidElement()` to verify if the variable is a `react element` or not.
 1. Anything passes the 1st check, `if (typeof child.type === 'string')`, it must be a HTML tag. otherwise, it's your own component.
-1. `if (child.hasOwnProperty('children'))` means it has children. You need to pass it recursively.
-1. `React.Children.count(children)` could count the number of the children.
+1. `React.cloneElement` receives a 3rd parameter as the `children` of the element to clone.
+1. `if (child.hasOwnProperty('children'))` means it has children. You need to parse it recursively.
+1. `React.Children.count(children)` will count the number of the children.
 1. `React.Children.only(children)` will make sure you only want to receive one `child`, otherwise, it will throw an error.
 1. `React.Children.toArray(children)` will return the children opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice this.props.children before passing it down.
 
