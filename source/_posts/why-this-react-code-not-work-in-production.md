@@ -29,13 +29,20 @@ The reason is simple, after `uglify`, the name of the component get changed from
 
 ## How to solve
 
-This is a simple case, consider that the `<RadioButton>` will receive a unique `prop` named `option` before the auto binding happens, I just use that as a flag to do the change. Then everything is fine.
+### Add a displayName property to `RadioButton`
 
 ```javascript
-isRegisteredComponent = child => (
-    child.props.hasOwnProperty('option')
-);
+RadioButton.displayName = 'RadioButton';
 ```
+
+### Then the check will be
+
+```javascript
+isRegisteredComponent = child =>
+  child.type.displayName === 'RadioButton';
+```
+
+So now you are rely on something stable and won't get uglified. Even better, reply on this is much better than rely on a `prop name`. And you should set the `displayName` for a `HOC` too to make it clear.
 
 A takeaway is:
 
