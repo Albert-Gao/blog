@@ -26,7 +26,7 @@ We will start from the very start.
 
 1. Let's add the 3rd tab bar item.
 1. Drag `View controller` into the storyboard.
-1. Drag `Tab Bar Item` into the newly created view controller, make it sits at the same level of the `View`.
+1. Drag `Tab Bar Item` into the newly created view controller, it will sit at the same level of the `View`.
 
 ## Add the segue
 
