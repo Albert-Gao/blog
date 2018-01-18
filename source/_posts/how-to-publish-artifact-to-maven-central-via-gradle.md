@@ -19,16 +19,16 @@ No one can publish to maven central directly. You have to publish your artifact 
 
 ## 1. Sign up
 
-You know the `namespace`, `package`, `groupId` concept, right? Your code should be reside under certain namespace in order to prevent naming collision. And when you want to upload your artifact, you need to have this too, and you need to raise an `jira` issue on `Sonatype` site to apply for it. So, first, you need to [**Sign up**](https://issues.sonatype.org/secure/Signup!default.jspa).
+You know the `namespace`, `package`, `groupId` concept, right? Your code should reside under certain namespace in order to prevent the naming collision. And when you want to upload your artifact, you need to have this too, and you need to raise a `jira` issue on `Sonatype` site to apply for it. So, first, you need to [**Sign up**](https://issues.sonatype.org/secure/Signup!default.jspa).
 
 ### Tips
 
-- Sign up with your company email if you gonna apply for a group id which is the domain name of your company.
-- Remember your user name and password. It's not only used for raising the issue. But for uploading as well.
+- Sign up for your company email if you gonna apply for a group id which is the domain name of your company.
+- Remember your username and password. It's not only used for raising the issue. But for uploading as well.
 
 ## 2. Apply for your namespace
 
-[**Create an issue here**](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134) to apply for your namespace. It should be a reversed domain name. Your issue will be manually review by a `Sonatype` employer. It should be fast, within 2 hours.
+[**Create an issue here**](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134) to apply for your namespace. It should be a reversed domain name. Your issue will be manually reviewed by a `Sonatype` employer. It should be fast, within 2 hours.
 
 ### Tips
 After applying, you will gain permission for the following URLs:
@@ -37,18 +37,18 @@ After applying, you will gain permission for the following URLs:
 
 ## 3. Get the GPG key
 
-If you use mac, you should download [GPG Suite](https://gpgtools.org/). And install.
+If you use a mac, you should download [GPG Suite](https://gpgtools.org/). And install.
 
 Then open the app and press `New` to create your key pair.
 
-- Name is your `Sonatype` user name.
+- Name is your `Sonatype` username.
 - Email is the email you used to register `Sonatype`
 - Remember the `password`, you gonna need it.
-- Don't know whether the user name and email need to match, but I followed it just in case.
+- Don't know whether the username and email need to match, but I followed it just in case.
 
 After creating, right click your key and select `Send Public Key to Key Server` to public your public key.
 
-Double click your key, it will show the detail at the right side. Take note of your `Key ID`.
+Double click your key, it will show the detail on the right side. Take note of your `Key ID`.
 
 In the terminal, use this command to get the secret key ring file:
 >gpg --export-secret-keys YOUR-KEY-ID > secret-keys.gpg
@@ -74,17 +74,17 @@ signing.secretKeyRingFile=/PATH/TO/SECRET/RING/FILE
 ```
 
 ### Tips
-- To my case, my IDEA gradle settings can't find this file if I put it either in `.gradle` or `gradle` folder, I have to put it in the root.
+- In my case, my IDEA gradle settings can't find this file if I put it either in `.gradle` or `gradle` folder, I have to put it in the root.
 
 - **ADD THIS FILE TO .gitignore file. YOU NEVER WANT TO RELEASE THIS TO THE REPO.**
 
 ## 5. Set up your project to upload
 
-There is an official guide here using the `maven` gradle plugin, but I choose to use the `com.bmuschko.nexus` because it's more easy to do that.
+There is an official guide here using the `maven` gradle plugin, but I choose to use the `com.bmuschko.nexus` because it's easier to do that.
 
 Below is the full code of `build.gradle` to the plugin, add it in addition to your current `gradle code`.
 
-```gradle
+```groovy
 buildscript {
     repositories {
         jcenter()
@@ -185,7 +185,7 @@ Real congrat now. Finally, your artifact has uploaded to Maven central.
 
 In the `build.gradle` of project you want to use this package:
 
-```gradle
+```groovy
 repositories {
     mavenCentral()
 }
@@ -201,10 +201,10 @@ The pattern is: `Group-Id:archivesBaseName:Version number`
 
 OK, the step that we can improve here is step 7. Consider that every time you publish your package, you need to do it again. OMG
 
-People online said, you can upload to `JCenter` to do the auto-sync, but it seems `JFrog`(company who runs `JCenter`?) chooses to ask for a `150USD/Month` fee for my account, so I went for the official way. If you have a `CI` or `CD` procedure, I think you need to figure out a auto-way to do this. 
+People online said, you can upload to `JCenter` to do the auto-sync, but it seems `JFrog`(company who runs `JCenter`?) chooses to ask for a `150USD/Month` fee for my account, so I went for the official way. If you have a `CI` or `CD` procedure, I think you need to figure out an auto-way to do this. 
 
-Don't know if I get something wrong. Welcome for new advice.
+Don't know if I get something wrong. Welcome to new advice.
 
 ## End
 
-Now you get it. Everything is setup. Enjoy. :)
+Now you get it. Everything is set up. Enjoy. :)

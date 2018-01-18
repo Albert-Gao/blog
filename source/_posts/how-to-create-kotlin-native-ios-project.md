@@ -4,6 +4,7 @@ date: 2018-01-14 12:26:50
 tags:
   - kotlin
   - ios
+  - gradle
 ---
 
 Kotlin native is a nice way to share your code between Android and iOS. And you can fully write an iOS app in Kotlin, and it's not like `Xamarin` which has its own convention, Kotlin Native iOS follows Apple's convention which just like write an iOS app in another language.
