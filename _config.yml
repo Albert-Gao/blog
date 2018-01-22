@@ -5,7 +5,7 @@
 # Site
 title: Through the binary
 subtitle: a full stack enthusiast interested in Python / React / ES6 / Kotlin / Android and iOS native
-description: A current programmer focused on open source tech. A former PM for 10 years. A former employee of Alibaba Group. MCSD of windows store app using C#, a former windows phone developer with serveral well-received apps.
+description: A programmer focused on open source tech. A former IT PM for 10 years. A former employee of Alibaba Group. MCSD of windows store app using C#, a former windows phone developer with serveral well-received apps.
 author: Albert Gao
 language: en
 timezone:
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: hexo-theme-next
 
 sitemap:
     path: sitemap.xml
