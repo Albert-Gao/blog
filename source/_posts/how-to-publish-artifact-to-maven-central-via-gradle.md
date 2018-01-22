@@ -80,7 +80,7 @@ signing.secretKeyRingFile=/PATH/TO/SECRET/RING/FILE
 
 ## 5. Set up your project to upload
 
-There is an official guide here using the `maven` gradle plugin, but I choose to use the `com.bmuschko.nexus` because it's easier to do that.
+There is an official guide [here](http://central.sonatype.org/pages/gradle.html) using the `maven` gradle plugin, but I choose to use the `com.bmuschko.nexus` because it's easier to do that.
 
 Below is the full code of `build.gradle` to the plugin, add it in addition to your current `gradle code`.
 
