@@ -212,7 +212,7 @@ If you want to use Nexus website to publish instead of running the gradle task. 
 
 Real congrat now. Finally, your artifact has uploaded to Maven central.
 
-## 8. Use it
+## 9. Use it
 
 In the `build.gradle` of project you want to use this package:
 
@@ -228,6 +228,6 @@ dependencies {
 
 The pattern is: `Group-Id:archivesBaseName:Version number`
 
-## End
+## 10. End
 Don't know if I get something wrong. Welcome to new advice.
 Now you get it. Everything is set up. Enjoy. :)
