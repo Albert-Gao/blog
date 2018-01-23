@@ -162,7 +162,38 @@ You may see the following error when you first upload:
 
 Congrats, after all these steps, your package has finally been uploaded into... `Sonatype OSS Nexus`...
 
-## 7. Go publish to the Maven central
+## 7. Publish to Maven Central via gradle
+
+We're gonna need to use another gradle plugin called `Gradle Nexus Staging plugin`.
+Just add the following gradle code:
+
+```groovy
+plugins {
+    id 'io.codearte.nexus-staging' version '0.11.0'
+}
+
+nexusStaging {
+    packageGroup = "org.mycompany" //optional if packageGroup == project.getGroup()
+    stagingProfileId = "yourStagingProfileId" //when not defined will be got from server using "packageGroup"
+}
+```
+
+Now several tasks will be added:
+
+- **closeRepository** - closes an open repository with the uploaded artifacts. There should be just one open repository available in the staging profile (possible old/broken repositories can be dropped with Nexus GUI)
+- **releaseRepository** - releases a closed repository (required to put artifacts to Maven Central aka The Central Repository)
+- **closeAndReleaseRepository** - closes and releases a repository (an equivalent to closeRepository releaseRepository)
+- **getStagingProfile** - gets and displays a staging profile id for a given package group. This is a diagnostic task to get the value and put it into the configuration closure as stagingProfileId.
+
+Now you should already upload your artifacts to the nexus repo. All you need to do is to run the `closeAndReleaseRepository`, and your artifacts will be in the Maven Central soon.
+
+Tips:
+
+1. If you have a multiple project gradle setup. You just need to apply this plugin at the root level.
+
+## 8. Publish to the Maven central via Nexus website
+
+If you want to use Nexus website to publish instead of running the gradle task. Here is how to do it.
 
 - Open [Nexus Repository Manager](https://oss.sonatype.org/#welcome)
 - Click the `Log in` at upper right corner
@@ -197,14 +228,6 @@ dependencies {
 
 The pattern is: `Group-Id:archivesBaseName:Version number`
 
-## 9. Where to go
-
-OK, the step that we can improve here is step 7. Consider that every time you publish your package, you need to do it again. OMG
-
-People online said, you can upload to `JCenter` to do the auto-sync, but it seems `JFrog`(company who runs `JCenter`?) chooses to ask for a `150USD/Month` fee for my account, so I went for the official way. If you have a `CI` or `CD` procedure, I think you need to figure out an auto-way to do this. 
-
-Don't know if I get something wrong. Welcome to new advice.
-
 ## End
-
+Don't know if I get something wrong. Welcome to new advice.
 Now you get it. Everything is set up. Enjoy. :)
