@@ -44,7 +44,7 @@ And when there are some problems on both IDEA and CLion, a potential answer from
 > https://www.youtube.com/watch?v=QOIn8Uh3lkE at 6:20 Andrey Breslav said (in Russian) they started development of new commercial product for cross-mobile development, Android and iOS.
 
 ## 4. What could we do now?
-If app developers wish to only build your lib using the kotlin-std-lib, and inject the platform-specific API at runtime, it’s doable, and the current Kotlin Native will fully fullfil your requirement, I have some examples for this. But then your codebase will be a mess because you need to build the bridge by yourself as the kotlin type has been converted to some special interface type, which you need to implement in the swift side as well…. all to cope with an interim solution which will be deprecated in a future version release…
+If app developers wish to only build your lib using the kotlin-std-lib, and inject the platform-specific API at runtime, it’s doable, and the current Kotlin Native will fully fullfil your requirement, I have some examples for this. But then your codebase will be a mess because you need to build the bridge by yourself as the kotlin type has been converted to some special interface type, which you need to implement in the swift side as well…
 
 ## 5. In the future
 
