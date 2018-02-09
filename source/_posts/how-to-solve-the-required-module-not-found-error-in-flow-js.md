@@ -41,7 +41,7 @@ Now `flow` again, you should be fine.
 
 ## 4. Fix the ESLint problem
 
-If you use `eslint-plugin-flow`, you will get an error like `don't use any` like when you are in the strict mode of `TypeScript`. Simply disable ESLint check for the folder via creating a `.eslintignore` file in the root of that project and add `flow-typed/` to it.
+If you use `eslint-plugin-flowtype`, you will get an error like `don't use any` like when you are in the strict mode of `TypeScript`. Simply disable ESLint check for the folder via creating a `.eslintignore` file in the root of that project and add `flow-typed/` to it.
 
 ## End
 
