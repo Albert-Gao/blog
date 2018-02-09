@@ -4,7 +4,7 @@ date: 2018-02-09 22:15:13
 tags:
   - eslint
   - nextjs
-  - flow
+  - flowjs
 ---
 
 `next.js` is really amazing to enable SSR with react. And `flow.js` is great way to type check your code in an easy way. But after following the official example to setup the project. I get the `ESLint` parsing error when it encounters the flow `type` definition. Let's see how to solve it.
