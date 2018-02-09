@@ -11,35 +11,82 @@ I love typescript. But after I gave flow a try, it really makes things easier in
 
 The solution is still the same, you simply create a definition for that module, and let it return `any`.
 
-Suppose that we are using `semantic-ui-react` like this:
+Suppose that we are using `no-where-to-find` like this:
 
 ```javascript
-import {Search} from 'semantic-ui-react';
+import {Search} from 'no-where-to-find';
 ```
 
-Run `npm run flow` will give you an error as: `semantic-ui-react. Required module not found`
+Run `npm run flow` will give you an error as: `no-where-to-find. Required module not found`
 
-## 1. Create a type definition folder for flow
+## 1. Without installing any lib:
+
+### 1.1 Create a type definition folder for flow
 
 Create a folder named `flow-typed` at the root of the project.
 
-## 2. Create the definition file
+### 1.2 Create the definition file
 
-Create a file which has the same name as the module, in the case: `semantic-ui-react.js.flow`
+Create a file which has the same name as the module, in the case: `no-where-to-find.js.flow`
 
-## 3. Create type definition
+### 1.3 Create type definition
 
 Put the following content in it:
 
+The fastest way:
+
 ```javascript
-declare module 'semantic-ui-react' {
+declare module 'no-where-to-find' {
   declare module.exports: any;
 }
 ```
 
+Or you can declare the type by yourself if you know the signature.
+
+```javascript
+declare class URL {
+  constructor(urlStr: string): URL;
+  toString(): string;
+
+  static compare(url1: URL, url2: URL): boolean;
+};
+```
+
+You are good to go.
+
+## 2. Automation via flow-typed
+
+### 2.1 Install flow-typed
+
+```bash
+npm install -g flow-typed
+```
+
+### 2.2 Install the according type definition
+
+Install type definition for packages in `packages.json` which could be found.
+```bash
+flow-typed install
+```
+
+Or you can install for a specific package.
+```bash
+flow-typed install axios@0.11.x
+```
+
+You can update it as well
+
+```bash
+# Update all
+flow-typed update
+
+# Update the very one
+flow-typed update underscore
+```
+
 Now `flow` again, you should be fine.
 
-## 4. Fix the ESLint problem
+## 3. Fix the ESLint problem
 
 If you use `eslint-plugin-flowtype`, you will get an error like `don't use any` like when you are in the strict mode of `TypeScript`. Simply disable ESLint check for the folder via creating a `.eslintignore` file in the root of that project and add `flow-typed/` to it.
 
