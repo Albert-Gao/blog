@@ -66,7 +66,8 @@ npm install -g flow-typed
 
 Install type definition for packages in `packages.json` which could be found.
 ```bash
-flow-typed install
+# Install all the definition only for dependencies
+flow-typed install --ignoreDeps dev bundle peer
 ```
 
 Or you can install for a specific package.
