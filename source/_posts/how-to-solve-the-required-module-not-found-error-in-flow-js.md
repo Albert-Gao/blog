@@ -64,7 +64,8 @@ npm install -g flow-typed
 
 ### 2.2 Install the according type definition
 
-Install type definition for packages in `packages.json` which could be found.
+Install type definition for packages in `packages.json` which could be found. And in fact, if it can't find the definition, it will generate the mock typed definition like the one we did in part one.
+
 ```bash
 # Install all the definition only for dependencies
 flow-typed install --ignoreDeps dev bundle peer
@@ -84,6 +85,14 @@ flow-typed update
 # Update the very one
 flow-typed update underscore
 ```
+
+### 2.3 Automatically create the stub
+
+```bash
+flow-typed create-stub foo
+```
+
+It will generate the mock type definition for the module `foo` in the `/flow-typed/npm` in order to prevent the `required module not found` error.
 
 Now `flow` again, you should be fine.
 
