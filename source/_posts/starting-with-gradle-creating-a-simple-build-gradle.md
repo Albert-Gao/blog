@@ -57,7 +57,7 @@ Seems like lots of things are going on here, but in fact, it's just that easy.
 
 The first one is `buildscript`, it only controls dependencies for the `buildscript` process itself, not for the application code. Which means it will add the dependencies for this building session itself, which will properly help you to finish some tasks.
 
-Inside `dependencies`, we want a plugin `org.jetbrains.kotlin:kotlin-gradle-plugin`. It's in one of the `repositories` called `mavenCentral`. Then you just need to `apply` them.
+Inside `dependencies` of this `buildscript`, we want a plugin `org.jetbrains.kotlin:kotlin-gradle-plugin`. It's in one of the `repositories` called `mavenCentral`. Then you just need to `apply` them.
 
 If you feel uncomfortable about this, then here is some real news to make you calm: 99% of plugin authors will give you this full code, you just need to copy and paste. :D
 
