@@ -11,7 +11,7 @@ Kotlin native is a very promising project where you can use kotlin to write code
 
 ## 1. Goal
 
-1. We want to use XCode and Android Studio to edit the native while using another IDE to edit the sharing code part. 
+1. We want to use XCode and Android Studio to edit the native while using another IDE to edit the sharing code part. (But you can use Android studio for editing the KN code as well because they use the same language.)
     - I saw some other setup. They use root folder as a gradle project which will affect the Android project structure been displayed in the android studio where it adds some noise there.
 
 2. We want to share more code between iOS and Android.
@@ -83,10 +83,17 @@ Then with some proper setup in gradle, it will work flawlessly.
 
 Oh well, you may think that old school `interface` may better in terms of iOS because you need to implement the iOS API specific thing in swift or obj-c then pass it back to kotlin native. But that is not true. Because there is a 1-to-1 API match in kotlin native such that you can implement the iOS specific API in kotlin as well. And it has the same signature which means you can reuse all the existing knowledge. And kotlin and swift are very similar.
 
-## 3. The example
+## 3. About the example
 
 All the code can be found on my GitHub repo.
 
 [https://github.com/Albert-Gao/kotlin-native-mobile-multiplatform-example](https://github.com/Albert-Gao/kotlin-native-mobile-multiplatform-example)
+
+- `Sample` class is for code that is sharing across platforms (Which means you only use API from `kotlin-stdlib-common` or some other cross platform lib).
+- `Platform` class is a class which has been implemented twice for different platforms for showing the platform API case.
+
+- Open `Android` folder in Android Studio, run the app, it will show a string from the `:shared-android`
+- Open `iOS` folder in XCode, run the app, it will show a string from the `:shared-ios`
+- And the string is from both platforms are retrieved from the `Sample` class.
 
 Hope it helps. Thanks.
