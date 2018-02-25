@@ -17,6 +17,8 @@ Let's start!
 
 <!--more-->
 
+> Check [this blog](/2018/02/22/use-kotlin-to-share-native-code-between-ios-and-android/) if you want to learn more about code sharing between iOS and Android.
+
 ## 1. Implement everything in Kotlin Native (Obj-C + Kotlin)
 
 ### 1.1 Something to remember
