@@ -1,27 +1,33 @@
 ---
-title: Use Kotlin to share native code between iOS and Android
+title: Use Kotlin to share native code between iOS, Android
 date: 2018-02-22 11:17:07
 tags:
   - kotlin-native
+  - kotlin
 ---
 
-Kotlin native is a very promising project where you can use kotlin to write code which can then be shared between iOS and Android. Let's see in action how to set up a project for sharing native code. And we will use the `kotlin multi-platform` approach to make things even cleaner.
+Kotlin native is a very promising project where you can use kotlin to write code which can then be shared between iOS and Android. Let's see in action how to set up a project for sharing native code. And we will use the `kotlin multi-platform` approach to make things even cleaner. And via doing this, the code can be consumed by not only iOS and Android, but also JVM and JS if you add the correlative settings.
 
 <!--more-->
 
 ## 1. Goal
 
-1. We want to use XCode and Android Studio to edit the native while using another IDE to edit the sharing code part. (But you can use Android studio for editing the KN code as well because they use the same language.)
-    - I saw some other setup. They use root folder as a gradle project which will affect the Android project structure been displayed in the android studio where it adds some noise there.
+- We want to use XCode and Android Studio to edit the native app while using another IDE to edit the sharing code part. (But you can use Android studio for editing the KN code as well because they use the same language and the setup will be ready.)
+    - I saw some setups. They use root folder as a whole gradle project which will affect the Android project structure been displayed in the android studio because it will add some noise there.
 
-2. We want to share more code between iOS and Android.
+- We want to share more code between iOS and Android.
     - The main hurdle is the platform-specific API. We can make them as `interface` and still shared the logic around them. But here we will use `kotlin multi-platform` approach to make the code more elegant.
+    - Think of an API like this `UserService.getAllorNull()`, then your native side just need to bind the result to the UI. Even though the `HTTP` call is different across platform. But all the exception handling and data processing around the http call are the same and could be shared.
 
-3. We want to have a clean structure where everything related should reside together.
-    - I mean for the gradle phase as well. Such that, `android` folder is only for Android, `ios` folder is only for iOS. The root folder is for all projects.
+- We want to have a clean structure where everything related should reside together.
+    - I mean for the gradle phase as well. Such that, `android` folder is only for Android, `ios` folder is only for iOS. The root folder is for all projects. And the gradle settings for `KN-android` should be in the `android` folder as well as the `iOS` side.
 
-4. We want to test the Kotlin native code as well.
-    - It's native project so anything native can be tested via the strategy on that platform. But what about kotlin native, what about the `common` code? What about the platform specific code for `android` and `ios`? Yes, we have that part covered as well here in the example.
+- We want to test the Kotlin native code as well.
+    - It's native project so anything native can be tested via the strategy on that platform. But what about kotlin native part, what about the `common` code? What about the kotlin native platform specific code for `android` and `ios`? Yes, we have that part covered as well here in the example.
+
+### 1.1 What about I don't need to care about the platform specific implementation
+
+If all you need is the `kotlin-stdlib`, and no platform specific code to write. Then you don't need to use this setup. You can simply remove the `android` and `ios` folders from the `Shared`. And let the `common` just outputs an iOS framework for the XCode project to consume. For Android, embed the source code in Android studio to make it as dependency then it's fine.
 
 ## 2. Folder structure
 
@@ -32,9 +38,13 @@ Kotlin native is a very promising project where you can use kotlin to write code
   - ios
   - android
 
-Very easy to understand. One interesting thing here is in the `Shared` folder, besides the `common` folder. What's the `android` and `ios` folder for? Well, they are for platform-specific API. 
+Very easy to understand. One interesting thing here is in the `Shared` folder, besides the `common` folder. What's the `android` and `ios` folder for? Well, they are for platform-specific API.
 
-### 2.1 Sharing strategy
+Maybe you will argue that `android` and `ios` folder is not really shared code, they only exist because they will let the `common` folder to have more shared code, because you have to deal with the platform specific code if you want to share more logic.
+
+But it does make sense to put them beside the `common` folder rather than in the `Android` and `iOS` native project. Because this is where their code get used. And by putting them beside each other, we can easily test and debug them.
+
+### 2.1 How to consume the lib
 
 - Android related code will be shared via simply including the according module in the android project.
 - iOS related code will be shared as an iOS framework because Kotlin native will generate that. We will then add it in the XCode building phase. You can see more details in my another [blog](http://www.albertgao.xyz/2018/01/14/how-to-create-kotlin-native-ios-project/).
@@ -43,7 +53,7 @@ Very easy to understand. One interesting thing here is in the `Shared` folder, b
 
 Let's say you want to have an `HTTP` kotlin class where you can do the normal `GET`, `POST` thing, but the `HTTP` implementation is different across platforms. If you use the old school `interface` way, you need to declare an `IHTTP` interface, then implement it twice in android and ios. Then inject it at runtime to make it work.
 
-But you can via using the Kotlin multi-platform project, you don't need to inject, the compiler will only pick up the piece of codes depends on the building target. If you build for Android, it will only grab the Android implementation.
+But via using the Kotlin multi-platform project, you don't need to inject, the compiler will only pick up the piece of codes depends on your building target. If you build for Android, it will only grab the Android implementation.
 
 It currently works for `jvm`, `js` and `kotlin native`, oh, that's a nearly-all-platform code sharing tech right? :D
 
@@ -81,19 +91,24 @@ Then with some proper setup in gradle, it will work flawlessly.
 
 ## 2.3 How to code the `common-ios`
 
-Oh well, you may think that old school `interface` may better in terms of iOS because you need to implement the iOS API specific thing in swift or obj-c then pass it back to kotlin native. But that is not true. Because there is a 1-to-1 API match in kotlin native such that you can implement the iOS specific API in kotlin as well. And it has the same signature which means you can reuse all the existing knowledge. And kotlin and swift are very similar.
+Oh well, you may think that old school `interface` may better in terms of iOS because you need to implement the iOS API specific thing in swift or obj-c then pass it back to kotlin native. But that is not true. Because there is a 1-to-1 API match in kotlin native such that you can implement the iOS specific API in kotlin as well. And it has the same signature which means you can reuse all the existing knowledge. And kotlin and swift are very similar. And from v6, the building phase will link some of the iOS API (you need to build the others) for you if you are on a Mac.
+
+Which means in a ideal world, your swift side just need to care about the UI part while all other logic will be handled in the Kotlin native side, shared across platform and tested well.
 
 ## 3. About the example
 
-All the code can be found on my GitHub repo.
+All the code for setup can be found in this repo.
 
 [https://github.com/Albert-Gao/kotlin-native-mobile-multiplatform-example](https://github.com/Albert-Gao/kotlin-native-mobile-multiplatform-example)
 
-- `Sample` class is for code that is sharing across platforms (Which means you only use API from `kotlin-stdlib-common` or some other cross platform lib).
+- `Sample` class is for code that is sharing across platforms (Which means you have to use API from `kotlin-stdlib-common`).
 - `Platform` class is a class which has been implemented twice for different platforms for showing the platform API case.
 
-- Open `Android` folder in Android Studio, run the app, it will show a string from the `:shared-android`
-- Open `iOS` folder in XCode, run the app, it will show a string from the `:shared-ios`
-- And the string is from both platforms are retrieved from the `Sample` class.
+- Open `Android` folder in Android Studio, run the app, it will show a string from the `:shared-android` project.
+- Open `iOS` folder in XCode, run the app, it will show a string from the `:shared-ios` project.
+
+In fact, the native app retrieves the string by invoking the method from the `Sample` class. And the `Sample` class invokes the method from `Platform` class to get the string. When you build an iOS framework, the KN compiler will use `:shared-ios` to build along with `shared-common`. And when you consume it in android project, the setup will use `:shared-android` along with `:shared-common`. No injection, no affection on the code structure, just that simple. Thanks to the `Multi-platform project` setup from kotlin.
+
+It is a perfect example for showing how to share the code when you have to deal with the platform API.
 
 Hope it helps. Thanks.
