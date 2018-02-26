@@ -1,12 +1,14 @@
 ---
-title: Use Kotlin to share native code between iOS, Android
+title: Use Kotlin to share native code among iOS, Android
 date: 2018-02-22 11:17:07
 tags:
   - kotlin-native
   - kotlin
 ---
 
-Kotlin native is a very promising project where you can use kotlin to write code which can then be shared between iOS and Android. Let's see in action how to set up a project for sharing native code. And we will use the `kotlin multi-platform` approach to make things even cleaner. And via doing this, the code can be consumed by not only iOS and Android, but also JVM and JS if you add the correlative settings.
+When you try to deal with the across platform codes. You need to solve 2 things, one is the architecture of how to share the code, another one is how you share. Well, different languages might have different techniques. But in Kotlin, you can use multiplatform projects to share the code. And via kotlin native, you can even expand the support to iOS and Android, I mean, natively.
+
+An example of supporting code sharing among iOS, Android, JVM and JS is added in this [repo](https://github.com/Albert-Gao/kotlin-multuplatform-including-mobile).
 
 <!--more-->
 
@@ -31,18 +33,14 @@ If all you need is the `kotlin-stdlib`, and no platform specific code to write. 
 
 ## 2. Folder structure
 
-- iOS: XCode project
-- Android: Android Studio project
-- Shared:
-  - common: Common code that is about to share.
-  - ios
-  - android
+- ios: XCode project
+- android: Android Studio project
+- common: Common code that is about to share across platforms without any change.
+- platforms:
+  - ios: platform specific API for iOS
+  - android: platform specific API for Android
 
-Very easy to understand. One interesting thing here is in the `Shared` folder, besides the `common` folder. What's the `android` and `ios` folder for? Well, they are for platform-specific API.
-
-Maybe you will argue that `android` and `ios` folder is not really shared code, they only exist because they will let the `common` folder to have more shared code, because you have to deal with the platform specific code if you want to share more logic.
-
-But it does make sense to put them beside the `common` folder rather than in the `Android` and `iOS` native project. Because this is where their code get used. And by putting them beside each other, we can easily test and debug them.
+Very easy to understand. One interesting thing here is in the `common` folder, besides the `common` folder. What's the `platforms/android` and `platforms/ios` folder for? Well, they are for platform-specific API.
 
 ### 2.1 How to consume the lib
 
@@ -89,7 +87,7 @@ actual class Platform {
 
 Then with some proper setup in gradle, it will work flawlessly.
 
-## 2.3 How to code the `common-ios`
+## 2.3 How to code the `platforms-ios`
 
 Oh well, you may think that old school `interface` may better in terms of iOS because you need to implement the iOS API specific thing in swift or obj-c then pass it back to kotlin native. But that is not true. Because there is a 1-to-1 API match in kotlin native such that you can implement the iOS specific API in kotlin as well. And it has the same signature which means you can reuse all the existing knowledge. And kotlin and swift are very similar. And from v6, the building phase will link some of the iOS API (you need to build the others) for you if you are on a Mac.
 
@@ -104,10 +102,10 @@ All the code for setup can be found in this repo.
 - `Sample` class is for code that is sharing across platforms (Which means you have to use API from `kotlin-stdlib-common`).
 - `Platform` class is a class which has been implemented twice for different platforms for showing the platform API case.
 
-- Open `Android` folder in Android Studio, run the app, it will show a string from the `:shared-android` project.
-- Open `iOS` folder in XCode, run the app, it will show a string from the `:shared-ios` project.
+- Open `android` folder from the root in Android Studio, run the app, it will show a string from the `:shared-android` project.
+- Open `ios` folder from the root in XCode, run the app, it will show a string from the `:shared-ios` project.
 
-In fact, the native app retrieves the string by invoking the method from the `Sample` class. And the `Sample` class invokes the method from `Platform` class to get the string. When you build an iOS framework, the KN compiler will use `:shared-ios` to build along with `shared-common`. And when you consume it in android project, the setup will use `:shared-android` along with `:shared-common`. No injection, no affection on the code structure, just that simple. Thanks to the `Multi-platform project` setup from kotlin.
+In fact, the native app retrieves the string by invoking the method from the `Sample` class. And the `Sample` class invokes the method from `Platform` class to get the string. When you build an iOS framework, the KN compiler will use `:platforms-ios` to build along with `:common`. And when you consume it in android project, the setup will use `:platforms-android` along with `:common`. No injection, no affection on the code structure, just that simple. Thanks to the `Multi-platform project` setup from kotlin.
 
 It is a perfect example for showing how to share the code when you have to deal with the platform API.
 
