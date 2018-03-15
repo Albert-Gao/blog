@@ -137,19 +137,27 @@ internal fun MockServerClient.setup(
 }
 
 internal fun MockServerClient.verifyRequest(
-    requestMethod: String?,
-    requestPath: String?
+    method: String?,
+    path: String?,
+    headers: Map<String, *>?
 ) {
     val request = request()
 
-    requestMethod?.let { request.withMethod(requestMethod) }
-    requestPath?.let { request.withPath(requestPath) }
+    method?.let { request.withMethod(method) }
+    path?.let { request.withPath(path) }
+    headers?.let {
+        for ((key, value) in headers) {
+            request.withHeader(
+              header(key, value.toString())
+            )
+        }
+    }
 
     this.verify(request)
 }
 ```
 
-From here, you can know the standard way to set up the MockServer and verify its request. You can extend the `verifyReuqest` to cover more cases like assert the headers. I will leave that to you. :)
+From here, you can know the standard way to set up the MockServer and verify its request.
 
 ## 7. End
 
