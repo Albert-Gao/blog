@@ -2,6 +2,7 @@
 title: How to create Kotlin Native iOS project
 date: 2018-01-14 12:26:50
 tags:
+  - kotlin
   - kotlin-native
   - ios
   - gradle
