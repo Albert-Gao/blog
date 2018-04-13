@@ -26,8 +26,6 @@ You need to create an according factory class like this:
 class MyViewModelFactory(
     private val name: String
 ): ViewModelProvider.NewInstanceFactory() {
-
-    @Suppress("UNCHECKED_CAST")
     override fun <T: ViewModel> create(modelClass:Class<T>): T {
         return MyViewModel(name) as T
     }
@@ -50,7 +48,6 @@ The previous way works, but you have to create many factory class like that whic
 ```kotlin
 protected inline fun <VM : ViewModel> viewModelFactory(crossinline f: () -> VM) =
     object : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(aClass: Class<T>):T = f() as T
     }
 ```
