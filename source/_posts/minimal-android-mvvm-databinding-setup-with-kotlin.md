@@ -102,9 +102,11 @@ Let's see you want to bind a `onClick` for a button.
 
 ```xml
 <button
-  android:onClick="@{ (view) -> viewModel.onClick(view) }"
+  android:onClick="@{ viewModel::onClick }"
 />
 ```
+
+`onClick` needs to have according signature: `fun onClick(view:View)`
 
 2. You don't need that `view:View` as parameter
 
