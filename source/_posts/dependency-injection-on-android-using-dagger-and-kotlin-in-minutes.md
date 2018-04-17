@@ -172,7 +172,12 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-So, here. We create the property `myRepo` that will hold the dependency. And the decorator `@Inject` will let dagger knows that you want it to be injected. Then, in the `onCreate`, you start the injection with `(application as MyApp).myAppComponent.inject(this)`.
+So, what happens here.
+
+- We create the property `myRepo` that will hold the dependency. 
+- And the decorator `@Inject` will let dagger knows that you want it to be injected. 
+- Then, in the `onCreate`, you start the injection with `(application as MyApp).myAppComponent.inject(this)`. 
+- And there is no magic here, the `inject(this)` already got its declaration in that `interface MyAppComponent`, remember? :)
 
 ## 8. Run the app
 
