@@ -132,6 +132,43 @@ describe('Test the root path', () => {
 
 Notice that without that `return`, the test will always pass.
 
-## 7. End
+## 7. About the Database connection
+
+You need to handle the database connection through the tests. In my case, I used this pattern:
+
+```javascript
+describe('Test the addLike method', () => {
+    beforeAll(() => {
+        mongoDB.connect();
+    });
+
+    afterAll((done) => {
+        mongoDB.disconnect(done);
+    });
+}
+```
+
+Here I use mongoDB. I will connect at the beginning of this test suite, and disconnect at the end. And the `mongoDB` just a wrapper class.
+
+```javascript
+module.exports = {
+    mongoose,
+    connect: () => {
+        mongoose.Promise = Promise;
+        mongoose.connect(config.database[process.env.NODE_ENV]);
+    },
+    disconnect: (done) => {
+        mongoose.disconnect(done);
+    },
+};
+```
+
+Notice that `done`? It is a variable used to indicate that an async operation is finished. `Jest` will give that as a parameter for that `afterAll`.
+
+## 8 How to run the tests
+
+You might want to use `jest --runInBand` to run the tests depending on how you structure your tests. Otherwise, multiple tests access same collection will cause random failing for your tests.
+
+## 9. End
 
 That's all, hope it help. :)
