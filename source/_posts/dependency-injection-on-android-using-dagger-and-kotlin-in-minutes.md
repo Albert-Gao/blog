@@ -1,5 +1,5 @@
 ---
-title: Dependency injection on Android using Dagger and Kotlin in minutes
+title: Dependency injection on Android using plain Dagger and Kotlin in minutes
 date: 2018-04-17 16:59:54
 tags:
   - kotlin
@@ -7,9 +7,11 @@ tags:
   - dagger
 ---
 
-DI is a pattern to decouple your code. You don't need to have a DI framework to handle the injection, but using such will make your application better. Things like singleton and initialization. Let's see how to do that in Android using Dagger. Even you don't what DI is, we gonna go through it pretty fast and clear. We will use Kotlin, Dagger and Android Studio here.
+DI is a pattern to decouple your code. You don't need to have a DI framework to handle the injection, but using such will make your application better. Things like singleton and initialization. Let's see how to do that in Android using Dagger. Even you don't what DI is, we gonna go through it pretty fast and clear. We will use Kotlin, plain Dagger and Android Studio here.
 
 <!--more-->
+
+> This is a setup with plain dagger, if you want to see how to setup with `dagger-android`, you should check this [blog](http://www.albertgao.xyz/2018/04/18/dependency-injection-on-android-with-dagger-android-and-kotlin/). But if you are pretty new to dagger. I strongly suggest to start with the plain dagger.
 
 Here, we are starting from a new project created from Android Studio. The goal of the blog is to add application wide dependencies. Things like your HTTP client or SQL Lite things which you gonna use through most of your activities.
 
@@ -28,6 +30,12 @@ class Company(
 You can create the instance of `staff` inside this `Company` class. But what about there are different subclasses of this `Staff class` which requires different signature for initialization? Or the signautre for the constructor just changes in the future. Then you have to change every where where this `staff` gets initialized. With the code above, the company don't need to know how to initialize the `staff`, it just need to consume. 
 
 > Here, we say, the `Staff class` has been `injected` into `Company class` as a dependency.
+
+And now you see the pattern here. You need to prepare these initialization of dependencies somewhere therefor you can use them later. So here, in dagger's terms:
+
+- You declare how to generate these dependencies in `@Module`.
+- You use `@Component` to connect the dependencies and their consumers.
+- Then inside the consumer class. You `@inject` them where you want the dependencies.
 
 ## 2. Add packages in your build.gradle
 
