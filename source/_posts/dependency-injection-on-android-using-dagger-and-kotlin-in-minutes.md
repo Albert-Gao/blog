@@ -17,7 +17,7 @@ Here, we are starting from a new project created from Android Studio. The goal o
 
 ## 1. What is DI
 
-It is a way that a `class A` could consume another `class B` as a dependency without worrying any details about that `class B`. Something like this:
+It is a way that a `class A` could consume another `class B` as a dependency without worrying initialization details about that `class B`. Something like this:
 
 ```kotlin
 class Company(
@@ -27,15 +27,15 @@ class Company(
 }
 ```
 
-You can create the instance of `staff` inside this `Company` class. But what about there are different subclasses of this `Staff class` which requires different signature for initialization? Or the signautre for the constructor just changes in the future. Then you have to change every where where this `staff` gets initialized. With the code above, the company don't need to know how to initialize the `staff`, it just need to consume. 
+Of course, you can create the instance of `staff` inside this `Company` class. But what about there are different subclasses of this `Staff class` which requires different signature for initialization? Or the signature for the constructor just changes in the future. Then you have to change every where where this `staff` gets initialized. With the code above, the company don't need to know how to initialize the `staff`, it just needs to consume.
 
 > Here, we say, the `Staff class` has been `injected` into `Company class` as a dependency.
 
 And now you see the pattern here. You need to prepare these initialization of dependencies somewhere therefor you can use them later. So here, in dagger's terms:
 
 - You declare how to generate these dependencies in `@Module`.
-- You use `@Component` to connect the dependencies and their consumers.
-- Then inside the consumer class. You `@inject` them where you want the dependencies.
+- You use `@Component` to connect the dependencies with their consumers.
+- Then inside the consumer class. You `@inject` these dependencies. `dagger` gonna create the instances for from the `@Module`
 
 ## 2. Add packages in your build.gradle
 
@@ -55,7 +55,7 @@ What is that `kapt`? Well, Dagger requires an annotation processor. For Java you
 
 ## 3. Add some fake code
 
-It simply needs the context to start, and will return some string based on the context. After knowing how to inject this, you should handle most cases with ease.
+This fake `MyRepo` simply needs the `context` to start with, and will return some string based on the `context`. After knowing how to inject this, you should handle most cases with ease.
 
 So, add a file named `MyRepo.kt` with the following code:
 
@@ -67,11 +67,11 @@ class MyRepo(
 }
 ```
 
-Then we will use this `MyRepo` in the `MainActivity` to show the string on the screen.
+Then we will use this `MyRepo` in the `MainActivity` to show the string in the console.
 
 ## 4. Create a Module to create dependencies
 
-There is no such thing like auto-create, you need to manually write the creation and let `dagger` invoke it when it tries to inject the dependencies(consider this as auto creation). So, a `module` is for handling such cases where you write function to create all the instances.
+There is no such thing like auto-create, you need to manually write the creation and let `dagger` invoke it when it tries to inject the dependencies(consider this as auto creation). So, a `@Module` is for handling such cases where you write function to create all the instances.
 
 ```kotlin
 @Module
@@ -86,14 +86,14 @@ class MyAppModule(
 
 You see, we inject the `application` into this `MyAppModule` for it to create an instance of `MyRepo`. It is easy to understand.
 
-- `@Module`: to make a class as `dagger module`
-- `@Provides`: to indicate this is where the dependency get created, it's been provided by this method.
+- `@Module`: to mark a class as `dagger module`
+- `@Provides`: to indicate this is where the dependency gets created, it's been provided by this method.
   - The name of the method doesn't matter. The type matters. `provideBlahBlah` is just a convention people use all the time when using `dagger`.
 - `@Singleton`: to indicate this instance gonna be a singleton which always gonna give the same instance of class.
 
 ## 5. Create a component to prepare the connection
 
-Before you just use the `module` as a repo for all the `dependencies`. You need to create a `dagger Component` which behaves like a middle layer between the `moduel` and actual consumer.
+Before you just use the `@Module` as a repo for all the `dependencies`. You need to create a `dagger Component` which behaves like a middle layer between the `moduel` and actual consumer.
 
 Create a new file with the following code:
 
@@ -105,10 +105,10 @@ interface MyAppComponent {
 }
 ```
 
-The code means, it will use the `MyAppModule` and inject into `MainActivity`.
+The code means, it will use the `MyAppModule` as a source `module` and inject `MainActivity` with it.
 
 - `modules = [MyAppModule::class]` this is an array, which means you can add more `modules` here as a starting point rather than just one.
-- add new method like `fun inject(target: SecondActivity)` to support new activity
+- You can add new method like `fun inject(target: SecondActivity)` to support new activity
 
 ## 6. Extend your own application class
 
@@ -131,6 +131,8 @@ And add it to the `AndroidManifests.xml`
 
 ## 6. Initialize the module in the application class
 
+Now you have the module, you have to initialize it somewhere in order to use it later. Consider this is an appllication wide `module`, we will do the preparation in the `MyApp` class.
+
 Now modify your `MyApp` class to the following:
 
 ```kotlin
@@ -150,7 +152,11 @@ class MyApp : Application() {
 }
 ```
 
-The dependency will be created in the `initDagger` method which will be invoked in the `onCreate` method.
+Here you initialize the an instance of `MyAppComponent` by yourself. Remember the `MyAppComponent` is an interface? The implementation will then be generated for you.
+
+Here, the dependency will be created in the `initDagger` method which will be invoked in the `onCreate` method.
+
+Look at this `.myAppModule(MyAppModule(app))`, remember we declared a parameter for the constrcutor of `MyAppModule`? It needs an `application`, now have to do pass it.
 
 You may notice that the Android Studio may tell you that `unresolved reference DaggerMyAppComponent`. It's fine. You can just click the `Build` from the menu, and click `Make module app` from the dropdown menu.
 
@@ -158,7 +164,7 @@ Then a java file will be generated for you. And this problem will be resolved. I
 
 > The name `DaggerMyAppComponent` matters, you need to change according to your component name. If your application component is named as `ABCComponent`, then you need to change it to `DaggerABCComponent`. As well as that `.myAppModule(MyAppModule(app))`. You need to adjust the `.myAppModule()` to your case.
 
-After that `make module app`, the `.myAppModule` will likely to have a deprecated warning. It's fine, it just indicates it gets no usage. After the following steps, it will gone.
+After that `make module app`, the `.myAppModule` will likely to have a deprecated warning. It's fine too, it just indicates it gets no usage. After the following steps, it will gone.
 
 ## 7. Start to inject
 
@@ -182,10 +188,12 @@ class MainActivity : AppCompatActivity() {
 
 So, what happens here.
 
-- We create the property `myRepo` that will hold the dependency. 
-- And the decorator `@Inject` will let dagger knows that you want it to be injected. 
+- We create the property `myRepo` that will hold the dependency.
+- And the decorator `@Inject` will let dagger knows that you want it to be injected.
 - Then, in the `onCreate`, you start the injection with `(application as MyApp).myAppComponent.inject(this)`. 
 - And there is no magic here, the `inject(this)` already got its declaration in that `interface MyAppComponent`, remember? :)
+- Dagger will then look through all `@Provides` in `@Module` to find one function that has a matched return type.
+- Then you get your instance.
 
 ## 8. Run the app
 
@@ -203,3 +211,5 @@ You can find the repo here:
 ## 10. End
 
 There are more things to learn. But I think you have a good start. Hope it helps.
+
+If you want to see how to setup with `dagger-android` which is another package from Google, you should check this [blog](http://www.albertgao.xyz/2018/04/18/dependency-injection-on-android-with-dagger-android-and-kotlin/). It designs to be more `magic` :)
