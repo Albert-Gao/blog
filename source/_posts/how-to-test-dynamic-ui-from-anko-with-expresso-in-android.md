@@ -7,7 +7,7 @@ tags:
   - kotlin
 ---
 
-Blog
+<!--more-->
 
 ## 1. Whether the alert has been shown
 
