@@ -11,15 +11,15 @@ In previous [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-a
 
 <!--more-->
 
-If you don't know what dagger is as well as dependency injection, and the some basic dagger terms like `module`, `component` seem secret to you. I strongly suggest you to read my other [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-android-using-dagger-and-kotlin-in-minutes/) first, which is an implementation with plain dagger. Because that is more easy to understand and just take you minutes. Then you can come back and see this blog for a more Android approach and to see which pattern you like most.
+If you don't know what dagger is as well as dependency injection, and the some basic dagger terms like `module`, `component` seem secret to you. I strongly suggest you to read my other [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-android-using-dagger-and-kotlin-in-minutes/) first, which is an implementation with plain dagger. Because that is easier to understand and just take you minutes. Then you can come back and see this blog for a more Android approach and to see which pattern you like most.
 
 ## 1. The big picture
 
-When Google writes `dagger-android`, they want to reduce the boilerplate code you need to write with plain `dagger`. So they introduce some new abstraction. And it's very easy to get lost here. So I think it might be better that we review this base pattern first. As I said in the previous blog. In order to do DI, you need to prepare these initialization of dependencies somewhere therefor you can use them later. So here, in dagger's terms:
+When Google writes `dagger-android`, they want to reduce the boilerplate code you need to write with plain `dagger`. So they introduce some new abstraction. And it's very easy to get lost here. So I think it might be better that we review this base pattern first. As I said in the previous blog. In order to do DI, you need to prepare these initialization of dependencies somewhere before you can use them. So here, in dagger's terms:
 
 - You declare how to generate these dependencies in `@Module`.
 - You use `@Component` to connect the dependencies with their consumers.
-- Then inside the consumer class. You `@inject` these dependencies. `dagger` gonna create the instances for from the `@Module`
+- Then inside the consumer class. You `@inject` these dependencies. `dagger` gonna create the instances from the `@Module`
 
 ## 2. Add dependencies
 
@@ -48,7 +48,7 @@ class AppModule {
 }
 ```
 
-> This `@Provides` is the provider for any consumer which has the `@Inject` decorator. Dagger gonna match the type for you. Which means when a `@Inject` asks for `SharedPreferences`, dagger gonna find through all `@Provide` and find a match and get that instance.
+> This `@Provides` is the provider for any consumer which has the `@Inject` decorator. Dagger gonna match the type for you. Which means when a `@Inject` asks for the type `SharedPreferences`, dagger gonna find through all `@Provide` and find a method which return type matches and get that instance from this method.
 
 But something interesting here is that who gonna give that `app` parameter when calling this `provideSharedPreference()` method and where does it get it. Well, we gonna see that soon.
 
@@ -84,7 +84,11 @@ This `Builder` is for dagger, so it knows how to `create()` it. For instance, in
 
 `AndroidSupportInjectionModule::class` is from dagger to inject into other types other than your `App`.
 
-## 5. Now, let's create our custom class
+And good question here will be why this is an `interface`, well, because overall, dagger is more like a code generation than a library. It's an `interface` because dagger will generate the actual implementation for you as long as you declare all the things they want and in their way.
+
+## 5. Let's create our custom application class
+
+This is your normal custom `Application` class.
 
 ```kotlin
 class App : DaggerApplication() {
@@ -121,9 +125,9 @@ class App : Application(), HasActivityInjector {
 }
 ```
 
-> You need to know that `DaggerApplication` does much more things for you other than the several lines of boilerplate above. It handles things like `Service` and `BroadCase` to make your life easier in the future.
+> You need to know that `DaggerApplication` does much more things for you other than the several lines of boilerplate above. It handles things like `Service` and `BroadCastReceiver` to make your life easier in the future.
 
-## 6. Now let's connect activity with the module
+## 6. Time for connecting activity with this @Module
 
 Create a new file `ActivitiesBindingModule.kt` with the following code:
 
@@ -155,9 +159,9 @@ interface AppComponent: AndroidInjector<App> {
 }
 ```
 
-If you went through my previous blog, you will notice this part is different. You no longer declare a method: `fun inject(activity: MainActivity)`. You need to use a `ActivitiesBindingModule` to do the trick. But still you can write `component` for that activity. this is just much more easier.
+If you went through my previous blog, you will notice this part is different. You no longer declare a method: `fun inject(activity: MainActivity)`. You need to use a `ActivitiesBindingModule` to do the trick. But still you can write `component` for that activity. this is just easier.
 
-## 7. Now let's inject MainActivity
+## 7. Let's inject MainActivity
 
 Open `MainActivity.kt`
 
@@ -186,7 +190,7 @@ Run the app, you should see something like this in the console:
 
 The magic could happen only because we inherited from `DaggerAppCompatActivity`, other wise you need to call `AndroidInjection.inject(this)` in the `onCreate` by yourself.
 
-## 8. What about some Activity scope dependency
+## 8. What about Activity scope dependency
 
 Let's see that you need some dependencies that is only for one activity. Here for example, we need one such thing for the `MainActivity`.
 
@@ -253,7 +257,7 @@ In that `provideABCKey(preference:SharedPreferences)`, it needs a `SharedPrefere
 
 Well, with all the setup, dagger has a graph of all your dependencies. And every time it needs a parameter in a `@Provides` function, it will check other `@Provides` functions to look for that type. In our case, it will find it from the `provideSharedPreference()` and get it from there. Much better, it's a singleton! No new instance created!
 
-And this is a very important feature, remember the moments where you need to create an instance A in order to create instance B. And order for initialization only because there is a dependency chain? Well, they are all on `dagger` now. :)
+And this is a very important feature, remember the moments where you need to create an instance A in order to create instance B. And order for initialization matters only because there is a dependency chain? Well, they are all on `dagger` now. :)
 
 ## 9. Optimization
 

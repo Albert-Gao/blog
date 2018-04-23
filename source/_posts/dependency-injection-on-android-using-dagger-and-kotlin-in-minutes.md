@@ -31,6 +31,8 @@ Of course, you can create the instance of `staff` inside this `Company` class. B
 
 > Here, we say, the `Staff class` has been `injected` into `Company class` as a dependency.
 
+Actually, DI library will handle more things for you. Something like dependency chain. Where you need to create instance A in order to create instance B, then there is another instance C depends on instance B. And your `onCreate` method just got bloated by this.
+
 And now you see the pattern here. You need to prepare these initialization of dependencies somewhere therefor you can use them later. So here, in dagger's terms:
 
 - You declare how to generate these dependencies in `@Module`.
