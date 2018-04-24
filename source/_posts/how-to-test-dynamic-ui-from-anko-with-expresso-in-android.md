@@ -7,9 +7,11 @@ tags:
   - kotlin
 ---
 
+When I say dynamic UI I mean the UI you generated from a library like `Anko` or just plain Android API.
+
 <!--more-->
 
-## 1. Whether the alert has been shown
+## 1. Test whether the alert has been shown
 
 ### 1.1 Add a title for this alert
 
