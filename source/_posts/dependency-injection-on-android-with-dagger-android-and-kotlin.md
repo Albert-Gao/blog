@@ -9,6 +9,8 @@ tags:
 
 In previous [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-android-using-dagger-and-kotlin-in-minutes/), we used plain dagger to do the dependency injection on Android, but there is another package from Google named `dagger-android`, and it's tailed for Android. Things get more interesting here. Let's see.
 
+Here is another [blog](http://www.albertgao.xyz/2018/04/24/how-to-mock-dagger-android-injection-in-instrumented-tests-with-kotlin/) for mocking dagger in Espresso test if you need it.
+
 <!--more-->
 
 If you don't know what dagger is as well as dependency injection, and the some basic dagger terms like `module`, `component` seem secret to you. I strongly suggest you to read my other [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-android-using-dagger-and-kotlin-in-minutes/) first, which is an implementation with plain dagger. Because that is easier to understand and just take you minutes. Then you can come back and see this blog for a more Android approach and to see which pattern you like most.
