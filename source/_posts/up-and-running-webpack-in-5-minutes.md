@@ -6,7 +6,7 @@ id: 123
 date: 2016-08-17 22:06:13
 ---
 
-Front end world has an incredible evolution speed. Especially for the tooling, new kids jump out everyday. Webpack is one of them and seems it will dominate for a while. You may hear its complexity and how its gonna replace your current toolchain. Today, let's bundle webpack like it bundle scripts for us xD
+Front end world has an incredible evolution speed. Especially for the tooling, new kids jump out everyday. Webpack is one of them and seems it will dominate for a while. You may hear its complexity and how it is going to  replace your current toolchain. Today, let's bundle webpack like it bundle scripts for us xD
 
 <!--more-->
 

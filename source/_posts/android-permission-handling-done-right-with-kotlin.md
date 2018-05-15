@@ -87,7 +87,7 @@ In the app. First, we check the permission, and we execute the tasks if we got t
 2. Then we try to request the permission.
     - Success case: We get the permission, cool, let's go on.
     - Failure case: We will display some further explanation and try to request again, or just stop because the user can press the button again to trigger the whole procedure again
-    - NeverAskAgain case: We need to route the user to application settings page and let them enable it there because this is the only way. And besides that, we will show an explanation to tell the user what gonna happen.
+    - NeverAskAgain case: We need to route the user to application settings page and let them enable it there because this is the only way. And besides that, we will show an explanation to tell the user what will happen.
 
 ## 6. Code blocks
 
@@ -232,4 +232,4 @@ override fun onRequestPermissionsResult(
 }
 ```
 
-It behaves exactly like the previous one. But in a more declarative and readable way. Even better, you can now reuse it in any `activity`. Wait for my next blog, we gonna see how easily Kotlin will enable us to do something fancy like this. :)
+It behaves exactly like the previous one. But in a more declarative and readable way. Even better, you can now reuse it in any `activity`. Wait for my next blog, we will see how easily Kotlin will enable us to do something fancy like this. :)

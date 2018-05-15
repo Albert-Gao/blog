@@ -7,13 +7,13 @@ tags:
   - dagger
 ---
 
-DI is a pattern to decouple your code. You don't need to have a DI framework to handle the injection, but using such will make your application better. Things like singleton and initialization. Let's see how to do that in Android using Dagger. Even you don't what DI is, we gonna go through it pretty fast and clear. We will use Kotlin, plain Dagger and Android Studio here.
+DI is a pattern to decouple your code. You don't need to have a DI framework to handle the injection, but using such will make your application better. Things like singleton and initialization. Let's see how to do that in Android using Dagger. Even you don't what DI is, we will go through it pretty fast and clear. We will use Kotlin, plain Dagger and Android Studio here.
 
 <!--more-->
 
 > This is a setup with plain dagger, if you want to see how to setup with `dagger-android`, you should check this [blog](http://www.albertgao.xyz/2018/04/18/dependency-injection-on-android-with-dagger-android-and-kotlin/). But if you are pretty new to dagger. I strongly suggest to start with the plain dagger.
 
-Here, we are starting from a new project created from Android Studio. The goal of the blog is to add application wide dependencies. Things like your HTTP client or SQL Lite things which you gonna use through most of your activities.
+Here, we are starting from a new project created from Android Studio. The goal of the blog is to add application wide dependencies. Things like your HTTP client or SQL Lite things which you will use through most of your activities.
 
 ## 1. What is DI
 
@@ -37,7 +37,7 @@ And now you see the pattern here. You need to prepare these initialization of de
 
 - You declare how to generate these dependencies in `@Module`.
 - You use `@Component` to connect the dependencies with their consumers.
-- Then inside the consumer class. You `@inject` these dependencies. `dagger` gonna create the instances for from the `@Module`
+- Then inside the consumer class. You `@inject` these dependencies. `dagger` will create the instances for from the `@Module`
 
 ## 2. Add packages in your build.gradle
 
@@ -91,7 +91,7 @@ You see, we inject the `application` into this `MyAppModule` for it to create an
 - `@Module`: to mark a class as `dagger module`
 - `@Provides`: to indicate this is where the dependency gets created, it's been provided by this method.
   - The name of the method doesn't matter. The type matters. `provideBlahBlah` is just a convention people use all the time when using `dagger`.
-- `@Singleton`: to indicate this instance gonna be a singleton which always gonna give the same instance of class.
+- `@Singleton`: to indicate this instance will be a singleton which always will give the same instance of class.
 
 ## 5. Create a component to prepare the connection
 

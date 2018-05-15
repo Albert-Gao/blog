@@ -5,7 +5,7 @@ tags:
   - android
 ---
 
-ActionBar is good for UE, but sometimes we do want to hide it. Here we gonna see the ways to do it.
+ActionBar is good for UE, but sometimes we do want to hide it. Here we will see the ways to do it.
 
 <!--more-->
 

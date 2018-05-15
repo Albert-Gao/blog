@@ -7,7 +7,7 @@ tags:
   - kotlin
 ---
 
-In previous [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-android-using-dagger-and-kotlin-in-minutes/), we used plain dagger to do the DI on Android, but there is another package from Google named `dagger-android`, and it's tailed for Android. Things get more interesting here. Let's see.
+In previous [blog](http://www.albertgao.xyz/2018/04/17/dependency-injection-on-android-using-dagger-and-kotlin-in-minutes/), we used plain dagger to do the dependency injection on Android, but there is another package from Google named `dagger-android`, and it's tailed for Android. Things get more interesting here. Let's see.
 
 <!--more-->
 
@@ -19,7 +19,7 @@ When Google writes `dagger-android`, they want to reduce the boilerplate code yo
 
 - You declare how to generate these dependencies in `@Module`.
 - You use `@Component` to connect the dependencies with their consumers.
-- Then inside the consumer class. You `@inject` these dependencies. `dagger` gonna create the instances from the `@Module`
+- Then inside the consumer class. You `@inject` these dependencies. `dagger` will create the instances from the `@Module`
 
 ## 2. Add dependencies
 
@@ -48,9 +48,9 @@ class AppModule {
 }
 ```
 
-> This `@Provides` is the provider for any consumer which has the `@Inject` decorator. Dagger gonna match the type for you. Which means when a `@Inject` asks for the type `SharedPreferences`, dagger gonna find through all `@Provide` and find a method which return type matches and get that instance from this method.
+> This `@Provides` is the provider for any consumer which has the `@Inject` decorator. Dagger will match the type for you. Which means when a `@Inject` asks for the type `SharedPreferences`, dagger will find through all `@Provide` and find a method which return type matches and get that instance from this method.
 
-But something interesting here is that who gonna give that `app` parameter when calling this `provideSharedPreference()` method and where does it get it. Well, we gonna see that soon.
+But something interesting here is that who will give that `app` parameter when calling this `provideSharedPreference()` method and where does it get it. Well, we will see that soon.
 
 ## 4. Create an App component
 

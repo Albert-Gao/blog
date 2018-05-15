@@ -66,7 +66,7 @@ First, let's solve them one by one:
   - First of all, you don't need to add any code here, this folder, as its name indicates, just for bundling code together. So, under in `:bundle:jvm` subproject, it only contains a `build.gradle` file.
   - You need to use `kotlin-platform-jvm` to compile this module
   - In the `sourceSets` setting: you need to add the source code from all the 3 places, both `common` modules from `project platforms` and this `project lib`, the source code of platform implementation from `project platforms`.
-  - You need to add the tests only from `common` module of `project lib`, such that you can run the tests. And it won't run the tests from `project platforms`, because they all gonna take care there. You don't need to worry about that. Now run the `gradle :bundle:jvm test` will run the tests.
+  - You need to add the tests only from `common` module of `project lib`, such that you can run the tests. And it won't run the tests from `project platforms`, because they will be taken care there. You don't need to worry about that. Now run the `gradle :bundle:jvm test` will run the tests.
   - Why I add the source code rather than use the `jar` file? Well, hard lessons learned, this is the only way currently.
 
 ## 4. The end

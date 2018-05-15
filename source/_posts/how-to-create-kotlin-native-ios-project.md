@@ -10,7 +10,7 @@ tags:
 
 Kotlin native is a nice way to share your code between Android and iOS. And you can fully write an iOS app in Kotlin, and it's not like `Xamarin` which has its own convention, Kotlin Native iOS follows Apple's convention which just like write an iOS app in another language.
 
-At least currently when this blog is written. The biggest disadvantage is the toolchain. And the hardest part is setting up the project. In this blog, I'm gonna show you 2 different ways to set up the project (without `CLion`, no need to touch that at all), one is to implement everything with Kotlin Native. The second is using Kotlin native as a lib, which generates an iOS framework for sharing the coding with existing `Swift / Obj-C` Xcode project.
+At least currently when this blog is written. The biggest disadvantage is the toolchain. And the hardest part is setting up the project. In this blog, I will show you 2 different ways to set up the project (without `CLion`, no need to touch that at all), one is to implement everything with Kotlin Native. The second is using Kotlin native as a lib, which generates an iOS framework for sharing the coding with existing `Swift / Obj-C` Xcode project.
 
 This is a very independent way, even in the future, this blog should be still valid I suppose.
 
@@ -31,7 +31,7 @@ Let's start!
 
 ### 1.2 Blueprint
 
-Basically, you still have a 100% Xcode Obj-C project. The only differences happen in the building phase. Kotlin native will generate the code via `gradle`, and you gonna swap the `Obj-C` counterparts with it. That's all.
+Basically, you still have a 100% Xcode Obj-C project. The only differences happen in the building phase. Kotlin native will generate the code via `gradle`, and you will swap the `Obj-C` counterparts with it. That's all.
 
 ### 1.3 Step by step
 
@@ -158,7 +158,7 @@ Now, in the `Xcode`, build the project, run it, press the button, you will see `
 
 ### 2.1 Blueprint
 
-The project is fully Apple `Swift` Xcode project. Your Kotlin code will be compiled to an `iOS framework`, so it will include the according to `Obj-C to Swift` bindings for the `Swift` code to invoke. And in the swift, you just need to invoke that `framework`. The tricky part is for the simulator and real iOS device, the framework is different ('cos the different architecture), you should make it auto-swap according to the target you gonna run against. Take easy, we have `bash script` for that part.
+The project is fully Apple `Swift` Xcode project. Your Kotlin code will be compiled to an `iOS framework`, so it will include the according to `Obj-C to Swift` bindings for the `Swift` code to invoke. And in the swift, you just need to invoke that `framework`. The tricky part is for the simulator and real iOS device, the framework is different ('cos the different architecture), you should make it auto-swap according to the target you will run against. Take easy, we have `bash script` for that part.
 
 ### 2.2 Step by step.
 
@@ -210,6 +210,7 @@ The project is fully Apple `Swift` Xcode project. Your Kotlin code will be compi
 7. Now you need to make your `myApp` root folder a `kotlin` project with `gradle` support. The easiest way is to open `IDEA`, choose `import project`, and import your newly created `build.gradle`. Everything will be set up for you.
 
 1. Now add a `main.kt` in your `src/main/kotlin` folder:
+
 ```kotlin
 package com.nocare.nativeLibs
 
@@ -219,11 +220,12 @@ open class Words {
     }
 }
 ```
-    You get it, we gonna invoke the `getWords()` from the `swift` side and display the return value as the label text rather than our current `ok`.
+
+    You get it, we will invoke the `getWords()` from the `swift` side and display the return value as the label text rather than our current `ok`.
 
 9. Invoke the `./gradlew build`, there will be a `build` folder inside your project as `build/konan/bin`, inside the `bin`, there will be 2 folders, `iphone` and `iphone_sim`. Your framework will be there.
 
-1. Move one of the `nativeLibs.framework` to the `build` folder manually, we gonna need it for a while.
+1. Move one of the `nativeLibs.framework` to the `build` folder manually, we will need it for a while.
 
 1. Now we have the `framework`. Let's go back to `Xcode` project. Choose your project in the `Project navigator`. From the menu, `File -> Add Files to myApp`, choose the `nativeLibs.framework` from the `build` folder.
 
@@ -247,7 +249,7 @@ rm -rf "$SRCROOT/build/"
 mkdir "$SRCROOT/build/"
 cp -a "$SRCROOT/../../build/konan/bin/$NAME/" "$SRCROOT/build/"
 ```
-    You see, we gonna check your building target from the environment variable and copy the according to source to the `build` folder.
+    You see, we will check your building target from the environment variable and copy the according to source to the `build` folder.
 
 13. Go to the `building phases`, in the existing `Link Binary With Libraries`, drag the `nativeLibs.framework` from the `Project navigator` to the list.
 

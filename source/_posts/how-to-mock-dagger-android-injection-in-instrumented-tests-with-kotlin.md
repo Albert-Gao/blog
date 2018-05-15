@@ -1,5 +1,5 @@
 ---
-title: How to mock dagger Android injection in instrumented tests with Kotlin
+title: How to mock dagger-android injection in instrumented tests with Kotlin
 date: 2018-04-24 15:14:52
 tags:
   - kotlin

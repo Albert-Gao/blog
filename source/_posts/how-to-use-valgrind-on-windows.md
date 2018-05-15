@@ -5,7 +5,7 @@ tags:
   - valgrind
 ---
 
-Valgrind is a famous tool to debug your memory leak, but what sad is it only supports Linux, yeah, not a perfect support even on Mac. But with the new Windows 10 Anniversary update, it all gonna happen. And works way much better than Mac with OS X. Let's rock!
+Valgrind is a famous tool to debug your memory leak, but what sad is it only supports Linux, yeah, not a perfect support even on Mac. But with the new Windows 10 Anniversary update, it's happening. And works way much better than Mac with OS X. Let's rock!
 
 <!--more-->
 

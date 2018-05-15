@@ -23,7 +23,7 @@ You know the `namespace`, `package`, `groupId` concept, right? Your code should 
 
 ### Tips
 
-- Sign up for your company email if you gonna apply for a group id which is the domain name of your company.
+- Sign up for your company email if you will apply for a group id which is the domain name of your company.
 - Remember your username and password. It's not only used for raising the issue. But for uploading as well.
 
 ## 2. Apply for your namespace
@@ -43,7 +43,7 @@ Then open the app and press `New` to create your key pair.
 
 - Name is your `Sonatype` username.
 - Email is the email you used to register `Sonatype`
-- Remember the `password`, you gonna need it.
+- Remember the `password`, you will need it.
 - Don't know whether the username and email need to match, but I followed it just in case.
 
 After creating, right click your key and select `Send Public Key to Key Server` to public your public key.
@@ -164,7 +164,7 @@ Congrats, after all these steps, your package has finally been uploaded into... 
 
 ## 7. Publish to Maven Central via gradle
 
-We're gonna need to use another gradle plugin called `Gradle Nexus Staging plugin`.
+We're going to need to use another gradle plugin called `Gradle Nexus Staging plugin`.
 Just add the following gradle code:
 
 ```groovy

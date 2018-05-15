@@ -23,7 +23,7 @@ sudo apt-get install nginx
 We first update our repository list, then we update it.
 
 ## 2. Let the firewall run.
-Remember the last time when we setup a linux system? Firewall is important, it can make your server more secure, and after we install the nginx, we definitely gonna install one. Linux itself use a packet filtering system named `netfilter`, and you need to use commands like `iptables` to manipulate it to create your rules. While this takes time to get familiar with. Ubuntu has a ufw (uncomplicated firewall) to greatly simplify the procedures.
+Remember the last time when we setup a linux system? Firewall is important, it can make your server more secure, and after we install the nginx, we definitely will install one. Linux itself use a packet filtering system named `netfilter`, and you need to use commands like `iptables` to manipulate it to create your rules. While this takes time to get familiar with. Ubuntu has a ufw (uncomplicated firewall) to greatly simplify the procedures.
 
 You can use the `list` command to check the application profiles.
 ``` bash

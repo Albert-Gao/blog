@@ -17,6 +17,6 @@ implementation "android.arch.lifecycle:extensions:1.1.1"
 annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 ```
 
-The version number maybe different in the future but it's fine, because Android Studio gonna tell the version number for the latest version.
+The version number maybe different in the future but it's fine, because Android Studio will tell the version number for the latest version.
 
 Hope it helps.
