@@ -1,5 +1,5 @@
 ---
-title: How to hide actionbar in Android
+title: How to hide action bar in Android
 date: 2018-04-17 12:15:08
 tags:
   - android

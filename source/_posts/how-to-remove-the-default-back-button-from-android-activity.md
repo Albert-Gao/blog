@@ -26,7 +26,7 @@ The kotlin version is as the following:
 
 ```kotlin
 // kotlin
-setDisplayHomeAsUpEnabled?.setDisplayHomeAsUpEnabled(false)
+supportActionBar?.setDisplayHomeAsUpEnabled(false)
 ```
 
 I assume the Jave version should be using `getSupportActionBar()` first to get an instance of `supportActionBar` then trigger that method.
