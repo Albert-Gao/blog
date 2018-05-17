@@ -150,6 +150,8 @@ describe('Test the addLike method', () => {
 
 Here I use mongoDB. I will connect at the beginning of this test suite, and disconnect at the end. And the `mongoDB` just a wrapper class.
 
+You may consider using `beforeEach` and `afterEach` to manage the database connection to prevent race condition. More explanation below.
+
 ```javascript
 module.exports = {
     mongoose,
@@ -168,6 +170,16 @@ Notice that `done`? It is a variable used to indicate that an async operation is
 ## 8 How to run the tests
 
 You might want to use `jest --runInBand` to run the tests depending on how you structure your tests. Otherwise, multiple tests access same collection will cause random failing for your tests.
+
+But thanks to one of the readers, `Melroy van den Berg`, **I think you don't need `--runInBand` if you open and close database connection with `beforeEach` and `afterEach`** rather than the `beforeAll` and `afterAll`. Not tested, but it should be the root cause of the problem that I was encountering previously!
+
+Why? Because when you try to test CRUD against the same record for same collection with the same database connection, of course you will encounter race condition. Even though this is something that won't happen in production time.
+
+And when you simply open new connection for each test, then this race condition problem will be solved naturally in the database layer.
+
+And why do we need to worry about how many database connection we are opening during test time?! :D
+
+But if your machine can't handle it. Then feel free to maintain database connection in a test suite basis. Nothing wrong with that, your tests are still isolated if you done it right. And manage database connection is a test basis won't promise the isolation of tests, it's a different problem.
 
 ## 9. End
 
