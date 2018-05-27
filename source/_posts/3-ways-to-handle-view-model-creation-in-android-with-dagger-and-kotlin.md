@@ -119,7 +119,7 @@ And that famous `getViewModel()` is back:
 ```kotlin
 protected inline fun <reified T : ViewModel> getViewModel(crossinline f:() -> T): T =
     ViewModelProviders.of(this, viewModelFactory { f() }).get(T::class.java)
-``` 
+```
 
 Then you can use it like this:
 
