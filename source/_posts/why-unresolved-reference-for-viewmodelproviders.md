@@ -6,7 +6,9 @@ tags:
   - kotlin
 ---
 
-I encountered a weird thing today. In Android Studio 3.1.1, `import android.arch.lifecycle.ViewModelProvider` is totally while `import android.arch.lifecycle.ViewModelProviders` is not fine. Because there is no `ViewModelProviders` under `lifecycle` package. The solution is to add the packages by yourself. It doesn't even get mentioned in the official doc and most of the tutorials online. And after working with some already setup project. It finally beats me.
+I encountered a weird thing today. In Android Studio 3.1.1, `import android.arch.lifecycle.ViewModelProvider` is totally fine while `import android.arch.lifecycle.ViewModelProviders` is not fine. Because there is no `ViewModelProviders` under `lifecycle` package.
+
+The solution is to add the packages by yourself. It doesn't even get mentioned in the official doc and most of the tutorials online. And after working with some already setup project. It finally bites me.
 
 <!--more-->
 
