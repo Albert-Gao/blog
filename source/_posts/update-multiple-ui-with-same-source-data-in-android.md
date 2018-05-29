@@ -1,5 +1,5 @@
 ---
-title: Update multiple UI with same source data in Android
+title: Update multiple UI with same source data in Android using MVVM
 date: 2018-05-29 18:02:13
 tags:
   - kotlin
