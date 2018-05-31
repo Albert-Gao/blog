@@ -82,6 +82,10 @@ If you are using Mac. [react-native-debugger](https://github.com/jhen0409/react-
 
 sometimes everything is right, but you still get that `packager is not running` message, instead of using CMD+R to refresh the page, you just need to click the bottom `Refresh Page` button, I know, they should be the same. But…
 
+### 1.9 For the yellowBox
+
+Yes, you can use `YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated',])` to ignore the warnings which showed in a yellow box. But it might be better that you put the link to the GitHub issue. Just in case you can check it regularly, and remove it finally.
+
 ## 2. You are in a different environment
 
 ### 2.1 Different result
@@ -112,7 +116,7 @@ Open the link and skip to the `How to use it with my React Native app` part. It 
 
 ## 3. Update your Android project
 
-All the settings are too old if you are a native developer, rather than compatibility old.  It's more like centuries old and lost love from the team. But everything is transparent.
+All the settings are too old if you are a native developer, rather than compatibility old.  It's more like centuries old and lost love from the team. But everything is transparent. Still, before update, be sure there are not any legacy plugins which still needs the old version. But still you can just update, and `git reset` if anything wrong happens.
 
 ### 3.1 Update gradle
 
@@ -135,9 +139,14 @@ Change the gradle version to `4.5.1` so the result looks like this:
 - minSdkVersion 16
 - targetSdkVersion 27
 
-1. In the dependencies block, change the `appcompat` line to match the target version
+4. In the dependencies block, change the `appcompat` line to match the target version
 
 - `compile "com.android.support:appcompat-v7:27.1.1"`
+
+5. In the `android/build.gradle`
+
+Update the android build tools
+`classpath 'com.android.tools.build:gradle:3.1.2'`
 
 ### 3.3 Reduce your APK
 
@@ -156,6 +165,35 @@ It should generate 2 APK, one for x86 and one for ARM, upload all of them to the
 If you want learn something about gradle, I suggest you start from my blog: [Starting with gradle, creating a simple build.gradle](http://albertgao.xyz/2018/01/25/starting-with-gradle-creating-a-simple-build-gradle/). It is much easy to follow than the official document and just cost maybe 10 minutes.
 
 ## 4. Image, Image, Image
+
+### 4.1 Use WebP could potentially saves 20% space. And end up in a smaller packager
+
+But for Android, you need to add something to gradle. From the official document:
+
+> You will need to add some optional modules in `android/app/build.gradle`, depending on the needs of your app.
+
+```groovy
+dependencies {
+  // If your app supports Android versions before Ice Cream Sandwich (API level 14)
+  compile 'com.facebook.fresco:animated-base-support:1.3.0'
+
+  // For animated GIF support
+  compile 'com.facebook.fresco:animated-gif:1.3.0'
+
+  // For WebP support, including animated WebP
+  compile 'com.facebook.fresco:animated-webp:1.3.0'
+  compile 'com.facebook.fresco:webpsupport:1.3.0'
+
+  // For WebP support, without animations
+  compile 'com.facebook.fresco:webpsupport:1.3.0'
+}
+```
+
+### 4.2 For current version of RN
+
+You can just `require('/img/mine.png')` to load it.
+
+### 4.3 This is how you do it natively
 
 Sometimes, even put the image there will make your app feels much faster.
 
@@ -202,7 +240,7 @@ If you are not using either HOC (high order component) or render props that much
 
 An important fact is to remember:
 
-> the JSX element in React is not only for showing the UI. You can use them to declarative construct your logic. 
+> the JSX element in React is not only for showing the UI. You can use them to declarative construct your logic.
 
 And only after you accept this, you will feel better when you see things like `render props`, otherwise, it just seems very annoying.
 
