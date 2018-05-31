@@ -64,8 +64,8 @@ The **type** field indicates the direction:
 
 Just in case you forgot:
 
-- react-native log-ios
-- react-native log-android
+- `react-native log-ios`
+- `react-native log-android`
 
 You can see the native log from the command line.
 
@@ -73,7 +73,7 @@ You can see the native log from the command line.
 
 One lovely debugging tool is [reactotron](https://github.com/infinitered/reactotron). A desktop app for inspecting your React JS and React Native projects. macOS, Linux, and Windows. Really beautiful.
 
-If you are using Mac. [react-native-debugger](https://github.com/jhen0409/react-native-debugger) is another good candidate. It combines React Inspector / Redux DevTools together.
+If you are using Mac. [react-native-debugger](https://github.com/jhen0409/react-native-debugger) is another good candidate. It combines React Inspector / Redux DevTools together. Just two steps.
 
 - Install: `brew update && brew cask install react-native-debugger`
 - Run: `open "rndebugger://set-debugger-loc?host=localhost&port=8081"`
@@ -82,7 +82,7 @@ If you are using Mac. [react-native-debugger](https://github.com/jhen0409/react-
 
 sometimes everything is right, but you still get that `packager is not running` message, instead of using CMD+R to refresh the page, you just need to click the bottom `Refresh Page` button, I know, they should be the same. But…
 
-### 1.9 For the yellowBox
+### 1.9 For the YellowBox
 
 Yes, you can use `YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated',])` to ignore the warnings which showed in a yellow box. But it might be better that you put the link to the GitHub issue. Just in case you can check it regularly, and remove it finally.
 
