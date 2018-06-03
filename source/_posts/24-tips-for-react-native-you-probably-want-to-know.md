@@ -101,12 +101,14 @@ moment().month()
 // will return 4 because moment's index starts from 0
 ```
 
-**It works ONLY when you test via `jest`, but when you run it in the react native environment. You will get 5.**
+**It works ONLY when you test via `jest` (because you are using Node, and the behaviour is expected as the documentation), but when you run it in the react native environment. You will get 5.**
 
 So, the takeaways here are:
 
 - `Date` is the dark side of react native like `navigation`, remember this difference.
 - Don't always question yourself.
+
+**To your surprise, when you run your storybook react native in the simulator, the runtime is still not JSC, so the above result will be 4 again...**
 
 ### 2.2 Update your JSC for android
 
