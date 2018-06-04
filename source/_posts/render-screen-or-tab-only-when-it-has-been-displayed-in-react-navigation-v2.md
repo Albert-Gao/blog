@@ -1,12 +1,12 @@
 ---
-title: Render screen or tab- only when it has been displayed in React Navigation v2
+title: Render screen or tab only when it has been displayed in React Navigation v2
 date: 2018-06-04 20:21:27
 tags:
   - react-native
   - react-navigation
 ---
 
-React navigation v2 is a library for handling navigation in react native. When you are using Tab / Screen, maybe you only want to render it when it is been displayed. Otherwise, something like re-rendering multiple lists in multiple tabs. That's a disaster... Let's see how to do that.
+`React navigation` `v2` is a library for handling navigation in `React Native`. When you are using Tab / Screen, maybe you only want to render it when it is been displayed. Otherwise, something like re-rendering multiple lists in multiple tabs. That's a disaster... Let's see how to do that.
 
 <!--more-->
 
