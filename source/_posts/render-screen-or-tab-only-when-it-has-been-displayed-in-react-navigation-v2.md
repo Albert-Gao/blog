@@ -43,9 +43,7 @@ And unsubscribe like this:
 ```javascript
 componentWillUnmount() {
   this.listeners.forEach(
-    (sub: NavigationEventSubscription) => {
-      sub.remove()
-    },
+    sub => { sub.remove() },
   )
 }
 ```
@@ -74,8 +72,8 @@ Two cases here:
 
 ```javascript
 shouldComponentUpdate(
-  nextProps: IListScreenProp,
-  nextState: IListScreenState,
+  nextProps,
+  nextState,
 ) {
   const { isDisplayed } = this.state
   const { dataForRender } = this.props
