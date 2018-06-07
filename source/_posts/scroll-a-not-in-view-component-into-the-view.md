@@ -68,4 +68,6 @@ Check the documentation on [MDN](https://developer.mozilla.org/en/docs/Web/API/E
 
 ## 4. That's it
 
+Beware of the browser compatibility. But seems good to me in some cases.
+
 Hope it helps.
