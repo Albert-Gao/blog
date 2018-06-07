@@ -1,5 +1,5 @@
 ---
-title: Scroll a not in view component into the view
+title: Scroll a not in view component into the view using React
 date: 2018-06-07 11:51:46
 tags:
   - javascript
