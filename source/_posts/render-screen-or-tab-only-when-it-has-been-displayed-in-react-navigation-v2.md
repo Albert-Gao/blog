@@ -85,11 +85,7 @@ shouldComponentUpdate(
 }
 ```
 
-> You might think why not just `nextState.isDisplayed === true`. Well, it will cause the tab that is been exited to re-render. Which means, when exit `tab2` to `tab1`, both `tab1` and `tab2` will be re-rendered which is not what we want.
-
-You might think that it is a bug but it is not. When you just `console.log` than `setState`, you will see the behavior is correct.
-
-So, why? :)
+> You might think why not just `nextState.isDisplayed === true`. Well, not only it will not cause re-rendering when the screen has been displayed but props has been changed. But also it will cause the tab that is been exited to re-render. Which means, when exit `tab2` to `tab1`, both `tab1` and `tab2` will be re-rendered which is not what we want.
 
 ## 4. End
 
