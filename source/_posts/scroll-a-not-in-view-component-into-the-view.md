@@ -33,8 +33,6 @@ class ListItem extends Component {
   }
 
 render() {
-    const { day, weekday, isSelected } = this.props;
-
     return (
       <Box
         innerRef={this.ref}
