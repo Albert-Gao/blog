@@ -22,16 +22,17 @@ you can use it like this
 componentDidMount() {
   const { addListener } = this.props.navigation
   const { isDisplayed } = this.state
+  const self = this
 
   this.listeners = [
     addListener('didFocus', () => {
-      if (isDisplayed !== true) {
-        this.setState({ isDisplayed: true })
+      if (self.state.isDisplayed !== true) {
+        self.setState({ isDisplayed: true })
       }
     }),
     addListener('willBlur', () => {
-      if (isDisplayed !== false) {
-        this.setState({ isDisplayed: false })
+      if (self.state.isDisplayed !== false) {
+        self.setState({ isDisplayed: false })
       }
     }),
   ]
@@ -52,7 +53,7 @@ componentWillUnmount() {
 - unsubscribe them when `componentWillUnmount`
 - Then you can use `this.state.isDisplayed` to check the status
 
-> One **crucial** thing to remember, when you subscribe using that arrow function `addListener('didFocus', () => {})`, the context inside that lambda is not your current component, so you need to refer to an outside variable like I use `isDisplayed` rather than refer to `this.state.isDisplayed` directly, because that is not the same.
+> One **crucial** thing to remember, when you subscribe using that arrow function `addListener('didFocus', () => {})`, the context inside that lambda is not your current component, so you need to refer to an outside variable like I use `self.blahBlah` rather than refer to `this.blahBlah` directly, because that is not the same. The `this` you will get in that lambda is the global object.
 
 ## 2. You can use 4 events
 
