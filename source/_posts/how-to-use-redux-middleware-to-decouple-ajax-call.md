@@ -12,7 +12,7 @@ Redux is a great tool to manage your app state. But when you deal with the side 
 
 ## What's wrong with `redux-thunk`
 
-The code starts to look ugly when you add the side-effect like ajax call to the code. `Redux-thunk` works, and sometimes, the code really not that bad. 
+The code starts to look ugly when you add the side-effect like ajax call to the code. `Redux-thunk` works, and sometimes, the code really not that bad.
 
 ```javascript
 export const actions = {
@@ -45,13 +45,13 @@ export const actions = {
 };
 ```
 
-But compare to action creators which just yield pure javascript objects, adding the ajax logic into the action creator just not feel right. And one solution is to add another layer to decouple the logic to another part of code. Like what `Redux-saga` does.
+But compare to action creators which just yield pure javascript objects, adding ajax logic into the action creator just not feel right. And one solution is to add another layer to decouple the logic to another part of code. Like what `Redux-saga` does.
 
 ## Why not just Redux-saga
 
 I know `redux-saga` and love to use it. But I have something to say.
 
-1. The adding-another-layer nature of `redux-saga` indeed makes the code clean. But sometimes it makes things annoying as well. The most annoying part of `redux` is sometimes you need to open several files in order to make some changes. By using `redux-saga`, because some actions are taken over in the `saga` layer. You need to open one more file to complete the flow. Which will be overkill for some requirements like simple ajax call.
+1. The adding-another-layer nature of `redux-saga` indeed makes the code clean. But sometimes it makes things annoying as well. The most annoying part of `redux` is sometimes you need to open several files in order to make some changes. By using `redux-saga`, because some actions are taken over in the `saga` layer. You need to open one more file to complete the flow. Which will be overkill for some requirements like a simple ajax call.
 
 2. `async` and `await` are production ready now for front-end. It actually makes `redux-saga` not that appealing if you don't have that complex logic.
 
@@ -69,7 +69,7 @@ LoadList: () => ({
   })
 ```
 
-It's a plain object to represent the things we wanna do. Quite readable. I want to call `swap service` with the `find` method. (Don't bother, it's just another way to say `GET list` in feathers.js). When `load`, `request success` or `request failure`, dispatch different actions. Very clean, and the `LoadList` is just like the others, `LoadListRequested`, `LoadListSuccessfully`, yield pure object. 
+It's a plain object to represent the things we wanna do. Quite readable. I want to call `swap service` with the `find` method. (Don't bother, it's just another way to say `send HTTP GET to /swap` in feathers.js). When `load`, `request success` or `request failure`, dispatch different actions. Very clean, and the `LoadList` is just like the others, `LoadListRequested`, `LoadListSuccessfully`, it yields pure object.
 
 And you can make it more clean, like store all the `action types` in an array, and let the `redux middleware` handle this part, because most of the time, they follow the same pattern: A simple `onLoad` signal, `success` with data or `failure` with error object.
 
@@ -89,7 +89,7 @@ The flow is very simple:
 
 ## Write a middleware step by step
 
-Although your business logic could different, but the pattern of a middleware could be the same.
+Although your business logic could be different, but the pattern of a middleware could be the same.
 
 ### 1. Write the middleware. Maybe you want to separate this in a single file?
 
@@ -140,7 +140,9 @@ try {
 }
 ```
 
-Still simple, we grab the `dispatch` method from `store`. The we just do the normal ajax call. You can add more logic here but the concept is very simple.
+Still simple, we grab the `dispatch` method from `store`. Then we just do the normal ajax call. You can add more logic here but the concept is very simple.
+
+I am using `feathers.js` here. But you can use `fetch` or `axios` to accomplish the same, grab the endpoint and http method from the action, then send the network request accordingly.
 
 the result looks like this:
 
