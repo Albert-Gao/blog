@@ -16,7 +16,7 @@ I use Ubuntu 18 x64, it should be more or less the same if you use other Linux d
 
 - Download the bash command to install:
   - `wget https://raw.githubusercontent.com/dokku/dokku/v0.14.5/bootstrap.sh;`
-    - Find the version number here: https://github.com/dokku/dokku/releases
+  - Find the latest version number here: https://github.com/dokku/dokku/releases
 - Execute it:
   - `sudo DOKKU_TAG=v0.14.5 bash bootstrap.sh`
 
