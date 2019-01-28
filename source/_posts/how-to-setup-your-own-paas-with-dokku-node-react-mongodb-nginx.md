@@ -136,7 +136,7 @@ It maybe fine for most of time, but when you concern about the time or you are d
 
 Once `Dokku` sees there is a `Dockerfile` in the root of your app, it will use it instead of `buildpack`.
 
-I will write another blog to cover that.
+I have written another [blog](/2019/01/28/how-to-create-your-own-dockerfile-for-a-rapid-dokku-deployment/) to cover that, to make it a lot faster.
 
 ## 10. End
 
