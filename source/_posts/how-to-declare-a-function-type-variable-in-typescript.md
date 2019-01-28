@@ -48,6 +48,30 @@ a = function (pass:string):string{
 ```
 The syntax here is very simple, it is just like the lambda function in Java or C#, the 'string' after the arrow is the type of the return value. The para: string defines the type of the parameter.
 
-## Summary:
+## Solution 4 - Use type
+
+We can use `type` to declare a function type:
+
+```javascript
+type read = (name: string) => void;
+
+const test:read = (value: string) => {
+  console.log(value);
+}
+```
+
+## Solution 5 - Interface them all
+
+We are Typescript, we'd love to use the beloved `interface` for everything, well, you can, for just a function.
+
+```javascript
+interface read {
+  (name: string): string;
+}
+
+const test:read = (value: string) => value;
+```
+
+## Summary
 
 In practice, I often repeat the procedures from solution 2 to solution 3, and it make sense to me. You don't know the detail of the architecture, you simply assign it as a function, than later on you get more information, then you come back to make it better.
