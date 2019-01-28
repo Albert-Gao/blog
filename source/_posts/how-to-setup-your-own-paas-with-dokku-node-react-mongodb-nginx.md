@@ -10,7 +10,7 @@ Setup environment could be tedious, but Dokku just makes it tremendously easy. E
 
 <!--more-->
 
-I use Ubuntu 18 x64, it should be more or less the same. I assume you start everything from scratch, I mean, a fresh newly installed OS.
+I use Ubuntu 18 x64, it should be more or less the same if you use other Linux distribution. I assume you start everything from scratch, I mean, a fresh newly installed OS.
 
 ## 1.Install Dokku on your host
 
@@ -99,6 +99,8 @@ Login to the server, setup the port.
 `
 
 Replace the `your-app-port` with your port in use.
+
+So, every time, when Nginx receives a request, it will redirect to `your-app-port`.
 
 ## 7. Setup Ubuntu UFW
 
