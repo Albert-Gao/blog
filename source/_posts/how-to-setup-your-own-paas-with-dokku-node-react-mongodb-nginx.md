@@ -6,7 +6,7 @@ tags:
   - dokku
 ---
 
-Setup environment could be tedious, but Dokku just makes it tremendously easy. Even more, you can have your own CD setup under 5 mins with everything. Let's see how we can get up and running for this app: A Node back-end with a create-react-app powered front end, and we will use MongoDB.
+Setup environment could be tedious, but [Dokku](http://dokku.viewdocs.io/dokku/) just makes it tremendously easy. Even more, you can have your own CD setup under 5 mins with everything. Let's see how we can get up and running for this app: A Node back-end with a create-react-app powered front end, and we will use MongoDB.
 
 <!--more-->
 
