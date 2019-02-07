@@ -23,8 +23,8 @@ I use Ubuntu 18 x64, it should be more or less the same if you use other Linux d
 ## 2. Setup Key and Host
 
 - Open the IP or domain name from the browser.
-- You will see a UI to setup the public key, you can paste it in the textbox or it will derive from the `authorized_keys` on the host.
-- Then setup your domain name, if you want to deploy to sub-domain, you need to select that `Use virtualhost naming for apps`. You don't need to put the protocol here. And if you only have a IP, just put it there, it's fine.
+- You will see a UI to setup the public key, you can paste it in the textbox or it will derive from the `~/.ssh/authorized_keys` on the host.
+- Then setup your domain name, if you want to deploy to sub-domain, you need to select that `Use virtualhost naming for apps`. You don't need to put the protocol here. And if you only have a IP, just put it there (IP only, no protocol), it's fine.
 
 ## 3. Setup App and Database
 
@@ -42,7 +42,7 @@ I use Ubuntu 18 x64, it should be more or less the same if you use other Linux d
 
 When deploying, you can either use `buildpack` from `Heroku` or setup your own `Dockerfile`.
 
-Setup `buildpack` is just very easy, you open the `package.json`, setup the node version and npm version with the one you like:
+Setup `buildpack` is super easy, you open the `package.json`, setup the node version and npm version with the one you like:
 
 ```json
 "engines": {
@@ -63,7 +63,7 @@ The is my folder structure:
 >------client <br>
 >------public
 
-You can see here that the front end code sits in `client` folder which is a sub-folder of the back-end code. The `public` folder is the folder for holding static assets. After building the front end code, the result should be ported to this folder.
+You can see here that the front end code sits in `client` folder which is a sub-folder of the back-end code (`root/`). The `public` folder is the folder for holding static assets. After building the front end code, the result should be ported to this folder.
 
 So I add this simple script to `package.json`:
 
@@ -130,7 +130,7 @@ The `Dsn` field is what you need. :)
 
 ## 9. Not the end
 
-So, everything will be fine, until you relize one problem, so, every time you `git push`, it will deploy, but it will install the `node` and `npm` every time. This is due to the constraint that `HeroKu` will not cache your dependencies.
+So, everything will be fine, until you realize one problem, which is, every time you `git push`, it will deploy, but it will install the `node` and `npm` every time. This is due to the constraint that `HeroKu` will not cache your dependencies.
 
 It maybe fine for most of time, but when you concern about the time or you are deploying to an environment where you can't easily access some website. Then you might want to change to another way to build, which is,
 
