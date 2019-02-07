@@ -36,6 +36,14 @@ Take the above setup for example. The default value for `expireAt` field will be
 
 If you change the `expires`, you might need to drop the original index, otherwise, it won't just work.
 
-## 3. End
+## 3. Something about TTL
+
+It is about the concept of `TTL` in MongoDB: Time-To-Live. According to the official document:
+
+> The background task that removes expired documents runs every 60 seconds. As a result, documents may remain in a collection during the period between the expiration of the document and the running of the background task.
+
+> Because the duration of the removal operation depends on the workload of your mongod instance, expired data may exist for some time beyond the 60 second period between runs of the background task.
+
+## 4. End
 
 Hop it helps.
