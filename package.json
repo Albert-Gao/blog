@@ -5,6 +5,9 @@
   "hexo": {
     "version": "3.7.1"
   },
+  "scripts": {
+    "deploy": "hexo g && cd public && git add * && git commit -m 'asd' && git push deploy master && cd .."
+  },
   "dependencies": {
     "hexo": "^3.7.1",
     "hexo-cli-extras": "^1.0.4",
