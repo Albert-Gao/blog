@@ -156,9 +156,7 @@ Is this function testable, very:
 describe("getIdToken", () => {
   it("should return an object when everything is ok", () => {
     expect(getIdToken(correctEvent)).toEqual({
-      "x-hasura-default-role": "user",
-      "x-hasura-allowed-roles": ["user"],
-      "x-hasura-user-id": "auth0|5d19e6548cda860ccc6523c2"
+      "x-hasura-user-id": "auth0|5d19e6548cda8"
     });
   });
 

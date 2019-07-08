@@ -10,9 +10,9 @@ There are many types in typescript, but since we love callback functions in java
 
 <!--more-->
 
-## Solution 1 - any:
+## Solution 1 - any
 
-OK, this is the most ugly way to achieve it, you can simply declare a variable as 'any' type, then after, you can assign it a function to it. It's not recommend.
+OK, this is the most ugly way to achieve it, you can simply declare a variable as `any` type, then later, you can assign a function to it. It's not recommend.
 
 ```javascript
 let a:any;
@@ -22,12 +22,13 @@ a = function ():void{
 }
 ```
 
-## Solution 2 - Function:
+## Solution 2 - Function
 
 Sometimes, when you design the interfaces, you have no idea what the actual signature will be, but instead declaring a 'any' type, you can use a keyword 'Function', so you can take advantage of the type checking later.
 
 ```javascript
 let a:Function;
+
 a = function ():void{
     console.log("It works");
 }
@@ -46,7 +47,8 @@ a = function (pass:string):string{
     return pass;
 }
 ```
-The syntax here is very simple, it is just like the lambda function in Java or C#, the 'string' after the arrow is the type of the return value. The para: string defines the type of the parameter.
+
+The syntax here is very simple, it is just like the lambda function in Java or C#, the 'string' after the arrow is the type of the return value. The para: string defines the type of the parameter. It takes a `string` and return a `string`.
 
 ## Solution 4 - Use type
 
@@ -74,4 +76,4 @@ const test:read = (value: string) => value;
 
 ## Summary
 
-In practice, I often repeat the procedures from solution 2 to solution 3, and it make sense to me. You don't know the detail of the architecture, you simply assign it as a function, than later on you get more information, then you come back to make it better.
+In practice, I often use `Solution 4 - Type`. Maybe just because it looks simpler than `interface` version.
