@@ -45,6 +45,8 @@ The `updateQuery` function you get from the  `useQuery` hook will give you the p
 
 Unlike the `cache.writeQuery` where you can mutate the `data` directly, here you have to return a new object to maintain the immutability.
 
+And since you are handling everything by yourself, remember to add the `__typename` to your item, so Apollo can know how to match the new data.
+
 No extra network request, the UI will be re-rendered.
 
 According to the document:
