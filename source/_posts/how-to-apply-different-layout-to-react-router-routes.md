@@ -7,7 +7,7 @@ tags:
   - typescript
 ---
 
-Most of the SaaS sites has a similar pattern, marketing pages, pages after login. Marketing pages may or may not share elements in terms of the layout, but the pages after login will share something like sub-nav, top nav, modules, things like that. I use React outer v5 with Typescript, I thought it should be easy, but it took some time.
+Most of the SaaS sites has a similar pattern, marketing pages, pages after login. Marketing pages may or may not share elements in terms of the layout, but the pages after login will share something like sub-nav, top nav, modules, things like that. I use `React outer v5` with `Typescript`. It is easy, but it took some time.
 
 <!--more-->
 
