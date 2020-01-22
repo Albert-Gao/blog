@@ -63,10 +63,10 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-next
+theme: next
 
 sitemap:
-    path: sitemap.xml
+  path: sitemap.xml
 
 feed:
   type: atom
