@@ -6,7 +6,11 @@
     "version": "4.0.0"
   },
   "scripts": {
-    "deploy": "hexo g && cd public && git add * && git commit -m 'asd' && git push deploy master && cd .."
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server",
+    "deploy:ownServer": "hexo g && cd public && git add * && git commit -m 'asd' && git push deploy master && cd .."
   },
   "dependencies": {
     "hexo": "^4.0.0",
