@@ -1,5 +1,5 @@
 ---
-title: how-to-set-git-branch-name-as-environment-variable-in-next-js
+title: How to set Git branch name as environment variable in next.js
 date: 2020-02-17 20:02:19
 tags:
   - nextjs
