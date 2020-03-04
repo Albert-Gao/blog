@@ -34,13 +34,13 @@ Yes, VSC is just much better but you need to know that you can literally open re
 We all know there is a bridge between the native and js side. React native uses it to communicate between the two to do the UI updates and more. This is how you can inspect it. Just add the following code to your `index.js`:
 
 ```javascript
-import MessageQueue from 'react-native/Libraries/BatchedBridge/MessageQueue.js';
+import MessageQueue from "react-native/Libraries/BatchedBridge/MessageQueue.js";
 
-const spyFunction = (msg) => {
+const spyFunction = msg => {
   console.log(msg);
-}
+};
 
-MessageQueue.spy(spyFunction)
+MessageQueue.spy(spyFunction);
 ```
 
 Then in the console of your debugger, you should see lots of messages:
@@ -58,7 +58,7 @@ The **type** field indicates the direction:
 
 `Xcode`: After you running the app, Press the `Debug View Hierarchy` button, it will show all your views in a 3D way. You can inspect your full view tree in a very visual appealing way. This is a fantastic way to make yourself feel guilty because now you know how complex your UI actually is even though it seems to adopt a minimalist design concept. Just look at the [google image](https://www.google.com/search?newwindow=1&biw=1440&bih=826&tbm=isch&sa=1&ei=gnYOW8aGGIi70gTusrToDQ&q=xcode+debug+view+hierarchy&oq=xcode+debug+view+hierarchy&gs_l=img.3...870.1359.0.1654.4.4.0.0.0.0.0.0..0.0....0...1c.1.64.img..4.0.0....0.BIvtwn6CrWE) to see how cool it is.
 
-`Android studio` :  Be sure to check `Android Profiler`, an awesome tool to analyze your app's performance on Android. CPU, memory, network, you get them all.
+`Android studio` : Be sure to check `Android Profiler`, an awesome tool to analyze your app's performance on Android. CPU, memory, network, you get them all.
 
 ### 1.6 Check the native log
 
@@ -90,14 +90,14 @@ Yes, you can use `YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecat
 
 ### 2.1 Different result
 
-> In most cases, React Native will use [JavaScriptCore](http://trac.webkit.org/wiki/JavaScriptCore), the JavaScript engine that powers Safari. Note that on iOS,  JavaScriptCore does not use JIT due to the absence of writable executable memory in iOS apps.
+> In most cases, React Native will use [JavaScriptCore](http://trac.webkit.org/wiki/JavaScriptCore), the JavaScript engine that powers Safari. Note that on iOS, JavaScriptCore does not use JIT due to the absence of writable executable memory in iOS apps.
 
 > When using Chrome debugging, all JavaScript code runs within Chrome itself, communicating with native code via WebSockets. Chrome uses [V8](https://code.google.com/p/v8/) as its JavaScript engine.
 
 This is something very important to remember, a case that I've been dealt with is `moment.js` actually behaves differently. For instance, this month is May, so for the following code:
 
 ```javascript
-moment().month()
+moment().month();
 // will return 4 because moment's index starts from 0
 ```
 
@@ -118,7 +118,7 @@ Open the link and skip to the `How to use it with my React Native app` part. It 
 
 ## 3. Update your Android project
 
-All the settings are too old if you are a native developer, rather than compatibility old.  It's more like centuries old and lost love from the team. But everything is transparent. Still, before update, be sure there are not any legacy plugins which still needs the old version. But still you can just update, and `git reset` if anything wrong happens.
+All the settings are too old if you are a native developer, rather than compatibility old. It's more like centuries old and lost love from the team. But everything is transparent. Still, before update, be sure there are not any legacy plugins which still needs the old version. But still you can just update, and `git reset` if anything wrong happens.
 
 ### 3.1 Update gradle
 
@@ -294,7 +294,7 @@ Actually, the v2 update seems pretty good. I know this library has some pretty b
 
 ## 8. For CLI
 
-If you are coming from web world, you need to know that `create-react-native-app` is not the `create-react-app` equivalent. It's a solution provided by Expo and based on the official `react-native-cli`, it hides those native project away from you. They provide other pretty good tooling around react native. 
+If you are coming from web world, you need to know that `create-react-native-app` is not the `create-react-app` equivalent. It's a solution provided by Expo and based on the official `react-native-cli`, it hides those native project away from you. They provide other pretty good tooling around react native.
 
 But if you want more control over your project, something like tweaking your react native Android and iOS project, I highly suggest you use the official `react-native-cli`. Still, one simple command, `react-native init ProjectName`, and you are good to go.
 
@@ -338,9 +338,13 @@ class My extends React.Component<IMyProp, IMyState>
 
 ```javascript
 // need to install @types/redux first
-import { Dispatch } from 'redux'
+import { Dispatch } from "redux";
 ```
 
 ## 10. End
 
 Hope it helps.
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
+
+Thanks for reading!

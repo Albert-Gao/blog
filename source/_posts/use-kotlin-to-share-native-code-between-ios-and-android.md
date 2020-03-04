@@ -15,17 +15,20 @@ An example of supporting code sharing among iOS, Android, JVM and JS is added in
 ## 1. Goal
 
 - We want to use XCode and Android Studio to edit the native app while using another IDE to edit the sharing code part. (But you can use Android studio for editing the KN code as well because they use the same language and the setup will be ready.)
-    - I saw some setups. They use root folder as a whole gradle project which will affect the Android project structure been displayed in the android studio because it will add some noise there.
+
+  - I saw some setups. They use root folder as a whole gradle project which will affect the Android project structure been displayed in the android studio because it will add some noise there.
 
 - We want to share more code between iOS and Android.
-    - The main hurdle is the platform-specific API. We can make them as `interface` and still shared the logic around them. But here we will use `kotlin multi-platform` approach to make the code more elegant.
-    - Think of an API like this `UserService.getAllorNull()`, then your native side just need to bind the result to the UI. Even though the `HTTP` call is different across platform. But all the exception handling and data processing around the http call are the same and could be shared.
+
+  - The main hurdle is the platform-specific API. We can make them as `interface` and still shared the logic around them. But here we will use `kotlin multi-platform` approach to make the code more elegant.
+  - Think of an API like this `UserService.getAllorNull()`, then your native side just need to bind the result to the UI. Even though the `HTTP` call is different across platform. But all the exception handling and data processing around the http call are the same and could be shared.
 
 - We want to have a clean structure where everything related should reside together.
-    - I mean for the gradle phase as well. Such that, `android` folder is only for Android, `ios` folder is only for iOS. The root folder is for all projects. And the gradle settings for `KN-android` should be in the `android` folder as well as the `iOS` side.
+
+  - I mean for the gradle phase as well. Such that, `android` folder is only for Android, `ios` folder is only for iOS. The root folder is for all projects. And the gradle settings for `KN-android` should be in the `android` folder as well as the `iOS` side.
 
 - We want to test the Kotlin native code as well.
-    - It's native project so anything native can be tested via the strategy on that platform. But what about kotlin native part, what about the `common` code? What about the kotlin native platform specific code for `android` and `ios`? Yes, we have that part covered as well here in the example.
+  - It's native project so anything native can be tested via the strategy on that platform. But what about kotlin native part, what about the `common` code? What about the kotlin native platform specific code for `android` and `ios`? Yes, we have that part covered as well here in the example.
 
 ### 1.1 What about I don't need to care about the platform specific implementation
 
@@ -110,3 +113,7 @@ In fact, the native app retrieves the string by invoking the method from the `Sa
 It is a perfect example for showing how to share the code when you have to deal with the platform API.
 
 Hope it helps. Thanks.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

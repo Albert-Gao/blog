@@ -15,10 +15,7 @@ So I just encountered a problem where I want to make a better type checking in a
 ```typescript
 interface IDropDownProps<T> {
   items: Array<T>;
-  getItemProps: (
-    item: T,
-    index: number,
-  ) => object;
+  getItemProps: (item: T, index: number) => object;
 }
 ```
 
@@ -44,10 +41,7 @@ it's just as easy as `class DropDown<T> extends React.Component<IDropDownProps<T
 With the introduction of `hooks`, `function component` will be the future of React. and remember the name `function component`, now it's been unified to this name compare to the `stateless functional component`, even in the latest version of `@types/react`, now you can use `React.FC` than `React.SFC`.
 
 ```typescript
-function DropDown<T>({
-  items,
-  getItemProps,
-}: IDropDownProps<T>) {
+function DropDown<T>({ items, getItemProps }: IDropDownProps<T>) {
   // body
 }
 ```
@@ -55,7 +49,7 @@ function DropDown<T>({
 Don't know how to use it with a component been declared like this:
 
 ```typescript
-const DropDown: React.FC<IDropDownProps<T>>
+const DropDown: React.FC<IDropDownProps<T>>;
 ```
 
 Feel free to comment if you know how.
@@ -68,18 +62,24 @@ So, you just use it like this:
 
 ```html
 <DropDown<string>
-  items={provinces}
-  getItemProps={getItemProps}
-/>
+  items={provinces} getItemProps={getItemProps} /></DropDown<string
+>
 ```
 
 Now, if you pass a wrong callback like this:
 
 ```typescript
-const getItemProps = (item: number) => {text: item}
+const getItemProps = (item: number) => {
+  text: item;
+};
 ```
 
 The compiler will complain that the expected type for `item` is `string` where you declare it as a `number`.
 
 ### 4. End
+
 Hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

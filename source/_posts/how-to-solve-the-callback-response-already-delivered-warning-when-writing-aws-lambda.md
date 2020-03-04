@@ -70,3 +70,7 @@ The trouble comes from the confusion of the error message, and all the online do
 ## 4. End
 
 That's it, hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

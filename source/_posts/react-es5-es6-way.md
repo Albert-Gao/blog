@@ -13,6 +13,7 @@ There are two ways to use React, the old `createClass` or the fancy ES6 `extend`
 <!--more-->
 
 ## 1. Declare a new component:
+
 ```JavaScript
 //ES5
 var MyComponent = React.createClass({
@@ -30,7 +31,9 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
 There is a fancy introduced in 1.4 with the concept of "stateless component". Many benefits will gain via this way, but this is not the topic here.
+
 ```JavaScript
 //ES6, stateless functional component
 const MyComponent = props => {
@@ -39,7 +42,9 @@ const MyComponent = props => {
 ```
 
 ## 2. props and state gets better
+
 `props` with the ES6 take advantage of the new syntax, makes it more JavaScript-favor, it's now more like a built-in property of a class rather than some return value from a function.
+
 ```JavaScript
 //ES5
 var MyComponent = React.createClass({
@@ -67,7 +72,7 @@ var MyComponent = React.createClass({
 //ES6
 class MyComponent extends React.Component {
     static propTypes = {
-        name: React.PropTypes.string.isRequired,    
+        name: React.PropTypes.string.isRequired,
     }
 
     static defaultProps = {
@@ -98,16 +103,18 @@ class MyComponent extends React.Component {
 }
 
 MyComponent.propTypes = {
-    name: React.PropTypes.string.isRequired,    
+    name: React.PropTypes.string.isRequired,
 };
 
 MyComponent.defaultProps = {
-    name: 'albert',    
+    name: 'albert',
 };
 ```
 
 ## 3. context may a little bit different
+
 In fact, this section has nothing to do with the syntax, it is something about the `createClass`. It will auto-bind the `this`, but we need to manage this via ES6.
+
 ```JavaScript
 //ES5
 var MyComponent = React.createClass({
@@ -121,7 +128,9 @@ var MyComponent = React.createClass({
 });
 
 ```
+
 We have multiple ways to do this via ES6.
+
 ```JavaScript
 //ES6
 class MyComponent extends React.Component {
@@ -152,8 +161,10 @@ class MyComponent extends React.Component {
     }
 }
 ```
+
 Now my personal favourite, the truely ES6 approach via `arrow function`.
 And isn't this the most usage of arrow function?
+
 ```JavaScript
 //ES6 with arrow function
 class MyComponent extends React.Component {
@@ -166,7 +177,13 @@ class MyComponent extends React.Component {
     }
 }
 ```
+
 It works simply because arrow functions can use the same lexical scope as the codes around it.
 
 ## 4. End of story
+
 React is fun to use. Hope it helps some one. You can see by the above examples that when you use the ES6 syntax, most of the time, you are dealing with the JavaScript syntax itself rather than learning some react built-in functions. Which feels super good.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

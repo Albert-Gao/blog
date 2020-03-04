@@ -66,3 +66,7 @@ You can add that viewModelFactory to your `BaseActivity` class so you can use it
 ## 3. End
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

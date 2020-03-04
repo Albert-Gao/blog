@@ -17,7 +17,7 @@ tags:
 npm i -D babel-plugin-transform-flow-strip-types flow-bin
 ```
 
-First, we install `flow` and a babel plugin to strip its type definition from the final code. 
+First, we install `flow` and a babel plugin to strip its type definition from the final code.
 
 ## 2. Configurations
 
@@ -25,12 +25,8 @@ Then we create a `.babelrc` in the root folder:
 
 ```json
 {
-  "presets": [
-    "next/babel"
-  ],
-  "plugins": [
-    "transform-flow-strip-types"
-  ]
+  "presets": ["next/babel"],
+  "plugins": ["transform-flow-strip-types"]
 }
 ```
 
@@ -50,14 +46,20 @@ Create a `next.js.flow` in the `flow-typed` folder:
 
 declare module "next" {
   declare type NextApp = {
-    prepare(): Promise<void>;
-    getRequestHandler(): any;
-    render(req: any, res: any, pathname: string, query: any): any;
-    renderToHTML(req: any, res: any, pathname: string, query: string): string;
-    renderError(err: Error, req: any, res: any, pathname: any, query: any): any;
-    renderErrorToHTML(err: Error, req: any, res: any, pathname: string, query: any): string;
+    prepare(): Promise<void>,
+    getRequestHandler(): any,
+    render(req: any, res: any, pathname: string, query: any): any,
+    renderToHTML(req: any, res: any, pathname: string, query: string): string,
+    renderError(err: Error, req: any, res: any, pathname: any, query: any): any,
+    renderErrorToHTML(
+      err: Error,
+      req: any,
+      res: any,
+      pathname: string,
+      query: any
+    ): string
   };
-  declare module.exports: (...opts: any) => NextApp
+  declare module.exports: (...opts: any) => NextApp;
 }
 
 declare module "next/head" {
@@ -65,23 +67,28 @@ declare module "next/head" {
 }
 
 declare module "next/link" {
-  declare module.exports: Class<React$Component<{href: string, prefetch?: bool}, any>>;
+  declare module.exports: Class<
+    React$Component<{ href: string, prefetch?: boolean }, any>
+  >;
 }
 
 declare module "next/error" {
-  declare module.exports: Class<React$Component<{statusCode: number}, any>>;
+  declare module.exports: Class<React$Component<{ statusCode: number }, any>>;
 }
 
 declare module "next/router" {
   declare module.exports: {
-    route: string;
-    pathname: string;
-    query: Object;
-    onRouteChangeStart: ?((url: string) => void);
-    onRouteChangeComplete: ?((url: string) => void);
-    onRouteChangeError: ?((err: Error & {cancelled: boolean}, url: string) => void);
-    push(url: string, as: ?string): Promise<boolean>;
-    replace(url: string, as: ?string): Promise<boolean>;
+    route: string,
+    pathname: string,
+    query: Object,
+    onRouteChangeStart: ?(url: string) => void,
+    onRouteChangeComplete: ?(url: string) => void,
+    onRouteChangeError: ?(
+      err: Error & { cancelled: boolean },
+      url: string
+    ) => void,
+    push(url: string, as: ?string): Promise<boolean>,
+    replace(url: string, as: ?string): Promise<boolean>
   };
 }
 
@@ -90,8 +97,15 @@ declare module "next/document" {
   declare export var Main: Class<React$Component<any, any>>;
   declare export var NextScript: Class<React$Component<any, any>>;
   declare export default Class<React$Component<any, any>> & {
-    getInitialProps: (ctx: {pathname: string, query: any, req?: any, res?: any, jsonPageRes?: any, err?: any}) => Promise<any>;
-    renderPage(cb: Function): void;
+    getInitialProps: (ctx: {
+      pathname: string,
+      query: any,
+      req?: any,
+      res?: any,
+      jsonPageRes?: any,
+      err?: any
+    }) => Promise<any>,
+    renderPage(cb: Function): void
   };
 }
 ```
@@ -115,10 +129,14 @@ Merge the following lines into your existing settings:
 ```json
 {
   "extends": ["plugin:flowtype/recommended"],
-  "plugins": ["flowtype"],
+  "plugins": ["flowtype"]
 }
 ```
 
 ## 6. End
 
 Congratulations! All is well. :) Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

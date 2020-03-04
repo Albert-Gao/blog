@@ -10,15 +10,18 @@ Objects are somethings which exists at run time, if we want to maintain its stat
 <!--more-->
 
 ## 1. About the procedures:
+
 The cases here are very simple, just 2:
+
 - **Serialization:** Save an object to disk with a binary form
 - **Deserialization:** Retrieve an object from a file
 
 Python comes with a handy library called `pickle` which tackles this situation nicely.
 
 ## 2. Serialization : Save an object to the disk
+
 We need to use `pickle.dump()` method:
-    
+
 ```python
 pickle.dump(your_object, file, pickle.HIGHEST_PROTOCOL)
 ```
@@ -33,6 +36,7 @@ with open("super.file", "wb") as f:
 You should notice that the file I will write the object to is named `super.file` rather than `super.txt` to imply that this file will be binary based rather than plain text.
 
 ## 3. Deserialization : Convert the file to python object
+
 We will use `pickle.load()` method.
 
 and it is as simple as `pickle.dump()` :
@@ -47,10 +51,15 @@ As previous, an example with `with` statement:
 with open("super.file", "rb") as f:
     dump = pickle.load(f)
 
-    # Now you can use the dump object as the original one  
+    # Now you can use the dump object as the original one
     self.some_property = dump.some_property
 ```
 
 ## 4. End
+
 With this `pickle` library under your belt, you could wrap it to make your own persistence solution in a decent manner.
 Notice that this is just a simple intro to the `pickle` library. There are more methods for you to explorer. The official documents can be found here: [Python 2.7](https://docs.python.org/2.7/library/pickle.html) or [Python 3.5](https://docs.python.org/3.5/library/pickle.html).
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -207,3 +207,7 @@ TBH, I prefer integration test more,
 > In front-end, 100% coverage of unit tests is, of course, covering more bugs than 100% user flow coverage of E2E /integration tests. But the latter will cover more real-world user bugs. 'cos if the app doesn't work as an integrated bundle, it doesn't matter.
 
 I saw so many cases where people just try to test the function in a way that is not aligned with the user usage, and that causes a lot of real world bugs, do more integration test. And another side-effect is, now when you refactor, less tests will be touched too, and the codebase will just be more robust.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

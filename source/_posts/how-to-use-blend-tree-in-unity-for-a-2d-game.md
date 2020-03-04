@@ -18,8 +18,8 @@ For example, when you want to render 8 direction walking animations,the whole wo
 2. create 2 float type parameters: `moveX` and `moveY`
 3. set its `Blend type` to `2D Simple Directional`
 4. then you set the `Parameters` of the newly created blend tree to `moveX` and `moveY`
-5. then you add all the 8 direction motions to the blend tree. 
-   - In terms of the `PosX` and `PosY` values, imagine a simply 2D world with just x-axis and y-axis. Your character stands at `(0,0)`, 
+5. then you add all the 8 direction motions to the blend tree.
+   - In terms of the `PosX` and `PosY` values, imagine a simply 2D world with just x-axis and y-axis. Your character stands at `(0,0)`,
    - so when he goes up, the coordinate will be `(0,1)`
    - so when he goes down, the coordinate will be `(0,-1)`
    - when goes right, the coordinate will be `(1,0)`
@@ -50,3 +50,7 @@ void Update(){
 The `GetEnemyDirection` is just a helper method which normalize your destination coordinate so it will always fall into the range `1, 1` Just as same as the `PosX` and `PosY` you have set before, right? :)
 
 Via this way, it is very easy to manage a 8 direction game animation. But Blend tree is more than this, it can be used to blend between 2 animations to create a smooth transition, widely used in 3D animation such as transitioin from walk to run. But the idea is the same. You can learn more in the unity official documents.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

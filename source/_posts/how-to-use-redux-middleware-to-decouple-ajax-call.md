@@ -61,12 +61,12 @@ I know `redux-saga` and love to use it. But I have something to say.
 
 ```javascript
 LoadList: () => ({
-    serviceName: 'swap',
-    method: 'find',
-    onLoad: actions.LoadListRequested,
-    onSuccess: actions.LoadListSuccessfully,
-    onFailure: actions.LoadListFailed
-  })
+  serviceName: "swap",
+  method: "find",
+  onLoad: actions.LoadListRequested,
+  onSuccess: actions.LoadListSuccessfully,
+  onFailure: actions.LoadListFailed
+});
 ```
 
 It's a plain object to represent the things we wanna do. Quite readable. I want to call `swap service` with the `find` method. (Don't bother, it's just another way to say `send HTTP GET to /swap` in feathers.js). When `load`, `request success` or `request failure`, dispatch different actions. Very clean, and the `LoadList` is just like the others, `LoadListRequested`, `LoadListSuccessfully`, it yields pure object.
@@ -94,9 +94,7 @@ Although your business logic could be different, but the pattern of a middleware
 ### 1. Write the middleware. Maybe you want to separate this in a single file?
 
 ```javascript
-const ServiceMiddleware = store => next => async action => {
-
-};
+const ServiceMiddleware = store => next => async action => {};
 ```
 
 This is the signature of the middleware:
@@ -119,13 +117,7 @@ Simple, if the `action` is not our type, we just pass it to the `next` middlewar
 ### 3. Handle the ajax logic.
 
 ```javascript
-const {
-  serviceName,
-  method,
-  onLoad,
-  onSuccess,
-  onFailure
-} = action;
+const { serviceName, method, onLoad, onSuccess, onFailure } = action;
 const { dispatch } = store;
 const service = FeathersClient.service(serviceName);
 
@@ -134,7 +126,7 @@ dispatch(onLoad);
 try {
   let result;
   result = await service[method]();
-  dispatch(onSuccess(result.data))
+  dispatch(onSuccess(result.data));
 } catch (err) {
   dispatch(onFailure(err));
 }
@@ -153,13 +145,7 @@ const ServiceMiddleware = store => next => async action => {
     return;
   }
 
-  const {
-    serviceName,
-    method,
-    onLoad,
-    onSuccess,
-    onFailure
-  } = action;
+  const { serviceName, method, onLoad, onSuccess, onFailure } = action;
   const { dispatch } = store;
   const service = FeathersClient.service(serviceName);
 
@@ -168,7 +154,7 @@ const ServiceMiddleware = store => next => async action => {
   try {
     let result;
     result = await service[method]();
-    dispatch(onSuccess(result.data))
+    dispatch(onSuccess(result.data));
   } catch (err) {
     dispatch(onFailure(err));
   }
@@ -178,15 +164,16 @@ const ServiceMiddleware = store => next => async action => {
 ### 4. Apply your middleware.
 
 ```javascript
-import { applyMiddleware, createStore } from 'redux';
-import ServiceMiddleware from '../middlewares/ServiceMiddleware';
+import { applyMiddleware, createStore } from "redux";
+import ServiceMiddleware from "../middlewares/ServiceMiddleware";
 
-const store = createStore(
-    reducers,
-    applyMiddleware(ServiceMiddleware)
-  );
+const store = createStore(reducers, applyMiddleware(ServiceMiddleware));
 ```
 
 ### 5. That's all!
 
 Hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

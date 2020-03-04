@@ -27,25 +27,25 @@ npm install --save-dev babel-cli babel-preset-env jest supertest superagent
 
 ```javascript
 //app.js
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World!')
-})
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World!");
+});
 
-module.exports = app
+module.exports = app;
 ```
 
 This is your `server.js`:
 
 ```javascript
 //server.js
-const app = require('./app')
+const app = require("./app");
 
 app.listen(5678, () => {
-    console.log('Example app listening on port 5678!');
-})
+  console.log("Example app listening on port 5678!");
+});
 ```
 
 Then you can start your server via `node server.js`, and you can import that `app.js` for testing.
@@ -55,16 +55,18 @@ Then you can start your server via `node server.js`, and you can import that `ap
 Jest test will end when it hits the last line of the test function, so you need to use a `done()` to make it right.
 
 ```javascript
-const request = require('supertest');
-const app = require('../../src/app')
+const request = require("supertest");
+const app = require("../../src/app");
 
-describe('Test the root path', () => {
-    test('It should response the GET method', (done) => {
-        request(app).get('/').then((response) => {
-            expect(response.statusCode).toBe(200);
-            done();
-        });
-    });
+describe("Test the root path", () => {
+  test("It should response the GET method", done => {
+    request(app)
+      .get("/")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
 });
 ```
 
@@ -73,16 +75,18 @@ But that `done` is not a must, the following one is more neat.
 ## 4. Promise way
 
 ```javascript
-const request = require('supertest');
-const app = require('../../src/app')
+const request = require("supertest");
+const app = require("../../src/app");
 
-describe('Test the root path', () => {
-    test('It should response the GET method', () => {
-        return request(app).get("/").then(response => {
-            expect(response.statusCode).toBe(200)
-        })
-    });
-})
+describe("Test the root path", () => {
+  test("It should response the GET method", () => {
+    return request(app)
+      .get("/")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+      });
+  });
+});
 ```
 
 Two Things to be noticed here:
@@ -95,15 +99,15 @@ Two Things to be noticed here:
 It's good to see that my beloved `async` and `await` from `.net` has a place in javascript world too.
 
 ```javascript
-const request = require('supertest');
-const app = require('../../src/app')
+const request = require("supertest");
+const app = require("../../src/app");
 
-describe('Test the root path', () => {
-    test('It should response the GET method', async () => {
-        const response = await request(app).get('/');
-        expect(response.statusCode).toBe(200);
-    });
-})
+describe("Test the root path", () => {
+  test("It should response the GET method", async () => {
+    const response = await request(app).get("/");
+    expect(response.statusCode).toBe(200);
+  });
+});
 ```
 
 Does the imperative programming style and synchronous looking make you feel happy? :D Two things also be noticed here.
@@ -120,14 +124,16 @@ Thanks **Adam Beres-Deak** for the hint!
 A working example is as the following:
 
 ```javascript
-const request = require('supertest');
-const app = require('../../src/app')
+const request = require("supertest");
+const app = require("../../src/app");
 
-describe('Test the root path', () => {
-    test('It should response the GET method', () => {
-        return request(app).get('/').expect(200);
-    });
-})
+describe("Test the root path", () => {
+  test("It should response the GET method", () => {
+    return request(app)
+      .get("/")
+      .expect(200);
+  });
+});
 ```
 
 Notice that without that `return`, the test will always pass.
@@ -154,14 +160,14 @@ You may consider using `beforeEach` and `afterEach` to manage the database conne
 
 ```javascript
 module.exports = {
-    mongoose,
-    connect: () => {
-        mongoose.Promise = Promise;
-        mongoose.connect(config.database[process.env.NODE_ENV]);
-    },
-    disconnect: (done) => {
-        mongoose.disconnect(done);
-    },
+  mongoose,
+  connect: () => {
+    mongoose.Promise = Promise;
+    mongoose.connect(config.database[process.env.NODE_ENV]);
+  },
+  disconnect: done => {
+    mongoose.disconnect(done);
+  }
 };
 ```
 
@@ -184,3 +190,7 @@ But if your machine can't handle it. Then feel free to maintain database connect
 ## 9. End
 
 That's all, hope it help. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

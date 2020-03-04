@@ -76,6 +76,7 @@ The basic idea here is:
 Then things are easy:
 
 - Without `DaggerMock`
+
   - In the `@Module`, instead of return real instance, you just return `mockito` mock.
 
 - With `DaggerMock`
@@ -272,3 +273,7 @@ Elegant, easy and concise code.
 ## 8. End
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

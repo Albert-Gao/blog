@@ -34,7 +34,7 @@ abort(code, error_message)
 
 However, they won't work in this case.Since they will force you to return a HTML template with the error message.
 
->And it will fight against itself, try its best to make sure that you can't get the message in a JSON format.
+> And it will fight against itself, try its best to make sure that you can't get the message in a JSON format.
 
 I put a break point and went through its code, if you pass a `dict` as the `error_message`, in the middle of processing, `bottle` will automatically set the `Content-type` to `application/json`, which is nice. but finally it will use a default HTML template to fill the response body. Then you get a weird response with a `header` set to `json` but body is a `HTML page.`
 
@@ -71,7 +71,7 @@ def get_item(item_id):
     return item
 ```
 
-A major problem is that even the `item` is empty, you will still return it. 
+A major problem is that even the `item` is empty, you will still return it.
 
 Because you are not in that router function `get_item()`, so even you return a `HTTPResponse` in `should_not_empty()`, it's just like you return a value from a function.
 
@@ -95,3 +95,7 @@ By raising a `HTTPResponse` and explicitly set its `Content-type`, and use `json
 > If you want to do things in the right way, bottle will ask you to do all the things by yourself!
 
 That's end, hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

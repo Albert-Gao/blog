@@ -59,9 +59,9 @@ Something special here is that we need to build the front-end code.
 
 The is my folder structure:
 
->---root <br>
->------client <br>
->------public
+> ---root <br>
+> ------client <br>
+> ------public
 
 You can see here that the front end code sits in `client` folder which is a sub-folder of the back-end code (`root/`). The `public` folder is the folder for holding static assets. After building the front end code, the result should be ported to this folder.
 
@@ -95,8 +95,7 @@ Your server app will expose some port, and in order to access it from the browse
 
 Login to the server, setup the port.
 
-`dokku proxy:ports-set your-app-name http:80:your-app-port
-`
+`dokku proxy:ports-set your-app-name http:80:your-app-port`
 
 Replace the `your-app-port` with your port in use.
 
@@ -143,3 +142,7 @@ I have written another [blog](/2019/01/28/how-to-create-your-own-dockerfile-for-
 ## 10. End
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

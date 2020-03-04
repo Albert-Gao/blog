@@ -11,21 +11,23 @@ Furthermore, via this approach, you have a taste to the world of continuous depl
 
 <!--more-->
 
-## 1. A hook? 
+## 1. A hook?
+
 We will take advantage of one feature from git called `hooks`. It defines some actions that will be done after some triggers. For instance, you can define some actions right after the `push` command. Let's say you wanna copy a whole folder to different place after the server receive a `push`. Such as this, you have a automatic deployment system.
 
 There are three types of hooks in git:
 
-* pre-receive: As the name, the action will be taken as soon as the server receives a `push` command
-* post-receive: Same as `pre-receive` but will operate on each branch
-* update: Will be executed when `push` ends.
+- pre-receive: As the name, the action will be taken as soon as the server receives a `push` command
+- post-receive: Same as `pre-receive` but will operate on each branch
+- update: Will be executed when `push` ends.
 
 And, we will use the `update` one :)
 
 ## 2. Create a git repository on the server
+
 The following command is simple, just create a folder named blog.git, then make it a git repository.
 
-``` bash
+```bash
 cd /var
 mkdir repo && cd repo
 mkdir blog.git && cd blog.git
@@ -33,6 +35,7 @@ git init --bare
 ```
 
 ## 3. Make the hook
+
 Now I assume that you still follow from section one, you should be in the `blog.git` folder.
 
 ```bash
@@ -63,6 +66,7 @@ chmod +x post-receive
 ```
 
 ## 4. Local repository
+
 Now, as normal, you need a local git repository to hold your codes. You can create whatever name you want.
 
 ```bash
@@ -75,6 +79,7 @@ Change `username` to your own user name, and `domain.com` to your domain. Furthe
 In the example, I use `deploy` as the alias. I don't use `origin` since I have multiple remote repositories. You can use it if you wish.
 
 ## 5. Magic time.
+
 From now on, every time after you writing a blog, you just simply follow the normal procedures of git, `add`,`commit` and `push`. Then your blogs will be automatically deploy to the server. This adopts if you maintain a static site as well.
 
 ```bash
@@ -82,3 +87,7 @@ git add -A
 git commit -m "first try"
 git push deploy master
 ```
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

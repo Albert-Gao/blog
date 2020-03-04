@@ -56,19 +56,25 @@ This is one is a little bit tricky because we want to make it `common`. To thing
 First, let's solve them one by one:
 
 1. Add `common` part as dependencies, I tried many ways, including adding the generated `jar` file or `sources-jar` file. Always something wrong here, either the auto-completion stops works, or the internal member can't be recognized while the namespace could be recognized. Only 2 ways work:
-  - Just embed the source code from `project platforms :common` in you `sourceSets`: `main.kotlin.srcDirs += "$kotlin_idiom_path/interfaces/main"`
-  - Add that common module as a subproject and add it to the dependencies.
-  - I prefer the 1st one because now your gradle settings won't contain any noises. It will benefit the side-panel of gradle in IDEA as well.
+
+- Just embed the source code from `project platforms :common` in you `sourceSets`: `main.kotlin.srcDirs += "$kotlin_idiom_path/interfaces/main"`
+- Add that common module as a subproject and add it to the dependencies.
+- I prefer the 1st one because now your gradle settings won't contain any noises. It will benefit the side-panel of gradle in IDEA as well.
 
 2. In terms of the test, you just write the tests in this `common` folder. But you can't run the tests, you need to run them against the certain platform, otherwise, they are `common` code, which platform for them to run?
 
 3. This is where the `bundle` coming into play. For building and testing. Let's take `jvm` for example.
-  - First of all, you don't need to add any code here, this folder, as its name indicates, just for bundling code together. So, under in `:bundle:jvm` subproject, it only contains a `build.gradle` file.
-  - You need to use `kotlin-platform-jvm` to compile this module
-  - In the `sourceSets` setting: you need to add the source code from all the 3 places, both `common` modules from `project platforms` and this `project lib`, the source code of platform implementation from `project platforms`.
-  - You need to add the tests only from `common` module of `project lib`, such that you can run the tests. And it won't run the tests from `project platforms`, because they will be taken care there. You don't need to worry about that. Now run the `gradle :bundle:jvm test` will run the tests.
-  - Why I add the source code rather than use the `jar` file? Well, hard lessons learned, this is the only way currently.
+
+- First of all, you don't need to add any code here, this folder, as its name indicates, just for bundling code together. So, under in `:bundle:jvm` subproject, it only contains a `build.gradle` file.
+- You need to use `kotlin-platform-jvm` to compile this module
+- In the `sourceSets` setting: you need to add the source code from all the 3 places, both `common` modules from `project platforms` and this `project lib`, the source code of platform implementation from `project platforms`.
+- You need to add the tests only from `common` module of `project lib`, such that you can run the tests. And it won't run the tests from `project platforms`, because they will be taken care there. You don't need to worry about that. Now run the `gradle :bundle:jvm test` will run the tests.
+- Why I add the source code rather than use the `jar` file? Well, hard lessons learned, this is the only way currently.
 
 ## 4. The end
 
 Now run the `:bundle:jvm build`, it will build a lib to that platform. Try to consume it, it works really well. :) If you want to know how to make `:bundle:ios`, `:bundle:js`, just see [my blog](/2018/02/22/use-kotlin-to-share-native-code-between-ios-and-android/).
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

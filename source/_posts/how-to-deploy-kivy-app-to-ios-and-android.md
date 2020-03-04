@@ -51,6 +51,7 @@ buildozer android debug deploy run
 ```
 
 6. Deploy on production environment will need to add a sign tuso the package:
+
 - Manually sign: https://developer.android.com/studio/publish/app-signing.html#signing-manually
 - Use `release` rather than the `debug` in the previous command to package
 
@@ -102,11 +103,12 @@ $ ./toolchain.py create Salect /Users/albertgao/codes/work/handset
 8. Go to apple developer center and register as a developer
 
 9. Open your project settings
+
 - CMD + 1 to show the project navigator
 - Double click your root folder, the project setting should be shown at the center of screen
 - General → Signing → Choose your certificate and select the right team
 - Build Settings → Enable Bitcode → No
-- If you can't see Enable-Bitcode setting, try click the 'All' section at the top of setting section 
+- If you can't see Enable-Bitcode setting, try click the 'All' section at the top of setting section
 
 10. Now when you run the project, you will see the error in the console.
 
@@ -115,3 +117,7 @@ $ ./toolchain.py create Salect /Users/albertgao/codes/work/handset
 # End
 
 That's all. Hope it helps :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

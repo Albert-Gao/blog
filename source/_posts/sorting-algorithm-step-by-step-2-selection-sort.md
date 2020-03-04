@@ -11,6 +11,7 @@ Previously, we have been through the insertion sort, an interesting idea, this t
 <!--more-->
 
 ## 1. Start with example:
+
 Let's start with the following array:
 
 `[7,3,9,8,2,6]`
@@ -27,7 +28,7 @@ Then we swap the positions between the two, in this case, we swap `7` and `2`.
 
 `[2,3,9,8,7,6]`
 
-Now the first round is over. The second round starts to rock. This time, we start from the second item of the array (since we already deal with the first one). It is `3`, and via the above method, it will stick with its original position (because all the following number is large than `3`), but we still need to compare from the third item: `5` to the end: `6`. 
+Now the first round is over. The second round starts to rock. This time, we start from the second item of the array (since we already deal with the first one). It is `3`, and via the above method, it will stick with its original position (because all the following number is large than `3`), but we still need to compare from the third item: `5` to the end: `6`.
 
 Now let's sort `9`:
 
@@ -46,6 +47,7 @@ We repeat this step for the rest numbers from `8` to `9`, this will result in a 
 `[2,3,6,7,8,9]`
 
 ## 2. Dig it
+
 Selection sort is surely more easier than insertion sort, since it's as same as human mind. We compare items one by one, and for each comparison, we compare target number with the rest array. But everything comes with a cost, it is simple, so it is not fast.
 
 - **Selection sort** (n == length of the array)
@@ -72,8 +74,11 @@ void selection_sort(int *arr, int size) {
 
         tempSwap = arr[min_index];
         arr[min_index]=arr[i];
-        arr[i]=tempSwap;        
+        arr[i]=tempSwap;
     }
 }
 ```
- 
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

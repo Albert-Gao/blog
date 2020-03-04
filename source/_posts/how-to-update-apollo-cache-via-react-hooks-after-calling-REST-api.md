@@ -24,24 +24,24 @@ The `writeData` and `writeQuery` won't work here since you are not dealing with 
 You need `updateQuery`, this is how you do it.
 
 ```javascript
-import { useApolloClient } from '@apollo/react-hooks'
-import { useQuery } from '@apollo/react-hooks'
+import { useApolloClient } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 
 const MyComponent = () => {
-  const client = useApolloClient()
-  const { updateQuery } = useQuery(GET_USERS_QUERY)
+  const client = useApolloClient();
+  const { updateQuery } = useQuery(GET_USERS_QUERY);
 
   const updateCacheAndReRenderUI = newUser => {
-    updateQuery((prevUsers) => ({
-      users: [newUser, ...prevUsers.users],
-    }))
-  }
+    updateQuery(prevUsers => ({
+      users: [newUser, ...prevUsers.users]
+    }));
+  };
 
-  return <div />
-}
+  return <div />;
+};
 ```
 
-The `updateQuery` function you get from the  `useQuery` hook will give you the previous data, and you just return a new data if something has changed.
+The `updateQuery` function you get from the `useQuery` hook will give you the previous data, and you just return a new data if something has changed.
 
 Unlike the `cache.writeQuery` where you can mutate the `data` directly, here you have to return a new object to maintain the immutability.
 
@@ -58,22 +58,22 @@ According to the document:
 When the data structure is complex or there will be some side-effects happened not in your app, you can use the following method to get the latest update.
 
 ```javascript
-import { useApolloClient } from '@apollo/react-hooks'
-import { useQuery } from '@apollo/react-hooks'
+import { useApolloClient } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 
 const MyComponent = () => {
-  const client = useApolloClient()
+  const client = useApolloClient();
   const { refetch } = useQuery(GET_USERS_QUERY, {
-    fetchPolicy: 'cache-and-network'
-  })
+    fetchPolicy: "cache-and-network"
+  });
 
   // call refetch() where you want the update to happen
 
-  return <div />
-}
+  return <div />;
+};
 ```
 
-via calling the `refetch()`, the UI who uses the same query, in this case:  `GET_USERS_QUERY`, will be re-rendered.
+via calling the `refetch()`, the UI who uses the same query, in this case: `GET_USERS_QUERY`, will be re-rendered.
 
 If you have any variables for the GraphQL query, `refetch()` takes it as the 1st parameter.
 
@@ -82,3 +82,7 @@ One thing to note is that `refetch()` will invoke the network request.
 ## 4. End
 
 That is the end. Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

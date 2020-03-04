@@ -10,10 +10,13 @@ Valgrind is a famous tool to debug your memory leak, but what sad is it only sup
 <!--more-->
 
 ## 1. What, Linux in a Windows?
+
 It is easy since in the new update, windows has Ubuntu as a subsystem. And it is neither a virtual machine nor some kind of a container. It is a subsystem, roughly speaking, all the functions will finally invoked by Windows sys-call. So this is a 1st class, blazing fast solution. But the prerequisite is you need a new **Windows 10 version 1607 (Build 14393.187) or above**.
 
 ## 2. How to install and use it?
+
 When you search online, you will find that you need to join the Windows Insider program and open the developer mode. But no, you don't need to.
+
 1. press `win+s` to open Cortana.
 2. search for `windows features`, open `Turn Windows features On or Off.`
 3. find `Windows Subsystem for Linux (Beta)`, click to turn it on.
@@ -23,6 +26,7 @@ When you search online, you will find that you need to join the Windows Insider 
 7. Afterwards, every time you need `bash`, you just open CLI then `bash` and enter, splendid!
 
 ## 3. Try it first time.
+
 It is a Ubuntu, so you might simply use the command. `sudo apt-get install valgrind`. Yes, it will work as a charm. But only for this part. If you want to use it, it will totally not work.
 
 ```bash
@@ -33,11 +37,14 @@ It is a Ubuntu, so you might simply use the command. `sudo apt-get install valgr
 --1791:0:aspacem    at m_aspacemgr/aspacemgr-linux.c:1502 (add_segment)
 --1791:0:aspacem  Exiting now.
 ```
+
 You may abort at this stage, since it is a beta feature, and the translation in the Sys-call level may seems a big deal. And after googling, you decide to abort. But, the story never ends like this :)
 
 ## 4.How to deal with it?
+
 A brief first:
->You just need to compile Valgrind by yourself on your own machine."
+
+> You just need to compile Valgrind by yourself on your own machine."
 
 The idea is simple, the procedures is still easy but take a little bit longer than expected. But I will cover all the commands :)
 
@@ -60,6 +67,7 @@ The idea is simple, the procedures is still easy but take a little bit longer th
 17. Use `valgrind` as you wish.
 
 ## 5.Happily ever after
+
 I have built a linked list to test the leak, it works exactly the same way as linux, even better than Mac, OS X, yes, I mean it. The valgrind on OS X will tell you have some leak problems while there is no leak.
 
 ```bash
@@ -90,6 +98,7 @@ camus@ALBERTSURFACEB:/mnt/d/github/C_Playground$ valgrind ./main
 ==2529== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 camus@ALBERTSURFACEB:/mnt/d/github/C_Playground$
 ```
+
 And if you have a leak, it will tell you.
 
 ```bash
@@ -108,4 +117,19 @@ And if you have a leak, it will tell you.
 ==2539== For counts of detected and suppressed errors, rerun with: -v
 ==2539== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
+
 Furthermore, running `valgrind --leak-check=full ./main` will give the information of your stack. WOW! Fantastic! After I suffered so much from day 1 for the stupid Surface Book, this is the only time I feel Microsoft is a company you could rely on, haha xD
+
+## 6. One more thing
+
+Mr Artem reached out to me recently about his awesome software for debugging memory issues. He built Deleaker, which is a modern substitution of
+Valgrind. Deleaker supports C as well as C++/Delphi/.Net etc. In general, it doesn't matter what language is used to write code as it works at lower level, hooking allocation/deallocation functions and storing call stacks.
+
+And having a nice GUI to work with just seems much more efficient to me, which is why I love jetBrains' products.
+
+- Check this [blog](https://www.deleaker.com/blog/2020/01/04/valgrind-for-windows/) for a comparison between Deleaker and Valgrind, why it is better.
+- Check the [Deleaker](https://www.deleaker.com/) official site for more information.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

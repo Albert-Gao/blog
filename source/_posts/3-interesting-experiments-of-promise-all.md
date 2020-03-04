@@ -157,3 +157,7 @@ Wow, `promise.all` only takes the first error it gets and return.
 ## 4. End.
 
 Interesting? :)
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
+
+Thanks for reading!

@@ -28,18 +28,15 @@ If you don't have that `your-client-ID`, open this [page](https://developers.goo
 The idea is, you just render a plain `div`, then after `componentDidMount`, use the Google API to re-render this `div` as a real follow-google-design button, **even better, you can bind your React component method to its `onsuccess` or `onfailure` callback**.
 
 ```javascript
-const GOOGLE_BUTTON_ID = 'google-sign-in-button';
+const GOOGLE_BUTTON_ID = "google-sign-in-button";
 
 class GoogleSignIn extends React.Component {
   componentDidMount() {
-    window.gapi.signin2.render(
-      GOOGLE_BUTTON_ID,
-      {
-        width: 200,
-        height: 50,
-        onsuccess: this.onSuccess,
-      },
-    );
+    window.gapi.signin2.render(GOOGLE_BUTTON_ID, {
+      width: 200,
+      height: 50,
+      onsuccess: this.onSuccess
+    });
   }
 
   onSuccess(googleUser) {
@@ -48,9 +45,7 @@ class GoogleSignIn extends React.Component {
   }
 
   render() {
-    return (
-      <div id={GOOGLE_BUTTON_ID}/>
-    );
+    return <div id={GOOGLE_BUTTON_ID} />;
   }
 }
 ```
@@ -67,16 +62,18 @@ I first did something simple, I removed the `async` and `defer` attribute from t
 
 ```html
 <script>
-   function initGoogle() {
-     window.gapi.load('auth2', function() {
-        window.gapi.auth2.init({
-          client_id:
-            'your-client-ID.apps.googleusercontent.com',
-        });
+  function initGoogle() {
+    window.gapi.load("auth2", function() {
+      window.gapi.auth2.init({
+        client_id: "your-client-ID.apps.googleusercontent.com"
+      });
     });
   }
 </script>
-<script src="https://apis.google.com/js/platform.js" onload="initGoogle()"></script>
+<script
+  src="https://apis.google.com/js/platform.js"
+  onload="initGoogle()"
+></script>
 ```
 
 It appears working at first, but when you refresh the page, it's always going to throw an exception if you try to consume `gapi.auth2.blahblah`, it seems the `<script>` loading happens after mounting of your React app, even though we have removed its `async` and `defer` attributes to make it blocking rendering.
@@ -115,11 +112,10 @@ Here in that `googleLoadTimer` will continue to check if the `window.gapi` is re
 
 ```javascript
 function initGoogle(func) {
-  window.gapi.load('auth2', function() {
+  window.gapi.load("auth2", function() {
     window.gapi.auth2
       .init({
-        client_id:
-          'your-client-ID.apps.googleusercontent.com',
+        client_id: "your-client-ID.apps.googleusercontent.com"
       })
       .then(func);
   });
@@ -179,4 +175,9 @@ If `isReady` equals true, that means you can start using it.
 I encapsulate the logic into a top-level component, `ProtectedRoute`, it's a simple route for protecting routes from un-google-logged-in user. Which means, before it uses `GoogleUser.isSignedIn()`, it will show the loading spinners according to the `authStore.authLoadingStatus`, it will only invoke the `GoogleUser.isSignedIn()` when the `isReady === true` (Otherwise, you will get exception because `gapi.auth2` is not ready to use).
 
 ## 5. End
+
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -31,7 +31,9 @@ You know the `namespace`, `package`, `groupId` concept, right? Your code should 
 [**Create an issue here**](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134) to apply for your namespace. It should be a reversed domain name. Your issue will be manually reviewed by a `Sonatype` employer. It should be fast, within 2 hours.
 
 ### Tips
+
 After applying, you will gain permission for the following URLs:
+
 - Repository: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/
 - Snapshot repository: https://oss.sonatype.org/content/repositories/snapshots/
 
@@ -51,8 +53,9 @@ After creating, right click your key and select `Send Public Key to Key Server` 
 Double click your key, it will show the detail on the right side. Take note of your `Key ID`.
 
 In the terminal, use this command to get the secret key ring file:
->gpg --export-secret-keys YOUR-KEY-ID > secret-keys.gpg
-It will be generated under the folder where you run this command.
+
+> gpg --export-secret-keys YOUR-KEY-ID > secret-keys.gpg
+> It will be generated under the folder where you run this command.
 
 If you use `Windows` or other systems, you just need to know that you need to get the following 3 things in order to push any further:
 
@@ -74,6 +77,7 @@ signing.secretKeyRingFile=/PATH/TO/SECRET/RING/FILE
 ```
 
 ### Tips
+
 - In my case, my IDEA gradle settings can't find this file if I put it either in `.gradle` or `gradle` folder, I have to put it in the root.
 
 - **ADD THIS FILE TO .gitignore file. YOU NEVER WANT TO RELEASE THIS TO THE REPO.**
@@ -152,9 +156,9 @@ nexus {
 
 The above code should a `uploadArchives` task to your gradle. It may reside in the `upload` category if you can't find it in your gradle side-panel of IDEA. Double click it to execute the task.
 
-You may see the following error when you first upload: 
+You may see the following error when you first upload:
 
->`Could not find metadata com.yourCompany.package:teachUpload-jvm/maven-metadata.xml in remote (https://oss.sonatype.org/service/local/staging/deploy/maven2/)`
+> `Could not find metadata com.yourCompany.package:teachUpload-jvm/maven-metadata.xml in remote (https://oss.sonatype.org/service/local/staging/deploy/maven2/)`
 
 - This is not an error, just an indication.
 - Your package has already been uploaded if this is the only error.
@@ -202,13 +206,13 @@ If you want to use Nexus website to publish instead of running the gradle task. 
 - Select the right item and click the `Close` button to close it. It's like to finalize the uploading thing.
 - Click the `Refresh` button to get the latest updates. Remember this trick, we are in 1980s, no ajax yet.
 - If any errors:
-    - You can inspect them at the `Activity` panel.
-    - You need to `Drop` this upload
-    - Fix them in your local folder
-    - Run the `uploadArchives` task again.
-    - Then `Close` then continue
+  - You can inspect them at the `Activity` panel.
+  - You need to `Drop` this upload
+  - Fix them in your local folder
+  - Run the `uploadArchives` task again.
+  - Then `Close` then continue
 - If no errors:
-    - Click `Release` button
+  - Click `Release` button
 
 Real congrat now. Finally, your artifact has uploaded to Maven central.
 
@@ -229,5 +233,10 @@ dependencies {
 The pattern is: `Group-Id:archivesBaseName:Version number`
 
 ## 10. End
+
 Don't know if I get something wrong. Welcome to new advice.
 Now you get it. Everything is set up. Enjoy. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

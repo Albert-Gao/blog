@@ -27,8 +27,9 @@ Before we even start, let's review what will happen next?
 2. After the user grants the permission to our app, it will go to the callback URL you assigned at facebook developer portal along with an short-life access token.
 
 3. Two things could happen after the last step:
-    - You should exchange for a long life token with the previous one.
-    - You could get some user information via the short life token.
+
+   - You should exchange for a long life token with the previous one.
+   - You could get some user information via the short life token.
 
 4. Save the user to the database.
 
@@ -37,6 +38,7 @@ Before we even start, let's review what will happen next?
 6. The client could use the token to access an authorized endpoint.
 
 ## 2.2 Tip
+
 1. If you just use facebook to authenticate a user, you could skip step 4 entirely. Because when your `jwt` expires, you could simply let the user login via facebook again.
 
 2. The sub-steps in Step 3 could happen at the same time. Which means you could use `Promise.all` to make it happen faster.
@@ -48,16 +50,17 @@ Before we even start, let's review what will happen next?
 ## 3.1 Add facebook button
 
 ```html
-<div class="fb-login-button"
-    data-max-rows="1"
-    data-size="large"
-    data-button-type="continue_with"
-    data-show-faces="false"
-    data-auto-logout-link="false"
-    data-use-continue-as="false"
-    scope="public_profile,email"
-    onlogin="checkLoginState();">
-</div>
+<div
+  class="fb-login-button"
+  data-max-rows="1"
+  data-size="large"
+  data-button-type="continue_with"
+  data-show-faces="false"
+  data-auto-logout-link="false"
+  data-use-continue-as="false"
+  scope="public_profile,email"
+  onlogin="checkLoginState();"
+></div>
 ```
 
 Add `Zepto` and your own javascript file.
@@ -67,46 +70,47 @@ Add `Zepto` and your own javascript file.
 <script src="browser-auth.js"></script>
 ```
 
-Now add the code for that login button, 2 things to notice, 
-1. In the `FB.init()`,  add your own app ID. 
+Now add the code for that login button, 2 things to notice,
+
+1. In the `FB.init()`, add your own app ID.
 2. The `if` `else` inside `FB.getLoginStatus` is where add your own logic.
 
 ```javascript
 // browser-auth.js
 $(document).ready(() => {
-    window.fbAsyncInit = () => {
-        FB.init({
-            appId: 'Your App ID here',
-            cookie: true,
-            xfbml: true,
-            version: 'v2.9',
-        });
-        FB.AppEvents.logPageView();
+  window.fbAsyncInit = () => {
+    FB.init({
+      appId: "Your App ID here",
+      cookie: true,
+      xfbml: true,
+      version: "v2.9"
+    });
+    FB.AppEvents.logPageView();
 
-        window.checkLoginState = () => {
-            FB.getLoginStatus((response) => {
-                if (response.status === 'connected') {
-                    // The user accepts our request.
-                    startToAuth(response);
-                } else {
-                    // The user decline our request, do something here if you want.
-                }
-            });
-        };
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
+    window.checkLoginState = () => {
+      FB.getLoginStatus(response => {
+        if (response.status === "connected") {
+          // The user accepts our request.
+          startToAuth(response);
+        } else {
+          // The user decline our request, do something here if you want.
         }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = '//connect.facebook.net/en_US/sdk.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-});
+      });
+    };
+  };
 
+  (function(d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "facebook-jssdk");
+});
 ```
 
 ## 3.2 Get the short life access token
@@ -117,17 +121,17 @@ Now let's assume the user grants our permission. We need to implement the `start
 
 ```javascript
 function startToAuth(response) {
-    $.ajax({
-        type: 'POST',
-        url: '/api/auth/facebook',
-        data: response,
-        success: (data, status, xhr) => {
-            // The access token is here in the data.
-        },
-        error: (xhr, errorType, error) => {
-            // Handle the error here.
-        },
-    });
+  $.ajax({
+    type: "POST",
+    url: "/api/auth/facebook",
+    data: response,
+    success: (data, status, xhr) => {
+      // The access token is here in the data.
+    },
+    error: (xhr, errorType, error) => {
+      // Handle the error here.
+    }
+  });
 }
 ```
 
@@ -151,16 +155,18 @@ We need to exchange for the long time token and we need to retrieve the user inf
 
 ```javascript
 const asyncAllFBAuth = (req, res, next) => {
-    const queue = [
-        fbAuth.exchangeLongTimeToken(req),
-        fbAuth.retrieveUserInfo(req),
-    ];
-    Promise.all(queue).then((values) => {
-        res.locals.auth = values[0];
-        res.locals.user = values[1];
-        next();
-    }).catch((err) => {
-        next(err)
+  const queue = [
+    fbAuth.exchangeLongTimeToken(req),
+    fbAuth.retrieveUserInfo(req)
+  ];
+  Promise.all(queue)
+    .then(values => {
+      res.locals.auth = values[0];
+      res.locals.user = values[1];
+      next();
+    })
+    .catch(err => {
+      next(err);
     });
 };
 ```
@@ -170,18 +176,20 @@ I assume you might have interests for the blog I wrote previously: [3 interestin
 This is how you exchange for the long time token:
 
 ```javascript
-const exchangeLongTimeToken = (req) => {
-    return axios.get('https://graph.facebook.com/oauth/access_token?', {
-        params: {
-            grant_type: 'fb_exchange_token',
-            client_id: config.facebookAuth.appID,
-            client_secret: config.facebookAuth.appSecret,
-            fb_exchange_token: req.body.authResponse.accessToken,
-        },
-    }).then((response) => {
-        if (response.status === 200 && !response.data.error) {
-            return response.data;
-        }
+const exchangeLongTimeToken = req => {
+  return axios
+    .get("https://graph.facebook.com/oauth/access_token?", {
+      params: {
+        grant_type: "fb_exchange_token",
+        client_id: config.facebookAuth.appID,
+        client_secret: config.facebookAuth.appSecret,
+        fb_exchange_token: req.body.authResponse.accessToken
+      }
+    })
+    .then(response => {
+      if (response.status === 200 && !response.data.error) {
+        return response.data;
+      }
     });
 };
 ```
@@ -189,17 +197,23 @@ const exchangeLongTimeToken = (req) => {
 This is how you retrieve the user information:
 
 ```javascript
-const retrieveUserInfo = (req) => {
-    const userID = req.body.authResponse.userID;
-    return axios.get(`https://graph.facebook.com/${config.facebookAuth.appVer}/${userID}?`, {
+const retrieveUserInfo = req => {
+  const userID = req.body.authResponse.userID;
+  return axios
+    .get(
+      `https://graph.facebook.com/${config.facebookAuth.appVer}/${userID}?`,
+      {
         params: {
-            access_token: req.body.authResponse.accessToken,
-            fields: 'id,name,short_name,name_format,first_name,middle_name,last_name,gender,email,verified,is_verified,cover,picture,timezone,currency,locale,age_range,updated_time,link,devices,is_shared_login,can_review_measurement_request',
-        },
-    }).then((response) => {
-        if (response.status === 200 && !response.data.error) {
-            return response.data;
+          access_token: req.body.authResponse.accessToken,
+          fields:
+            "id,name,short_name,name_format,first_name,middle_name,last_name,gender,email,verified,is_verified,cover,picture,timezone,currency,locale,age_range,updated_time,link,devices,is_shared_login,can_review_measurement_request"
         }
+      }
+    )
+    .then(response => {
+      if (response.status === 200 && !response.data.error) {
+        return response.data;
+      }
     });
 };
 ```
@@ -213,24 +227,28 @@ Such that next time, when the user provide a valid jwt for login, you will get a
 
 ```javascript
 const issueJWT = (req, res, next) => {
-    const signUser = {
-        id: res.locals.user._id.toString(),
-        screen_name: res.locals.user.name.screen_name,
-        picture: res.locals.user.picture.url,
-        iss: 'projectTalk',
-    };
+  const signUser = {
+    id: res.locals.user._id.toString(),
+    screen_name: res.locals.user.name.screen_name,
+    picture: res.locals.user.picture.url,
+    iss: "projectTalk"
+  };
 
-    const expireTime = res.locals.token_expires_in || config.tokenExpired;
+  const expireTime = res.locals.token_expires_in || config.tokenExpired;
 
-    jwt.sign(signUser, config.HS256, { expiresIn: expireTime, algorithm: 'HS256' },
-        (err, token) => {
-            if (err) {
-                next(err);
-                return;
-            }
-            res.locals.token = token;
-            next();
-        });
+  jwt.sign(
+    signUser,
+    config.HS256,
+    { expiresIn: expireTime, algorithm: "HS256" },
+    (err, token) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.locals.token = token;
+      next();
+    }
+  );
 };
 ```
 
@@ -238,29 +256,31 @@ const issueJWT = (req, res, next) => {
 
 ```javascript
 const fbLogin = (req, res) => {
-    res.json({
-        ok: true,
-        url: '/home',
-        token: res.locals.token,
-    });
+  res.json({
+    ok: true,
+    url: "/home",
+    token: res.locals.token
+  });
 };
 ```
 
 The whole route looks like this:
 
 ```javascript
-router.post('/',
-    [
-        // isWrongFormat,
-        // isBadSigned,
-        asyncAllFBAuth,
-        // assembleUserInfo,
-        // removeUnusedData,
-        // fbAuth.saveUser,
-        issueJWT,
-        // saveToCookie
-    ],
-    fbLogin);
+router.post(
+  "/",
+  [
+    // isWrongFormat,
+    // isBadSigned,
+    asyncAllFBAuth,
+    // assembleUserInfo,
+    // removeUnusedData,
+    // fbAuth.saveUser,
+    issueJWT
+    // saveToCookie
+  ],
+  fbLogin
+);
 ```
 
 I commented some validation and saving middleware here just for convenient, you need to do it if you wanna use it in production.
@@ -269,28 +289,33 @@ I commented some validation and saving middleware here just for convenient, you 
 
 ```javascript
 function startToAuth(response) {
-    $.ajax({
-        type: 'POST',
-        url: '/api/auth/facebook',
-        data: response,
-        success: (data, status, xhr) => {
-            // The access token is here in the data.
-            window.location = data.url;
+  $.ajax({
+    type: "POST",
+    url: "/api/auth/facebook",
+    data: response,
+    success: (data, status, xhr) => {
+      // The access token is here in the data.
+      window.location = data.url;
 
-            // save the token in data.token to wherever you want
-        },
-        error: (xhr, errorType, error) => {
-            // Handle the error here.
-            console.error('errorType: ', errorType);
-            console.error('error: ', error);
-        },
-    });
+      // save the token in data.token to wherever you want
+    },
+    error: (xhr, errorType, error) => {
+      // Handle the error here.
+      console.error("errorType: ", errorType);
+      console.error("error: ", error);
+    }
+  });
 }
 ```
 
 We just route to the URL which should display after successfully login here. It should be a protected resource. The reason we can access that is we already save that token to the cookie in the `saveToCookie` middleware.
 
->WARNING: Make sure you handle the CSRF problem when you implement the `saveToCookie` middleware.
+> WARNING: Make sure you handle the CSRF problem when you implement the `saveToCookie` middleware.
 
 # 4. End
+
 It is basically all of it. Hope it helps. Or feel free to solve that problem of why it won't redirect me to the callback URL since maybe there's something I was missing. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

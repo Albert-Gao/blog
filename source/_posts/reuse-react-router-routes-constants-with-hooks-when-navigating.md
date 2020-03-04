@@ -33,8 +33,8 @@ const ROUTES = {
 The question is, how to navigate within components.
 
 ```typescript
-<Button 
-  onClick={()=>{
+<Button
+  onClick={() => {
     // how to go to the ROUTES.USER
   }}
 />
@@ -50,9 +50,9 @@ So my solution is something like this:
 
 ```typescript
 <Button
-  onClick={()=>{
+  onClick={() => {
     // ROUTES.USER === '/user/:userId'
-    go.push(ROUTES.USER, { userId })
+    go.push(ROUTES.USER, { userId });
   }}
 />
 ```
@@ -72,23 +72,23 @@ And here we change the parent reference from `history.push` to `go.push`, to ind
 the major logic is here:
 
 ```typescript
-import * as H from 'history'
+import * as H from "history";
 
 interface PlainObject {
-  [key: string]: any
+  [key: string]: any;
 }
 
 const replacePathParams = (path: H.Path, pathParams?: PlainObject) => {
-  let pathToGo = path
+  let pathToGo = path;
 
   if (pathParams) {
     Object.keys(pathParams).forEach(param => {
-      pathToGo = pathToGo.replace(`:${param}`, pathParams[param])
-    })
+      pathToGo = pathToGo.replace(`:${param}`, pathParams[param]);
+    });
   }
 
-  return pathToGo
-}
+  return pathToGo;
+};
 ```
 
 We just iterate over the pathParams and replace each `key`.
@@ -100,11 +100,11 @@ First, we create the React router 5 hook:
 ```typescript
 import {
   __RouterContext as RouterContext,
-  RouteComponentProps,
-} from 'react-router'
+  RouteComponentProps
+} from "react-router";
 
 export const useRouter = <T>(): RouteComponentProps<T> =>
-  useContext(RouterContext) as RouteComponentProps<T>
+  useContext(RouterContext) as RouteComponentProps<T>;
 ```
 
 This hook will give you everything you want, `match`, `location`, `history`.
@@ -116,36 +116,42 @@ But I have one more thing: `useGo`
 ```typescript
 export const go = (history: H.History) => ({
   replace: (path: H.Path) => {
-    history.replace(path)
+    history.replace(path);
   },
   push: (path: H.Path, pathParams?: PlainObject) => {
-    history.push(replacePathParams(path, pathParams))
-  },
-})
+    history.push(replacePathParams(path, pathParams));
+  }
+});
 
 export const useGo = () => {
-  const { history } = useRouter()
-  const result = useMemo(() => ({ go: go(history) }), [history])
-  return result
-}
+  const { history } = useRouter();
+  const result = useMemo(() => ({ go: go(history) }), [history]);
+  return result;
+};
 ```
 
 ### 5. How to use it
 
 ```typescript
-const NavigationButton:React.FC<{userId:string}> = ({userId}) => {
-  const { go } = useGo()
+const NavigationButton: React.FC<{ userId: string }> = ({ userId }) => {
+  const { go } = useGo();
 
   return (
-    <button onClick={()=>{
-      go.push(ROUTES.USER, {userId})
-    }}>
+    <button
+      onClick={() => {
+        go.push(ROUTES.USER, { userId });
+      }}
+    >
       Go To User Page
     </button>
-  )
-}
+  );
+};
 ```
 
 ### 6. End
 
 Hope it helps. If you think you have a better way, drop a comment to let me know. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

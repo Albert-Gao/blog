@@ -73,3 +73,7 @@ The result looks like this:
 ## 5. End
 
 That's all, hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

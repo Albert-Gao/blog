@@ -37,69 +37,73 @@ Basically, you still have a 100% Xcode Obj-C project. The only differences happe
 
 1. Create a fresh new Xcode `Single View App` `Obj-C` project. Named it as `myApp` or whatever you want.
 1. In that `scene`, add 3 new views, `UILabel`, `UIButton` and a `UITextField`. Create 2 `outlets` in the `Obj-C`, name them as `label`, `textField` and `button`. And connect to the according view in the storyboard. The buttons should have an `action` named `buttonPressed`. Which means:
-    - In the `ViewController.h`, you should have the following things inside the `interface`:
 
-    ```obj-c
-    @property (weak, nonatomic) IBOutlet UILabel *label;
-    @property (weak, nonatomic) IBOutlet UITextField *textField;
-    @property (weak, nonatomic) IBOutlet UIButton *button;
+   - In the `ViewController.h`, you should have the following things inside the `interface`:
 
-    - (IBAction)buttonPressed;
-    ```
+   ```obj-c
+   @property (weak, nonatomic) IBOutlet UILabel *label;
+   @property (weak, nonatomic) IBOutlet UITextField *textField;
+   @property (weak, nonatomic) IBOutlet UIButton *button;
 
-    - In the `ViewController.m`, you should have an `action method` in the `implementation`:
+   - (IBAction)buttonPressed;
+   ```
 
-    ```obj-c
-    - (IBAction)buttonPressed {
-      // It's empty 'cos the code will be in Kotlin-side.
-    }
-    ```
+   - In the `ViewController.m`, you should have an `action method` in the `implementation`:
+
+   ```obj-c
+   - (IBAction)buttonPressed {
+     // It's empty 'cos the code will be in Kotlin-side.
+   }
+   ```
 
 1. Open the `Building Settings` of your project:
-    - Press the Plus sign and select `New Run Script Phase`: Add a new script named `[KN] Remove original binary`, the command is `rm -f "$TARGET_BUILD_DIR/$EXECUTABLE_PATH"`. We start swapping!
-    - Add another `New Run Script Phase` named `[KN] Build binary from Kotlin source`, the command is `./gradlew -p $SRCROOT compileKonanApp`.
-    - Add another `New Run Script Phase` named `[KN] Replace binary`, the command is `cp "$SRCROOT/build/konan/bin/iphone/app.kexe" "$TARGET_BUILD_DIR/$EXECUTABLE_PATH"`.
+   - Press the Plus sign and select `New Run Script Phase`: Add a new script named `[KN] Remove original binary`, the command is `rm -f "$TARGET_BUILD_DIR/$EXECUTABLE_PATH"`. We start swapping!
+   - Add another `New Run Script Phase` named `[KN] Build binary from Kotlin source`, the command is `./gradlew -p $SRCROOT compileKonanApp`.
+   - Add another `New Run Script Phase` named `[KN] Replace binary`, the command is `cp "$SRCROOT/build/konan/bin/iphone/app.kexe" "$TARGET_BUILD_DIR/$EXECUTABLE_PATH"`.
 1. Correct the order of all phases, the correct order should be:
-    1. Target Dependencies
-    1. `[KN] Remove original binary`
-    1. Compile Sources
-    1. Link Binary With Libraries
-    1. `[KN] Build binary from Kotlin source`
-    1. `[KN] Replace binary`
-    1. `Copy Bundle Resources`
+   1. Target Dependencies
+   1. `[KN] Remove original binary`
+   1. Compile Sources
+   1. Link Binary With Libraries
+   1. `[KN] Build binary from Kotlin source`
+   1. `[KN] Replace binary`
+   1. `Copy Bundle Resources`
 1. Now the iOS part is done. Let's add the Kotlin code:
-    1. Create a `src/main/kotlin` folder and a `build.gradle` file at the same level of your Xcode project. So the folders look like this:
-        - myApp
-          - `myApp`
-          - `myApp.xcodeproj`
-          - `build.gradle`
-          - `src`
-    1. Paste the following code to your `gradle` file:
 
-        ```groovy
-        buildscript {
-            repositories {
-                mavenCentral()
-                maven {
-                    url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-                }
-            }
+   1. Create a `src/main/kotlin` folder and a `build.gradle` file at the same level of your Xcode project. So the folders look like this:
+      - myApp
+        - `myApp`
+        - `myApp.xcodeproj`
+        - `build.gradle`
+        - `src`
+   1. Paste the following code to your `gradle` file:
 
-            dependencies {
-                classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.5"
-            }
-        }
+      ```groovy
+      buildscript {
+          repositories {
+              mavenCentral()
+              maven {
+                  url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+              }
+          }
 
-        apply plugin: "konan"
+          dependencies {
+              classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.5"
+          }
+      }
 
-        konan.targets = ["iphone", "iphone_sim"]
+      apply plugin: "konan"
 
-        konanArtifacts {
-            program('app')
-        }
+      konan.targets = ["iphone", "iphone_sim"]
 
-        ```
-    1. Now you need to make your `myApp` root folder a `kotlin` project with `gradle` support. The easiest way is to open `IDEA`, choose `import project`, and import your newly created `build.gradle`. Everything will be setup for you.
+      konanArtifacts {
+          program('app')
+      }
+
+      ```
+
+   1. Now you need to make your `myApp` root folder a `kotlin` project with `gradle` support. The easiest way is to open `IDEA`, choose `import project`, and import your newly created `build.gradle`. Everything will be setup for you.
+
 1. Now add a `main.kt` file to your `src/main/kotlin`. The code is:
 
 ```kotlin
@@ -166,47 +170,50 @@ The project is fully Apple `Swift` Xcode project. Your Kotlin code will be compi
 1. Add a `UILabel` to the `scene`.
 1. Drag the `UILabel` to the `ViewController.swift` to create an `outlet` and named it as `myLabel`.
 1. In the `viewDidLoad` method, let's change the text to `ok` by modifying the code to this:
-  ```swift
-  override func viewDidLoad() {
-      super.viewDidLoad()
-      myLabel.text = "OK"
-  }
-  ```
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    myLabel.text = "OK"
+}
+```
+
 5. Now let's add the Kotlin support. Create a `src/main/kotlin` folder and a `build.gradle` file at the same level of your Xcode project. So the folders look like this:
-    - myApp
-      - `myApp`
-      - `myApp.xcodeproj`
-      - `build.gradle`
-      - `src`
+   - myApp
+     - `myApp`
+     - `myApp.xcodeproj`
+     - `build.gradle`
+     - `src`
 1. Paste the following code to your `gradle` file:
 
-  ```groovy
-  buildscript {
-      ext.kotlin_native_version = '0.5'
+```groovy
+buildscript {
+    ext.kotlin_native_version = '0.5'
 
-      repositories {
-          mavenCentral()
-          maven {
-              url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-          }
-      }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
 
-      dependencies {
-          classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
-      }
-  }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
+    }
+}
 
-  group 'nz.salect'
-  version '0.1'
+group 'nz.salect'
+version '0.1'
 
-  apply plugin: "konan"
+apply plugin: "konan"
 
-  konan.targets = ["iphone", "iphone_sim"]
+konan.targets = ["iphone", "iphone_sim"]
 
-  konanArtifacts {
-      framework('nativeLibs')
-  }
-  ```
+konanArtifacts {
+    framework('nativeLibs')
+}
+```
+
 7. Now you need to make your `myApp` root folder a `kotlin` project with `gradle` support. The easiest way is to open `IDEA`, choose `import project`, and import your newly created `build.gradle`. Everything will be set up for you.
 
 1. Now add a `main.kt` in your `src/main/kotlin` folder:
@@ -230,6 +237,7 @@ open class Words {
 1. Now we have the `framework`. Let's go back to `Xcode` project. Choose your project in the `Project navigator`. From the menu, `File -> Add Files to myApp`, choose the `nativeLibs.framework` from the `build` folder.
 
 1. Add a new `Run script phase` named `[KN] Compile Kotlin Native to iOS framework`, the command is:
+
 ```bash
 case "$PLATFORM_NAME" in
     iphoneos)
@@ -249,6 +257,7 @@ rm -rf "$SRCROOT/build/"
 mkdir "$SRCROOT/build/"
 cp -a "$SRCROOT/../../build/konan/bin/$NAME/" "$SRCROOT/build/"
 ```
+
     You see, we will check your building target from the environment variable and copy the according to source to the `build` folder.
 
 13. Go to the `building phases`, in the existing `Link Binary With Libraries`, drag the `nativeLibs.framework` from the `Project navigator` to the list.
@@ -256,21 +265,25 @@ cp -a "$SRCROOT/../../build/konan/bin/$NAME/" "$SRCROOT/build/"
 1. Add a new `Run script phase` named `[KN] Embed Frameworks`, drag the `nativeLibs.framework` from the `Project navigator` to the list, choose the `Destination` as `Frameworks`.
 
 1. Now the correct building orders should be:
-    1. Target Dependencies
-    1. `[KN] Compile Kotlin Native to iOS framework`
-    1. Compile Sources
-    1. Link Binary With Libraries
-    1. Copy Bundle Resources
-    1. `[KN] Embed Frameworks`
+
+   1. Target Dependencies
+   1. `[KN] Compile Kotlin Native to iOS framework`
+   1. Compile Sources
+   1. Link Binary With Libraries
+   1. Copy Bundle Resources
+   1. `[KN] Embed Frameworks`
 
 1. Now open your `ViewController.swift`:
-    1. `import nativeLibs`
-    1. Inside `viewDidLoad()` method, add the following 2 statements.
-    ```swift
-    private let words = NativeLibsWords()
-    myLabel?.text = words.getWords()
-    ```
-    You will see that there is even a auto-completion suggestion thanks for the `obj-c bindings.`
+
+   1. `import nativeLibs`
+   1. Inside `viewDidLoad()` method, add the following 2 statements.
+
+   ```swift
+   private let words = NativeLibsWords()
+   myLabel?.text = words.getWords()
+   ```
+
+   You will see that there is even a auto-completion suggestion thanks for the `obj-c bindings.`
 
 1. Now Run your iOS app, enjoy :)
 
@@ -281,3 +294,7 @@ That's pretty all of it. As we use Kotlin native's `gradle` plugin for the build
 And it seems pretty complex at first, but in fact, it's always the same, build the kotlin code and replace its iOS counterpart.
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -76,7 +76,7 @@ You want to have an `AutoBind` wrapper like this:
 ```xml
 <AutoBind>
   <Item name="item1" />
-  <Item name="item2" />  
+  <Item name="item2" />
 </AutoBind>
 ```
 
@@ -98,7 +98,7 @@ This is an extremely simple example, but I know you already see its power in pro
 ## Let's start creating the AutoBind
 
 ```javascript
-function AutoBind (props) {
+function AutoBind(props) {
   const { componentState, children } = props;
 }
 ```
@@ -117,7 +117,7 @@ So you use it like this:
 ## Now, let's loop through the children
 
 ```javascript
-function AutoBind (props) {
+function AutoBind(props) {
   const { componentState, children } = props;
   return React.Children.map(children, child => {
     // start to processing the child
@@ -132,7 +132,7 @@ We will use the `React.Children.map` to do the loop, the 1st parameter is the `c
 ## Let's bind
 
 ```javascript
-function AutoBind (props) {
+function AutoBind(props) {
   const { componentState, children } = props;
   return React.Children.map(children, child => {
     // start to processing the child
@@ -159,7 +159,9 @@ rather than:
 
 ```javascript
 {
-  value: {this.state.value}
+  value: {
+    this.state.value;
+  }
 }
 ```
 
@@ -189,10 +191,12 @@ Well, remember the following:
 
 Hope it helps.
 
-And, if you have interests, check my new lib [`veasy`](https://github.com/Albert-Gao/veasy): 
+And, if you have interests, check my new lib [`veasy`](https://github.com/Albert-Gao/veasy):
 
->A comprehensive react form solution which aims to eliminate all tedious logic. :)
+> A comprehensive react form solution which aims to eliminate all tedious logic. :)
 
 It uses the auto bind strategy to recursively bind the state to each component which includes in the `schema`.
 
 Thanks for reading. :)
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

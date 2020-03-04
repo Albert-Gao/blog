@@ -91,3 +91,7 @@ shouldComponentUpdate(
 ## 4. End
 
 Anyway, you get it. Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

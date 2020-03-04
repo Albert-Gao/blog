@@ -53,6 +53,7 @@ require("react-scripts/scripts/build");
 Updating packages is really a time-saver. It will check all your dependencies and let you choose which one to update.
 
 - For `npm` user:
+
   1. `npm install -D npm-check`
   2. add `update` script to `package.json`: `./node_modules/.bin/npm-check -u`
 
@@ -75,7 +76,7 @@ We all know resetting your css. But nowadays the cool kid all use `normalise.css
 
 ### 5. Add Hot Module Reloading without ejecting
 
-Just add one line in your `index.js`: 
+Just add one line in your `index.js`:
 
 ```javascript
 module.hot && module.hot.accept();
@@ -114,3 +115,7 @@ Check official [`styled-components` section](https://www.styled-components.com/d
 ### END
 
 That's all. Hope it helps. And I have a [GitHub repo](https://github.com/Albert-Gao/enhanced-create-react-app) for you to start with.
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
+
+Thanks for reading!

@@ -255,7 +255,7 @@ Run the app, you should see `value of abcKey: false` printed in the console.
 
 **Highlight**
 
-In that `provideABCKey(preference:SharedPreferences)`, it needs a `SharedPreferences`. How could dagger get it? 
+In that `provideABCKey(preference:SharedPreferences)`, it needs a `SharedPreferences`. How could dagger get it?
 
 Well, with all the setup, dagger has a graph of all your dependencies. And every time it needs a parameter in a `@Provides` function, it will check other `@Provides` functions to look for that type. In our case, it will find it from the `provideSharedPreference()` and get it from there. Much better, it's a singleton! No new instance created!
 
@@ -310,3 +310,7 @@ You can find the repo [here](https://github.com/Albert-Gao/DaggerAndroidKotlinEx
 ## 11. End
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

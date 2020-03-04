@@ -14,9 +14,9 @@ If the model is just plain schema, there is not much to test about. But with Mon
 
 # Integration test the logic in your model
 
-Of course you can unit test your model by mocking the mongoose methods. But I really don't see the benefits of that. Yes, the CRUD part is taking care by mongoose and mongodb driver, no need to test that. 
+Of course you can unit test your model by mocking the mongoose methods. But I really don't see the benefits of that. Yes, the CRUD part is taking care by mongoose and mongodb driver, no need to test that.
 
->But even the data is saved perfectly into the database doesn't mean you have saved the correct data. 
+> But even the data is saved perfectly into the database doesn't mean you have saved the correct data.
 
 Furthermore, for a bulk get, does your query give you the right result? Does your query still give you the expected result after you refactoring? This is something only integration test could tell you.
 
@@ -86,41 +86,49 @@ This is the most important part you need to know. And it could adopts to any tes
 For the normal case:
 
 ```javascript
-test('Should return a result when match', () => {
-    return ThreadModel.isAlreadyLiked(thread.id, thread.author.id).then((result) => {
-        expect(result).toHaveLength(1);
-        expect(result[0].id).toEqual(thread.id);
-        expect(result[0].text).toEqual(thread.text);
-        expect(result[0].author.id).toEqual(thread.author.id);
-    });
+test("Should return a result when match", () => {
+  return ThreadModel.isAlreadyLiked(thread.id, thread.author.id).then(
+    result => {
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toEqual(thread.id);
+      expect(result[0].text).toEqual(thread.text);
+      expect(result[0].author.id).toEqual(thread.author.id);
+    }
+  );
 });
 ```
 
 For the abnormal case:
 
 ```javascript
-    test('Should return a empty result when not match', () => {
-        return ThreadModel.isAlreadyLiked(thread.id, '593a9ea21736ec9b1a9e909b').then((result) => {
-            expect(result).toHaveLength(0);
-        });
-    });
+test("Should return a empty result when not match", () => {
+  return ThreadModel.isAlreadyLiked(thread.id, "593a9ea21736ec9b1a9e909b").then(
+    result => {
+      expect(result).toHaveLength(0);
+    }
+  );
+});
 ```
 
 For the error case:
 
 ```javascript
-test('Should return error when objectID is bad', () => {
-    return ThreadModel.isAlreadyLiked(thread.id, '593a9ea21736ec9b1a9e909ba').then((result) => {
-        expect(result).toHaveLength(0);
-    }).catch((err) => {
-        expect(err).toBeTruthy();
-        expect(err.name).toBe('CastError');
-        expect(err.message).toBe('Cast to ObjectId failed for value "593a9ea21736ec9b1a9e909ba" at path "id" for model "Thread"');
+test("Should return error when objectID is bad", () => {
+  return ThreadModel.isAlreadyLiked(thread.id, "593a9ea21736ec9b1a9e909ba")
+    .then(result => {
+      expect(result).toHaveLength(0);
+    })
+    .catch(err => {
+      expect(err).toBeTruthy();
+      expect(err.name).toBe("CastError");
+      expect(err.message).toBe(
+        'Cast to ObjectId failed for value "593a9ea21736ec9b1a9e909ba" at path "id" for model "Thread"'
+      );
     });
 });
 ```
 
-An interesting fact here: You could see that I use both `.then()` and `.catch()` here which doesn't make any sense. The point is: 
+An interesting fact here: You could see that I use both `.then()` and `.catch()` here which doesn't make any sense. The point is:
 
 > For some important method, this tip will make sure that every error is wrapped in the normal `jest` error report rather than just throwing some error in the console. Furthermore, when dealing with promise, sometimes, `Jest` will give you some completely useless callstack which none of it is part of your code. This is how it could save your life, when the callstack is meaningless, try this.
 
@@ -129,13 +137,13 @@ An interesting fact here: You could see that I use both `.then()` and `.catch()`
 When you try to assert an error:
 
 ```javascript
-test('Should return error if no such comment', async () => {
-    try {
-        await CommentModel.getComment(author);
-    } catch (err) {
-        expect(err).toBeTruthy();
-        expect(err.message).toEqual('No such comment');
-    }
+test("Should return error if no such comment", async () => {
+  try {
+    await CommentModel.getComment(author);
+  } catch (err) {
+    expect(err).toBeTruthy();
+    expect(err.message).toEqual("No such comment");
+  }
 });
 ```
 
@@ -144,10 +152,10 @@ Notice here you just need to `await` that query since we don't care about its re
 When you just want to assert a normal result:
 
 ```javascript
-test('Should decrease by 1', async () => {
-    await ThreadModel.updateCommentCount(thread.id, -1);
-    const result = await ThreadModel.findById(thread.id).exec();
-    expect(result.comments.count).toEqual(2);
+test("Should decrease by 1", async () => {
+  await ThreadModel.updateCommentCount(thread.id, -1);
+  const result = await ThreadModel.findById(thread.id).exec();
+  expect(result.comments.count).toEqual(2);
 });
 ```
 
@@ -156,8 +164,8 @@ test('Should decrease by 1', async () => {
 If you use environment variable for testing, it's good to test it to notify the people who run the test.
 
 ```javascript
-test('Should failed when env not test ', () => {
-    expect(process.env.NODE_ENV).toEqual('test');
+test("Should failed when env not test ", () => {
+  expect(process.env.NODE_ENV).toEqual("test");
 });
 ```
 
@@ -166,8 +174,10 @@ test('Should failed when env not test ', () => {
 There is no `conftest.py` concept in `Jest` which you could run some fixtures before you run all the tests. So the above check is not enough for prevent executing some dangerous methods like a handy `removeAll()`, So I add a check in that method too:
 
 ```javascript
-if (process.env.NODE_ENV !== 'test') {
-    throw new Error(`[ENV -> ${process.env.NODE_ENV}] This method should only use when testing, try set process.env.NODE_ENV = "test"`);
+if (process.env.NODE_ENV !== "test") {
+  throw new Error(
+    `[ENV -> ${process.env.NODE_ENV}] This method should only use when testing, try set process.env.NODE_ENV = "test"`
+  );
 }
 ```
 
@@ -179,8 +189,8 @@ If you just want to `save` one document, just `return` that promise, `Jest` will
 
 ```javascript
 beforeEach(() => {
-    comment = new CommentModel(testData.normalComment);
-    return comment.save();
+  comment = new CommentModel(testData.normalComment);
+  return comment.save();
 });
 ```
 
@@ -188,12 +198,17 @@ But when you need to save more document, `return` won't help you here. And besid
 
 ```javascript
 beforeEach(async () => {
-    comment = new CommentModel(testData.normalComment);
-    thread = new CommentModel(testData.normalThread);
-    await thread.save();
-    await comment.save();
+  comment = new CommentModel(testData.normalComment);
+  thread = new CommentModel(testData.normalThread);
+  await thread.save();
+  await comment.save();
 });
 ```
 
 # End
+
 That's it, hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

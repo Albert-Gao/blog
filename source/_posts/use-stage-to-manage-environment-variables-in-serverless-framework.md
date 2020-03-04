@@ -25,7 +25,7 @@ This is the `./src/config/dev.json`
 
 ```json
 {
-  "SECRET": "1234",
+  "SECRET": "1234"
 }
 ```
 
@@ -33,7 +33,7 @@ This is the `./src/config/prod.json`
 
 ```json
 {
-  "SECRET": "5678",
+  "SECRET": "5678"
 }
 ```
 
@@ -82,3 +82,6 @@ You can use `test.json` if you have a different setup. It's very easy to underst
 
 Hope it helps.
 
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

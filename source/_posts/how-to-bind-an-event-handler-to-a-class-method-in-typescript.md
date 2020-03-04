@@ -12,19 +12,20 @@ In ES5, we can very easy bind a event to DOM using the native way: `document.ad
 But in the ES6 or Typescript, you will face some pitfall if you don;t care the details. Suppose you have the following code:
 
 <!--more-->
+
 ```javascript
-class Foo{
-    bar:string;
+class Foo {
+  bar: string;
 
-    constructor(){
-        this.bar = "Does it work";
-    }
+  constructor() {
+    this.bar = "Does it work";
+  }
 
-    action():void{
-        $(".button").on('click', "#buttonID", function(){
-            console.log(this.bar);
-        })
-    }
+  action(): void {
+    $(".button").on("click", "#buttonID", function() {
+      console.log(this.bar);
+    });
+  }
 }
 ```
 
@@ -47,3 +48,7 @@ action():void{
 Now it works as expected. Why?  Because the arrow function syntax will not create its own `this` context, rather it captures the `this` value of the enclosing context.
 
 I face this problem before, really cost sometime to figure it out. The frustrating part, I checked the compiled javascript code, nothing different than this. I thought it is just as same as the function keyword. But seems i am wrong, and i am happy to learn a new lesson :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

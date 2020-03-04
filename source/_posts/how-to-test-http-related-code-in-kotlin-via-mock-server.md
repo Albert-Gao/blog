@@ -20,9 +20,9 @@ So instead, I want to write some integration tests which will send actual reques
 
 1. No mock at all. The tests are as clean as insanely easy unit tests. You call a method and assert its return value.
 1. You can move the tests to the `common` code, such that, you just need to write the tests once, and it will test for all platforms.
-    - If you don't know what does `common` code mean here, it's code which meant to be shared across without change a single line. It's from the Kotlin multi-platform project.
-    - You can also check my [blog](/2018/02/22/use-kotlin-to-share-native-code-between-ios-and-android/) for how to set up a codebase where you can share code among Android, iOS, JVM, JS.
-    - **It's not as easy as it sounds because you may use different `MockServer` across platforms and they may have different API. But I think it should work after adding another layer to abstract the differences.**
+   - If you don't know what does `common` code mean here, it's code which meant to be shared across without change a single line. It's from the Kotlin multi-platform project.
+   - You can also check my [blog](/2018/02/22/use-kotlin-to-share-native-code-between-ios-and-android/) for how to set up a codebase where you can share code among Android, iOS, JVM, JS.
+   - **It's not as easy as it sounds because you may use different `MockServer` across platforms and they may have different API. But I think it should work after adding another layer to abstract the differences.**
 
 ## 3. Setup
 
@@ -113,7 +113,7 @@ It should be pretty straightforward.
 
 ## 6. Some extension methods
 
-In fact, `mockServer.setup()` and `mockServer.verifyRequest()`  are not from `MockServer`. I wrapped them for easy access.
+In fact, `mockServer.setup()` and `mockServer.verifyRequest()` are not from `MockServer`. I wrapped them for easy access.
 
 ```kotlin
 internal fun MockServerClient.setup(
@@ -161,4 +161,8 @@ From here, you can know the standard way to set up the MockServer and verify its
 
 ## 7. End
 
- Actually, you can further simplify this, if you just want to have a single server if you just to have one server setup for all tests such that you don't need to invoke `mockServer.setup()` in each test. You just need to set it up in a `@BeforeTest` or `@BeforeAll`.
+Actually, you can further simplify this, if you just want to have a single server if you just to have one server setup for all tests such that you don't need to invoke `mockServer.setup()` in each test. You just need to set it up in a `@BeforeTest` or `@BeforeAll`.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

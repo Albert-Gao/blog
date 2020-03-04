@@ -19,11 +19,11 @@ When your program gets running, the system will allocate memory spaces for it. A
 
 ![](/images/Screen-Shot-2016-08-13-at-16.34.42.png)
 
-*   .text:  All your physical codes resides here.
-*   .data:  All the global variables and static variables in your codes will be loaded here.
-*   .bss: Two types of global variables will belong here: Those whose values are  uninitialized or initialized to zero.
-*   stack: This is the play ground for your program, every function call will happen here.
-*   heap: A space used for dynamic memory allocation, you can use `malloc()` or `realloc()` to manage it in C.
+- .text:  All your physical codes resides here.
+- .data:  All the global variables and static variables in your codes will be loaded here.
+- .bss: Two types of global variables will belong here: Those whose values are  uninitialized or initialized to zero.
+- stack: This is the play ground for your program, every function call will happen here.
+- heap: A space used for dynamic memory allocation, you can use `malloc()` or `realloc()` to manage it in C.
 
 ## 2. What happens in the memory when our program runs?
 
@@ -65,6 +65,7 @@ Now it is enough to solve our topic today, but let's do it a little further. Let
 ![](/images/Screen-Shot-2016-08-13-at-17.35.59.png)
 
 Something interesting happens: the `add()` has been removed from the stack, and the function `printout()` has been added. What happens here indicates the:
+
 > **The stack works like the data structure stack, LIFO, it will load the current invoking function into the space and remove it once its job done.**
 
 ## 3. So, when do we need to use pointer and why?
@@ -101,3 +102,7 @@ The result is as same as before: `1 plus 1 is 2` . But now the function `add()`
 ## 4. Summary
 
 Today we dive into the memory model when you coding and use C for example. It is a very useful knowledge, and this memory model is not only applied to C but also the other high level languages that you currently use. And a hint here, you can now understand [what is stack overflow actually](http://www.albertgao.xyz/2016/08/12/what-is-stack-overflow/) :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -26,7 +26,6 @@ class MyActivity : AppCompatActivity() {
 
 This line `supportActionBar?.hide()` did the job. Start the app, and it works.
 
-
 ## 2. Though the XML with theme
 
 First, add a new style in the `styles.xml`:
@@ -61,3 +60,7 @@ It's called `Theme in Editor`, click it to open the menu, and select a theme wit
 ## 4. End
 
 Hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -25,60 +25,66 @@ interface PlainObject {
   [key: string]: any;
 }
 
-const buildRequest = (statusCode:number, body:PlainObject) => ({
+const buildRequest = (statusCode: number, body: PlainObject) => ({
   statusCode,
   headers: {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json"
   },
   body: JSON.stringify(body)
-})
+});
 ```
 
-With the above function, now you can easily send a JSON back to the client, just use it will the `callback` which is the 3rd parameter of your lambda. invoking `callback(null, buildRequest(200, {message: 'ok'}))`, will return `200`, and a `{message: 'ok'}` to the client.
+With the above function, now you can easily send a JSON back to the client, just use it will the `callback` which is the 3rd parameter of your lambda. invoking `callback(null, buildRequest(200, {message: 'ok'}))`, will return `200`, and a `{message: 'ok'}` to the client. Or, if you are using `async/await`, just return the response object directly, otherwise, you might face the warning in CloudWatch:
+
+> Callback/response already delivered. Did your function invoke the callback and also return a promise? For more details
 
 Even better, you can include lots of details rather than a simple message in this object, it will all be handled inside.
 
-> The `body` property must be a string.
+> The `body` property of the returned object MUST be a string.
 
 ## 3. What is the problem
 
 > The above knowledge leads to our first question, if this `callback` is your only way to send a meaningful response, then you have to construct your logic in the handler function. Which, seems to be fine? Let's see a real world example
 
+Or, if you just `return` the response, how could know it is the error case to `return`? or just a normal result? A lof of `if`?
+
 Let's see the following lambda function
 
 ```javascript
 const createCompany = async (event, context, callback) => {
-    const idToken = getIdToken(event);
-    if (!idToken) {
-      callback(null, buildRequest(400, { message: "no id token" }));
-      return;
-    }
+  const idToken = getIdToken(event);
+  if (!idToken) {
+    callback(null, buildRequest(400, { message: "no id token" }));
+    return;
+  }
 
-    const companyName = getCompanyName(idToken);
-    if (!companyName) {
-      callback(null, buildRequest(400, { message: "no company name" }));
-      return;
-    }
-
+  const companyName = getCompanyName(idToken);
+  if (!companyName) {
+    callback(null, buildRequest(400, { message: "no company name" }));
+    return;
+  }
 
   try {
-    const response = await companyService.create(company)
+    const response = await companyService.create(company);
     callback(null, buildRequest(200, response));
-  } catch(err) {
-    callback(null, buildRequest(500, {message: 'server error, please try again later'}))
+  } catch (err) {
+    callback(
+      null,
+      buildRequest(500, { message: "server error, please try again later" })
+    );
   }
-}
+};
 ```
 
 The logic here is simple:
 
 1. get the idToken from the event
-    - if no token, return error
-1. get the company name from  the idToken
-    - if no company name, return error
+   - if no token, return error
+1. get the company name from the idToken
+   - if no company name, return error
 1. send request to our microservice endpoint
-    - if 200, return to the client
-    - if error, return 500
+   - if 200, return to the client
+   - if error, return 500
 
 This code is just...barely readable. When you have more complex logic than this, then it will become total disaster. And even each step `getIdToken`, `getCompanyName` is highly testable, since they either return a value or null, but the `createCompany` will be not that good.
 
@@ -86,20 +92,20 @@ This code is just...barely readable. When you have more complex logic than this,
 
 ```javascript
 const createCompany = async (event, context, callback) => {
-    const idToken = getIdToken(event);
-    const companyName = getCompanyName(idToken);
+  const idToken = getIdToken(event);
+  const companyName = getCompanyName(idToken);
 
-    const response = await companyService.create(company)
-    return response
-}
+  const response = await companyService.create(company);
+  return response;
+};
 ```
 
 Wow, YES! You might say. But wait, didn't I just remove all the `if` for the error path, and `try catch` for the network part, such that it becomes easy to read.
 
 What if I tell you that:
 
-- inside the `getIdToken` and `getCompanyName`, it will try getting the value, and whenever the value is not there, it will throw an error. 
-- Samething for that `companyService.create`
+- inside the `getIdToken` and `getCompanyName`, it will try getting the value, and whenever the value is not there, it will throw an error.
+- Same thing for that `companyService.create`
 - which means in the body of `createCompany`, you just need to compose the happy path.
 - And for all the errors, `createCompany` will handle them or return to the client.
 
@@ -127,7 +133,7 @@ const buildResponse = (statusCode: number, body: PlainObject) => ({
 });
 ```
 
-Now we have `success`:200, `badRequest`:400, `internalError`: 500, pretty good start. 
+Now we have `success`:200, `badRequest`:400, `internalError`: 500, pretty good start.
 
 > You need to use them all over your logic every time you want to throw, you choose one of the functions.
 
@@ -137,8 +143,8 @@ Let's throw them, they born to be thrown. xD
 
 ```javascript
 export const getIdToken = (event: APIGatewayEvent): IdToken => {
-  let idTokenString
-  
+  let idTokenString;
+
   // parse, verify, extract;
   // try get the token from event
 
@@ -215,12 +221,12 @@ Event better, it will give you error if you try to return anything that is not a
 
 ```javascript
 const createCompany = handleError(async (event, context, callback) => {
-    const idToken = getIdToken(event);
-    const companyName = getCompanyName(idToken);
+  const idToken = getIdToken(event);
+  const companyName = getCompanyName(idToken);
 
-    const response = await companyService.create(company)
-    return response
-})
+  const response = await companyService.create(company);
+  return response;
+});
 ```
 
 What a result! Now you can just wrap this `handlerError` to each of your lambda, then you can make your code clean.
@@ -229,6 +235,12 @@ What a result! Now you can just wrap this `handlerError` to each of your lambda,
 
 I think an important concept is you always want to make your top level (which composes all the steps) easier to follow, because every time you refactor or debug, this is where you start.
 
-Hope it helps. Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
+Hope it helps.
+
+Ah, one more thing, I published this idea as a open source library recently: [micro-aws-lambda](https://github.com/Albert-Gao/micro-aws-lambda). A 7KB and 0 dependencies AWS Lambda library which supports middleware and easy debug.
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
 
 Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

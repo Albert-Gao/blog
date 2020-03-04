@@ -12,24 +12,29 @@ This is how I made it work at last, think it worths a note. And I [contributed a
 <!--more-->
 
 # The symptom
+
 - You followed the [official tutorial](https://webpack.js.org/guides/hmr-react/)
 - When you change the module, the Chrome console will give the following notices:
-   - `[HMR]Update modules...blah blah blah`
-   - `[HMR]App is up to date.`
+  - `[HMR]Update modules...blah blah blah`
+  - `[HMR]App is up to date.`
 - But nothing changes in the window, if you refresh, you get the updates.
 
 # The reason
+
 The previous outputs indicate the whole settings for `webpack` works fine. What prevents it to work is the module loading.
 
 Before you set up that `["env",{"modules":false}]` or `["es2015",{"modules":false}]`to your existing `.babelrc`. Maybe there is a splitting settings of your `babel` which may not in the file `.babelrc`. This is why webpack still behaves like can't import that module even you have turn the `babel` one off.
 
 # Find it and change
+
 It should somewhere. But now, it's mostly like it is in the `webpack.config.js` as a `options` key or a `query` key. You need to turn off the module settings there as well.
 
 # It shall work now.
+
 You should get HMR works. Quite good, now you could inspect the outcomes without refreshing your browser window.
 
 # Some thinking
+
 A recommendation here is to only manage your `babel` configuration in the `.babelrc`. Remove the other splitting one.
 
 But maybe you have the [same problem as mine](/2017/04/23/setting-up-react-with-babel-mocha-chai-enzyme-and-webpack/#9-Story-not-end), which is, if you turn off the module settings, your ES6 testing will refuse to work since they don't know the keyword `import` now. Two solutions for this:
@@ -38,3 +43,7 @@ But maybe you have the [same problem as mine](/2017/04/23/setting-up-react-with-
 2. Splitting the webpack one to `webpack.config.js`, but be sure to turn off the module like `["env",{"modules":false}]` or `["es2015",{"modules":false}]`.
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

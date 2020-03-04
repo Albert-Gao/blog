@@ -192,7 +192,7 @@ So, what happens here.
 
 - We create the property `myRepo` that will hold the dependency.
 - And the decorator `@Inject` will let dagger knows that you want it to be injected.
-- Then, in the `onCreate`, you start the injection with `(application as MyApp).myAppComponent.inject(this)`. 
+- Then, in the `onCreate`, you start the injection with `(application as MyApp).myAppComponent.inject(this)`.
 - And there is no magic here, the `inject(this)` already got its declaration in that `interface MyAppComponent`, remember? :)
 - Dagger will then look through all `@Provides` in `@Module` to find one function that has a matched return type.
 - Then you get your instance.
@@ -215,3 +215,7 @@ You can find the repo here:
 There are more things to learn. But I think you have a good start. Hope it helps.
 
 If you want to see how to setup with `dagger-android` which is another package from Google, you should check this [blog](http://www.albertgao.xyz/2018/04/18/dependency-injection-on-android-with-dagger-android-and-kotlin/). It designs to be more `magic` :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -22,3 +22,7 @@ annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 The version number maybe different in the future but it's fine, because Android Studio will tell the version number for the latest version.
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

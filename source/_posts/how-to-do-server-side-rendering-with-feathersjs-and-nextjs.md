@@ -8,7 +8,7 @@ tags:
   - ssr
 ---
 
-`Feathers.js` is the most impressive back-end framework that I've seen in the node.js world. Like `Django` and `Django rest framework` in the python world. Similar API to `express.js`. And very productive as you can generate rest CRUD API in seconds while still highly customizable. And has a unique concept called `service` and `hook` which distinguish it from the others. `Next.js` is a library that you could use to do the `react` server-side rendering easily along with all the toolings. Previously I set up a project which uses these 2 to do  SSR, I thought it should be very easy. But to my surprise, it took me a while. I think it worths to write a blog here to share what I learned. We will use `feathers-cli` to generate a fresh new codebase and start from there.
+`Feathers.js` is the most impressive back-end framework that I've seen in the node.js world. Like `Django` and `Django rest framework` in the python world. Similar API to `express.js`. And very productive as you can generate rest CRUD API in seconds while still highly customizable. And has a unique concept called `service` and `hook` which distinguish it from the others. `Next.js` is a library that you could use to do the `react` server-side rendering easily along with all the toolings. Previously I set up a project which uses these 2 to do SSR, I thought it should be very easy. But to my surprise, it took me a while. I think it worths to write a blog here to share what I learned. We will use `feathers-cli` to generate a fresh new codebase and start from there.
 
 <!--more-->
 
@@ -28,7 +28,7 @@ Instead of `feathers.js` which sits in front of your front end app. Now it's the
 2. Create the project folder: `mkdir my-app`.
 3. Go to the folder: `cd my-app`
 4. Then use `feathers generator my-app` to create your app.
-    - When it asks for the source folder name, instead of the default `src`, I recommend using `server`, because we will have some conventions here which will make things more clear.
+   - When it asks for the source folder name, instead of the default `src`, I recommend using `server`, because we will have some conventions here which will make things more clear.
 
 ### 2.2 Add the next.js support
 
@@ -37,6 +37,7 @@ Instead of `feathers.js` which sits in front of your front end app. Now it's the
 3. Create the `pages` sub folder inside `client`: `mkdir client/pages`
 
 > Why we want to have different folders?
+
 - Well, first, it's clear, so all back-end code in `server` and front-end code in `client`.
 - Later on, you can have an extra `ESLint` settings in your `client` sub-folder. While `ESLint` could lint your node and front-end code, their rules are different, at least I prefer this way.
 
@@ -45,7 +46,7 @@ Instead of `feathers.js` which sits in front of your front end app. Now it's the
 This file should be at `./client/pages/index.js`.
 
 ```javascript
-export default () => <div>Welcome to next.js!</div>
+export default () => <div>Welcome to next.js!</div>;
 ```
 
 Later on, when you want to access `/index`, `next.js` will render `/pages/index.js`. Just that easy.
@@ -53,7 +54,7 @@ Later on, when you want to access `/index`, `next.js` will render `/pages/index.
 ### 2.4 First run
 
 1. Add a new NPM script in `package.json`:
-    - `"dev": "next ./client"`
+   - `"dev": "next ./client"`
 2. Run `npm run dev`, and you should able to see your `index.js` at `http://localhost:3000/index`
 
 ## 3. Setup next.js middleware in feathers
@@ -63,10 +64,10 @@ Later on, when you want to access `/index`, `next.js` will render `/pages/index.
 In the `my-app/server` folder, create a new file named `nextApp.js` with the following code:
 
 ```javascript
-const next = require('next');
+const next = require("next");
 
-const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({dir: './client', dev});
+const dev = process.env.NODE_ENV !== "production";
+const nextApp = next({ dir: "./client", dev });
 const handle = nextApp.getRequestHandler();
 
 module.exports = {
@@ -80,20 +81,24 @@ module.exports = {
 Open `index.js`, update its code to the following:
 
 ```javascript
-const logger = require('winston');
-const app = require('./app');
-const port = app.get('port');
-const nextApp = require('./nextApp').nextApp;
+const logger = require("winston");
+const app = require("./app");
+const port = app.get("port");
+const nextApp = require("./nextApp").nextApp;
 
 nextApp.prepare().then(() => {
   const server = app.listen(port);
 
-  process.on('unhandledRejection', (reason, p) =>
-    logger.error('Unhandled Rejection at: Promise ', p, reason)
+  process.on("unhandledRejection", (reason, p) =>
+    logger.error("Unhandled Rejection at: Promise ", p, reason)
   );
 
-  server.on('listening', () =>
-    logger.info('Feathers application started on http://%s:%d', app.get('host'), port)
+  server.on("listening", () =>
+    logger.info(
+      "Feathers application started on http://%s:%d",
+      app.get("host"),
+      port
+    )
   );
 });
 ```
@@ -103,15 +108,15 @@ We start the `nextApp` first then start the `feathers` server. The main benefit 
 ### 3.3 Add the next.js middleware
 
 1. In the `my-app` folder. Add a new `feathers middleware`: `feathers generate middleware`:
-    - Its name is `next`
-    - The mount path is the default: '*' which means it will handle **ALL** request.
+   - Its name is `next`
+   - The mount path is the default: '\*' which means it will handle **ALL** request.
 2. Open `/server/middleware/index.js`, update the code to this:
 
 ```javascript
-const next = require('./next');
+const next = require("./next");
 
-module.exports = function (app) {
-  app.get('*', next());
+module.exports = function(app) {
+  app.get("*", next());
 };
 ```
 
@@ -122,11 +127,11 @@ The only line we changed is from `app.use` to `app.get`, still handle all reques
 Update the file `/server/middleware/next.js` with the code:
 
 ```javascript
-const handle = require('../nextApp').handle;
+const handle = require("../nextApp").handle;
 
-module.exports = function (options = {}) {
+module.exports = function(options = {}) {
   return function next(req, res, next) {
-      return handle(req,res);
+    return handle(req, res);
   };
 };
 ```
@@ -145,7 +150,7 @@ Just like the typical problem in SPA, you still have the routing problem. Now as
 In the `/server/app.js`, comment out or remove the following line:
 
 ```javascript
-app.use('/', express.static(app.get('public')));
+app.use("/", express.static(app.get("public")));
 ```
 
 As now all the static files should be handled in `next.js`, we don't need it anymore.
@@ -153,15 +158,10 @@ As now all the static files should be handled in `next.js`, we don't need it any
 ### 4.2 Add a filter function in nextApp.js
 
 ```javascript
-const feathersServices = [
-  '/users'
-];
+const feathersServices = ["/users"];
 
-const isFeathersService = (path) =>
-  feathersServices.some((item) =>
-    path.indexOf(item) > -1
-  );
-
+const isFeathersService = path =>
+  feathersServices.some(item => path.indexOf(item) > -1);
 ```
 
 And don't forget to export it:
@@ -187,15 +187,15 @@ And we use the `isFeathersService` function to check whether the `path` belongs 
 Open the `/server/middleware/next.js`, update the file to the following code:
 
 ```javascript
-const handle = require('../nextApp').handle;
-const isFeathersService = require('../nextApp').isFeathersService;
+const handle = require("../nextApp").handle;
+const isFeathersService = require("../nextApp").isFeathersService;
 
-module.exports = function (options = {}) {
+module.exports = function(options = {}) {
   return function next(req, res, next) {
-    if (isFeathersService(req.originalUrl)){
+    if (isFeathersService(req.originalUrl)) {
       return next();
     } else {
-      return handle(req,res);
+      return handle(req, res);
     }
   };
 };
@@ -205,3 +205,7 @@ module.exports = function (options = {}) {
 
 You can check the whole code in my [github repo](https://github.com/Albert-Gao/feathers-next-example).
 That's all. Hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

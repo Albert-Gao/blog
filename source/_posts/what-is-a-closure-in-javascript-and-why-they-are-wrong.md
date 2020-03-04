@@ -26,7 +26,9 @@ function outside() {
 
 outside(); // "I love JavaScript."
 ```
+
 The result is straightforward as the above, it will print that `text` variable. Let's push it a little bit.
+
 ```JavaScript
 function outside() {
     var text = "I love JavaScript."
@@ -38,9 +40,11 @@ function outside() {
 
 outside()();  // "I love JavaScript."
 ```
+
 Now we use the Immediately-Invoked Function Expression (IIFE), since the `outside()` will return a function, we just simply add another `()` after it, to invoke that function. The result is the same,  and it is easy to understand. Nothing strange here.
 
 ## 2. Here we get a miracle:
+
 Let's go even further.
 
 ```JavaScript
@@ -58,9 +62,9 @@ trueOutside(); // "I love JavaScript."
 
 Wow, something interesting happened, let's break them into pieces:
 
-*   First, we define a function called `outside()`, it will return a anonymous function.
-*   Second we assign the `outside()` to `trueOutside`, now the variable `trueOutside` will hold that inner anonymous function.
-*   Finally we execute that `trueOutside()` which will invoke that inner function.
+- First, we define a function called `outside()`, it will return a anonymous function.
+- Second we assign the `outside()` to `trueOutside`, now the variable `trueOutside` will hold that inner anonymous function.
+- Finally we execute that `trueOutside()` which will invoke that inner function.
 
 It should throws an error - "`text is not defined`". Since the variable `text` is not there when it executed. But it still behaves as normal. What happened? This is what we called closure comes into play. **The `trueOutside` here has become a closure.**
 
@@ -71,9 +75,11 @@ It hard to understand, especially when you come from a traditional programming l
 This is the reason why I told you not to follow that accepted answer on stack overflow, since it is tried so hard to adopt the stack theory like "as if a 'stack frame' were allocated on the heap"... Totally absurd even for an analogy.
 
 Remember:
+
 > **The concept closure can't be explain well with "stack" but "execution context" or "execution environment".**
 
 We'll talk more about the execution environment later. Let's check another common mistake. You can see many definitions online as the following one from the famous [W3School](http://www.w3schools.com/js/js_function_closures.asp):
+
 > A closure is a function having access to the parent scope, even after the parent function has closed.
 
 To be honest, this is deadly wrong. Because **it is nothing to do with the parent function and nothing to do with accessing  behaviour either,** Let's prove it with the following code.
@@ -93,6 +99,7 @@ trueOutside(); // 2
 trueOutside(); // 3
 trueOutside(); // 4
 ```
+
 We executed `trueOutside()` for 3 times, Let's put down your questions first since we will explain later, let's follow the above definition, it said the inner function can access to the parent scope even when it is closed, OK, now we executed the parent function `outside()` :
 
 ```JavaScript
@@ -109,9 +116,9 @@ The magic happens when you assign the returned function to that variable `trueOu
 
 **<span style="color: #0000ff;">A closure is a special kind of object that combines two things:</span>**
 
-*   **<span style="color: #0000ff;">a function</span>**
-*   **<span style="color: #0000ff;">the environment in which that function was created.</span>**
-*   <span style="color: #0000ff;">The environment consists of any local variables that were in-scope at the time that the closure was created.</span>
+- **<span style="color: #0000ff;">a function</span>**
+- **<span style="color: #0000ff;">the environment in which that function was created.</span>**
+- <span style="color: #0000ff;">The environment consists of any local variables that were in-scope at the time that the closure was created.</span>
 
 So, it is easy to understand now, the closure `trueOutside`, it not only contains that returned anonymous function, but also it contains the variable `text`, since it was exist when the closure was created. So, it can executed well.  And it can be explained the last example I showed you before. Let's review it.
 
@@ -136,6 +143,7 @@ Why it can accumulate? It is just that simple since **<span style="color: #0000f
 ## 5. Not the end
 
 This is pretty much of closure. Maybe there is another famous example you have seen, which is the following, a closure when looping. Resulting in a very strange result.
+
 ```JavaScript
 var funcs = [];
 for (var i = 0; i < 3; i++) {          // let's create 3 functions
@@ -147,6 +155,7 @@ for (var j = 0; j < 3; j++) {
     funcs[j]();                        // and now let's run each one to see
 }
 ```
+
 What you expect the output to be? Since the variable `i` has increased step by step during the loop and the value had stored step by step into that function. It should output the following,
 
 ```JavaScript
@@ -164,3 +173,7 @@ My value: 3
 ```
 
 Yes, this is JavaScript, always hits you with a unexpected pose. :) It is about the closure again, but it is easier to understand using the concept of "context". You can check it at [this post](/2016/08/25/why-not-making-functions-within-a-loop-in-javascript/), I will dissect it step by step. By far the most detailed explanation online xD Yes, since I checked tons of them before.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -9,6 +9,7 @@ tags:
 I have a class reference and a set of data for initializing the class, I need to create instance of that class dynamically. I get the constructor from the class reference, I loop through its parameters and do a match between that set of data. Then call the `constructor.callby(param)`. All is fine, until one of the property is a custom class rather than a kotlin type like `kotlin.Int`. Let's see how to solve it.
 
 <!--more-->
+
 ## Some setup
 
 ```Java
@@ -27,7 +28,6 @@ cons.parameters.forEach{
 
 The above code is simple, we retrieve a class and its constructor, then we loop through its parameters.
 Now you can do the match up thing to restore the class.
-
 
 ## Get the class reference from KParameter
 
@@ -48,7 +48,7 @@ In the above `forEach`, when we found that the parameter is a custom class, we n
 
 Then we return `param.type.classifier as KClass<*>`, then you can repeat the code in `Some setup` to restore this nested property.
 
-## Get the class reference from KParameter which is a List<*>
+## Get the class reference from KParameter which is a List<\*>
 
 But what happen if the property is not a custom class, but also a `List<CustomClass>`. Like the `lessons` property in the following `Student` class.
 
@@ -92,3 +92,7 @@ Then we retrieve the item type by using `param.type.arguments[0].type?.classifie
 ## End
 
 That's all, hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

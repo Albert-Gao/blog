@@ -8,6 +8,7 @@ tags:
 ---
 
 The library that we are going to talk about in this blog is `ViewModel` from the official architecture component, `dagger-android` for managing dependency injection. If you want to learn `dagger-android` in a quick and easy way, I've got a [blog](http://www.albertgao.xyz/2018/04/18/dependency-injection-on-android-with-dagger-android-and-kotlin/) covered.
+
 <!--more-->
 
 ## Only one way for the creation
@@ -130,3 +131,7 @@ val listViewModel:ListViewModel = getViewModel { ListViewModel(listId) }
 ## End
 
 That's it. Now you get it. Hope it helps.
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
+
+Thanks for reading!

@@ -36,7 +36,7 @@ This is how you define `screenA`:
 ```javascript
 const screenAModelDetail = types.model({
   isBookOpen: false,
-  selected: 0,
+  selected: 0
 });
 
 const screenAModel = types.model({
@@ -48,7 +48,7 @@ For books, it's very simple:
 
 ```javascript
 const booksModel = types.model({
-  books: types.array(types.string),
+  books: types.array(types.string)
 });
 ```
 
@@ -67,10 +67,7 @@ What about you want to add another `screenBModel`? You just add it as another pa
 
 ```javascript
 const storeModel = types.model({
-  ui: types.compose(
-    screenAModel,
-    screenBModel
-  ),
+  ui: types.compose(screenAModel, screenBModel),
   entities: types.compose(booksModel)
 });
 ```
@@ -85,7 +82,7 @@ const snapShot = getSnapshot(
     ui: {
       screenA: {
         isBookOpen: true,
-        selected: 1,
+        selected: 1
       }
     },
     entities: {
@@ -94,7 +91,7 @@ const snapShot = getSnapshot(
   })
 );
 
-console.log(snapShot)
+console.log(snapShot);
 ```
 
 You get this:
@@ -114,3 +111,7 @@ You get this:
 ```
 
 Congrats, you did it! :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

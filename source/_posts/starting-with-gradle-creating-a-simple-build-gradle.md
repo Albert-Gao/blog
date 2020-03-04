@@ -17,7 +17,7 @@ Before you have this omg-new-language-just-for-building idea, read this quote fr
 
 > You don’t need to know Groovy to start configuring your build because the Android plugin for Gradle introduces most of the DSL elements you need.
 
- Build automation is a universal idea, not only for android. Most of the time, you don't need to implement your own task, there are `gradle plugins` which already contain these tasks for you to use. You just need to add these `plugins` as `dependencies` and put their `configuration blocks` in `build.gradle` with your own values.
+Build automation is a universal idea, not only for android. Most of the time, you don't need to implement your own task, there are `gradle plugins` which already contain these tasks for you to use. You just need to add these `plugins` as `dependencies` and put their `configuration blocks` in `build.gradle` with your own values.
 
 The ideas above should make the `build.gradle` file pretty easy to understand, because now its functionalities are narrowed down to only manage your `plugins` and project `dependencies`.
 
@@ -94,6 +94,7 @@ compileKotlin {
     kotlinOptions.verbose = true
 }
 ```
+
 Just that easy.
 
 ## 5. Add the dependencies of your project
@@ -129,3 +130,7 @@ If the plugin needs something, the document will tell you. If you need to custom
 ## 7. End
 
 That's it. Hope it helps. Any time you see a `configuration block` that you don't know, just google it. It must be either from `gradle` itself or some plugin. You can check the official gradle document for more `configuration block` that you could use. Or, to be honest, most of the time like most of the gradle users, you don't need to. Just find the plugin that most people use and adopt that, then you are good to go.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

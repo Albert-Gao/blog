@@ -36,11 +36,12 @@ If we only assign relative to the position property. There will nothing differen
 ![Screen Shot 2016-08-15 at 13.26.13](/images/Screen-Shot-2016-08-15-at-13.26.13-201x300.png)
 
 It also reveals an interesting fact that:
+
 > **`position:relative` means relative to its own original position.**
 
 The above picture has explained it fact well.
 
-The third interesting thing about position:relative is that **it creates a coordinating system for its `position:absolute` children. **The children inside with `position:absolute` will position itself using their outside `position:relative `container as origin.** We'll talk it more in the next section :)
+The third interesting thing about position:relative is that **it creates a coordinating system for its `position:absolute` children. **The children inside with `position:absolute` will position itself using their outside `position:relative`container as origin.\*\* We'll talk it more in the next section :)
 
 ![](/images/Screen-Shot-2016-08-15-at-13.37.10.png)
 
@@ -75,6 +76,7 @@ Wow, now they know how to follow the rules:
 > **Element with `position:absolute` will take their parent container as their origin only if their parent container has a `position:relative`. If not, they will use HTML tag as its initial origin,**
 
 But it is not over. Not yet. Final interesting fact about `position:absolute` is:
+
 > **You can use this property to stretch an element without setting its `width` or `height` property.**
 
 Let's see it in action.
@@ -96,3 +98,7 @@ Just a caveat here:
 ## 5. End of story
 
 That's it. Hope it will give you a good brief about the `position` property in CSS. Thanks for reading!
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

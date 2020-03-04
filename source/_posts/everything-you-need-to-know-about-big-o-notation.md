@@ -10,8 +10,8 @@ date: 2016-08-09 20:06:28
 
 You can always find O(n), O(log n) over the internet when people talking about the efficiency of the codes. Like any other magic which you will encounter, it will give you a big question mark. I assemble all the information I have, from my lectures, book readings, online information, personal understanding, then write down this article. Medium measures you can finish this article in 6 minutes, here are what you will get after the precious 6 minutes:
 
-*   How do we get the answer of Big O academically? (Rarely see online)
-*   How to measure the Big O for an algorithm practically?
+- How do we get the answer of Big O academically? (Rarely see online)
+- How to measure the Big O for an algorithm practically?
 
 A big plus: You don’t need any background to read this! Even a very beginner can understand this. Just a very little math (no computation). Hope it could help. Let’s start!
 
@@ -27,8 +27,8 @@ The most frustrating problem I have faced when I first learn Big O notation is t
 
 Every algorithm is coded for solving problems. Let’s say there is an algorithm to sort an array. when we do efficiency analysis, we need to know how well this algorithm can perform. We need to know 2 factors:
 
-*   The size of the problem: it is the size of the array here.
-*   The key process which will influence the result time: Here is the number of comparisons we need to do. The more comparisons, the slower the algorithm will be.
+- The size of the problem: it is the size of the array here.
+- The key process which will influence the result time: Here is the number of comparisons we need to do. The more comparisons, the slower the algorithm will be.
 
 > That is to say, the algorithm’s efficiency can be defined in terms of the problem size and the processing step. A growth function shows the relationship between the two. It shows the time or space complexity relative to the problem size.
 
@@ -98,18 +98,18 @@ void sumFromZero(int start){
 
 Using the above rule, we can know the overall time complexity for this method is:
 
-*   The assign statement: O(1);
-*   The for loop: O(n)
-*   The inside accumulation: O(1) so omit it;
-*   The println line is of course O(1);
+- The assign statement: O(1);
+- The for loop: O(n)
+- The inside accumulation: O(1) so omit it;
+- The println line is of course O(1);
 
 Thus the overall complexity is O(n) for the `sumFromZero()` method.
 
 In fact, with the growth function knowledge, you can write down the growth function for it to elaborate this process:
 
-*   f(n)=1+n+1 (Rule 6 and 7)
-*   Focus the dominant term only, ignore the others.
-*   So, O(n) finally
+- f(n)=1+n+1 (Rule 6 and 7)
+- Focus the dominant term only, ignore the others.
+- So, O(n) finally
 
 At last, for the first for loop, we get an O(n) inside an O(n). How to compute? We can simply apply rule 6\. Now we get the answer: O(n^2). How excited! Just that simple.
 
@@ -129,14 +129,14 @@ Let’s start from our beloved function:
 
 > f(n)=2n^2+4n+6
 
-We know its time complexity is O(n^2), further, it means there is a constant m and some value of n, such that f(n)&lt;=m*n^2 for all n &gt; initial n, just like the above graph, as n increases, the f(n) starts to increase as well, but it will always less than the O(n^2).
+We know its time complexity is O(n^2), further, it means there is a constant m and some value of n, such that f(n)&lt;=m\*n^2 for all n &gt; initial n, just like the above graph, as n increases, the f(n) starts to increase as well, but it will always less than the O(n^2).
 
 > that is to say, the asymptotic complexity, which is the order of the algorithm, it provides an upper bound to its growth function.
 
 Other important notations:
 
-*   omega (Ω) which refers to a function that provides a lower bound
-*   theta (Θ) which refers to a function that provides both an upper and lower bound.
+- omega (Ω) which refers to a function that provides a lower bound
+- theta (Θ) which refers to a function that provides both an upper and lower bound.
 
 And of course, there is also a Little-o notation which is common in mathematics but rarer in computer science.
 
@@ -144,3 +144,7 @@ And of course, there is also a Little-o notation which is common in mathematics 
 
 Now I hope you have sufficient knowledge to determine the Big O of an actual algorithm.
 I will write more blogs relates to computer science and programming, in this “step by step with all the background” way.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

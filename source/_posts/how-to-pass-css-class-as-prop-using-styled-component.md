@@ -33,27 +33,23 @@ Sometimes you want to pass `css` as prop and mix it up in the receiver component
 Firstly, your component should be able to process the passed-in `css`:
 
 ```javascript
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Box = styled.div`
   color: red;
   ${props => props.addCSS}
 `;
 
-const DatePicker = () => (
-  <Box>
-      DatePicker
-  </Box>
-)
+const DatePicker = () => <Box>DatePicker</Box>;
 ```
 
 Secondly, declare the `css` style.
 
 ```javascript
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
 const myCSS = css`
-   font-size: 60px;
+  font-size: 60px;
 `;
 ```
 
@@ -77,4 +73,9 @@ I created an issue here:
 https://github.com/styled-components/styled-components/issues/2076
 
 ## 3. End
+
 Hope it helps. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -21,17 +21,17 @@ We need to have some training examples. They are the data you use to find that l
 # How do we use it?
 
 Pass into a learning algorithm
- 
+
 # What happen next?
 
 - Algorithm outputs a function `h(x)`. where `h = hypothesis`
 - This function takes an input, output the estimated value
- 
+
 # How do we represent it?
 
 - `hꝊ(x) = Ꝋ0 + Ꝋ1 * x`
 - **Tip**: univariate linear regression = linear regression with one variable
- 
+
 # So in summary
 
 - A hypothesis takes in some variable
@@ -58,7 +58,6 @@ The answer is, using a `cost function`.
   - Sum this over the training set:
   - ![10 questions you must know for doing linear regression using gradient descent 1](/images/10-questions-you-must-know-for-doing-linear-regression-using-gradient-descent-1.png)
 
-
 # How to find the best θ?
 
 - using `Gradient descent`
@@ -70,6 +69,7 @@ Gradient descent can be succinctly described in just a few steps:
 
 - Choose a random starting point.
 - Each time you change the parameters `θ` a little bit to try reducing the cost function `J(θ1,θ2)`
+
   - Take the gradient of your cost function at your location.
   - moving towards the minimum (down) will great a negative derivative, the learning rate alpha will always positive, so will update cost function `J` to a smaller value.
   - When you get to the minimum point, the gradient of tangent(derivative) is 0.
@@ -80,3 +80,7 @@ Gradient descent can be succinctly described in just a few steps:
 # And the result would be?
 
 Using gradient descent with a few hundred iterations, we can easily find parameters `θ` for our linear regression which give us a nice fit. (Note that there are faster algorithms than gradient descent, but they operate on the same basic principles!)
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
+
+Thanks for reading!

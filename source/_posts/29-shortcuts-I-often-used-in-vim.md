@@ -13,60 +13,75 @@ And VIM is really just about shortcuts, you know them, use them, and you conquer
 <!--more-->
 
 ## 1. Brief for beginners
+
 VIM has 3 modes:
 
-* **Command Mode** : The following command are all valid in this mode.
-* **Insert Mode** : The normal editing mode like any other editors out there.
-* **Visual Mode** : Select contents for copying or cutting.
+- **Command Mode** : The following command are all valid in this mode.
+- **Insert Mode** : The normal editing mode like any other editors out there.
+- **Visual Mode** : Select contents for copying or cutting.
 
 ## 2. Mode change
-* **i** : Start insert mode at current cursor position
-* **v** : Enter the visual mode.
-* **ESC** : Exit insert/visual mode
+
+- **i** : Start insert mode at current cursor position
+- **v** : Enter the visual mode.
+- **ESC** : Exit insert/visual mode
 
 ## 3. Cursor Movement
+
 This is the most exciting part of VIM. Let's say you want to move to some special position in a line, either you need to press 'right' or 'left' a lot, or you need to move the hand to the mouse to do it. But in VIM, you can press `w`, and it will move the cursor as a word-base which is way more effective than the former ones.
-* **w** : Jump by start of words (punctuation considered words)
-* **b** : Jump backward by words (punctuation considered words)
-* **0** : Start of line
-* **$** : End of line
-* **o** : Open (append) blank line below current line (no need to press return)
-* **O** : Open blank line above current line
+
+- **w** : Jump by start of words (punctuation considered words)
+- **b** : Jump backward by words (punctuation considered words)
+- **0** : Start of line
+- **\$** : End of line
+- **o** : Open (append) blank line below current line (no need to press return)
+- **O** : Open blank line above current line
 
 ## 4. Edit
-* **u** : Undo
-* **r** : Replace single character
-* **cc** : Change an entire line
-* **cw** : Change an word
+
+- **u** : Undo
+- **r** : Replace single character
+- **cc** : Change an entire line
+- **cw** : Change an word
 
 ## 5. Select contetnts (you can copy and cut later)
-* **v** : After entering visual mode, you can use up/down/right/left to select the contents you want, but there are 4 shortcuts in visual mode which can grant you a quicker operation.
-  * **ab** : Select a () block with braces
-  * **aB** : Select a {} block with brackets
-  * **ib** : Select a () inner block without braces
-  * **iB** : Select a {} inner block without brackets
+
+- **v** : After entering visual mode, you can use up/down/right/left to select the contents you want, but there are 4 shortcuts in visual mode which can grant you a quicker operation.
+  - **ab** : Select a () block with braces
+  - **aB** : Select a {} block with brackets
+  - **ib** : Select a () inner block without braces
+  - **iB** : Select a {} inner block without brackets
 
 ## 6. Copy
->In VIM, we don't say 'copy', we say 'yank'.
 
-* **y** : Yank (copy) the selected contents
-* **yy** : Yank a line
-* **yw** : Yank a word
+> In VIM, we don't say 'copy', we say 'yank'.
+
+- **y** : Yank (copy) the selected contents
+- **yy** : Yank a line
+- **yw** : Yank a word
 
 ## 7. Cut / Delete
-* **d** : Delete/cut the selected contents
-* **dl** : Delete/cut a letter, this shortcuts has an more simple alternative one, **x**
-* **dw** : Delete/cut a word
-* **dd** : Delete/cut a line
+
+- **d** : Delete/cut the selected contents
+- **dl** : Delete/cut a letter, this shortcuts has an more simple alternative one, **x**
+- **dw** : Delete/cut a word
+- **dd** : Delete/cut a line
 
 ## 8. Paste
-* **p** : Paste the clipboard before the cursor, uppercase after the cursor
+
+- **p** : Paste the clipboard before the cursor, uppercase after the cursor
 
 ## 9. Exit
-* **:w** : Save file
-* **:wq** : Save and exit
-* **:q** : Quit
-* **:q!** : Quit and ingore all changes.
+
+- **:w** : Save file
+- **:wq** : Save and exit
+- **:q** : Quit
+- **:q!** : Quit and ingore all changes.
 
 ## 10. End
+
 As I told before, VIM has tons of shortcuts, but now you are good to conquer the rest of them. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

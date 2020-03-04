@@ -14,7 +14,7 @@ The solution is still the same, you simply create a definition for that module, 
 Suppose that we are using `no-where-to-find` like this:
 
 ```javascript
-import {Search} from 'no-where-to-find';
+import { Search } from "no-where-to-find";
 ```
 
 Run `npm run flow` will give you an error as: `no-where-to-find. Required module not found`
@@ -36,7 +36,7 @@ Put the following content in it:
 The fastest way:
 
 ```javascript
-declare module 'no-where-to-find' {
+declare module "no-where-to-find" {
   declare module.exports: any;
 }
 ```
@@ -49,7 +49,7 @@ declare class URL {
   toString(): string;
 
   static compare(url1: URL, url2: URL): boolean;
-};
+}
 ```
 
 You are good to go.
@@ -72,6 +72,7 @@ flow-typed install --ignoreDeps dev bundle peer
 ```
 
 Or you can install for a specific package.
+
 ```bash
 flow-typed install axios@0.11.x
 ```
@@ -103,3 +104,7 @@ If you use `eslint-plugin-flowtype`, you will get an error like `don't use any` 
 ## End
 
 Now you are good to go. :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

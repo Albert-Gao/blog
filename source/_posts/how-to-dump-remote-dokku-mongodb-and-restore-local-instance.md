@@ -33,3 +33,7 @@ The tricky part is the name after `--db`, should match the database name in your
 ## 4 End
 
 That's all. Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

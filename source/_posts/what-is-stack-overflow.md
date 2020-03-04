@@ -10,6 +10,7 @@ date: 2016-08-12 16:45:13
 This is a question which will confuse the beginners for a while. And in order to know this, you need to know the memory first, which is the memory architecture of your program in runtime. To keep it simple. Let's firstly check the insanely simple C code below.
 
 <!--more-->
+
 ```c
 #include <stdio.h>;
 
@@ -50,3 +51,7 @@ So, **"Stack overflow" just means you have used up all the spaces of stack whic
 It depends. But let's follow the above context, the cause is a really big local variable. Then the solution is to move them into the **heap**. You can achieve this by using `malloc()` in C. Heap is just another section in the memory which can be dynamically allocated. So you don't need to worry the space anymore. OK, you can used up heap, too, yes, then please, open Amazon.com, buy a RAM for the god's sake. xD
 
 If you have more interests on the memory model, I have [a little writing here](/2016/08/13/understand-when-to-use-pointer-in-c-and-the-memory-model-in-programming/) too.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -18,31 +18,26 @@ There are tons of libraries which you can use. But just a special one you shoul
 
 ```javascript
 fetch(request)
-.then(function(response){
-    if (response.ok){
-        return response.json();
-}})
-.then(function(previousJSON){
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    }
+  })
+  .then(function(previousJSON) {
     console.log(previousJSON.name);
-})
-.catch(function(error){
+  })
+  .catch(function(error) {
     console.log(error.message);
-});
+  });
 ```
 
 ## 2\. Why not ES6?
 
 ```javascript
 fetch(request)
-.then(
-    response => response.json()
-)
-.then(
-    previousJSON => console.log(previousJSON.name)
-)
-.catch(
-    error => console.log(error.message)
-);
+  .then(response => response.json())
+  .then(previousJSON => console.log(previousJSON.name))
+  .catch(error => console.log(error.message));
 ```
 
 aha, just that easy, right? Please notice the following details, they are the foundations of this API:
@@ -106,44 +101,43 @@ Since this is the most important object that we developers will deal with all ov
 
 ### 5.1 Read-Only Properties
 
-*   Response.headers
-*   Response.ok
-*   Response.status //return 200 etc.
-*   Response.statusText Read //return OK for 200
-*   Response.type //return basic, cors, opaque, error, etc
-*   Response.url
-*   Response.useFinalURL
-*   Body.bodyUsed //a Boolean that declares whether the body has been used in a response yet.
+- Response.headers
+- Response.ok
+- Response.status //return 200 etc.
+- Response.statusText Read //return OK for 200
+- Response.type //return basic, cors, opaque, error, etc
+- Response.url
+- Response.useFinalURL
+- Body.bodyUsed //a Boolean that declares whether the body has been used in a response yet.
 
 ### 5.2 Methods
 
-*   Response.clone()
-*   Response.error() //return a new Response object associated with a network error.
-*   Response.redirect() //Creates a new response with a different URL.
+- Response.clone()
+- Response.error() //return a new Response object associated with a network error.
+- Response.redirect() //Creates a new response with a different URL.
 
 ### 5.3 More Methods you can use
 
 The following method comes from the body object, but since the **response** object implements its interface, you can use it on the response object too, all they do is just taking a response stream and reads it to completion. Then use the according type to return it.
 
-*   Response.arrayBuffer()
-*   Response.blob()
-*   Response.formData()
-*   Response.json()
-*   Response.text()
+- Response.arrayBuffer()
+- Response.blob()
+- Response.formData()
+- Response.json()
+- Response.text()
 
 > A side note: The **request** object implements these interfaces too, feel free to use them.
 
 ### 5.4 Let's make a meaningful function
 
 ```javascript
-fetch(myRequest)
-.then(function(response) {
-    var contentType = response.headers.get("content-type");
-    if(contentType && contentType.indexOf("application/json") !== -1) {
-        return response.json();
-    } else {
-        console.log("No JSON!!");
-    }
+fetch(myRequest).then(function(response) {
+  var contentType = response.headers.get("content-type");
+  if (contentType && contentType.indexOf("application/json") !== -1) {
+    return response.json();
+  } else {
+    console.log("No JSON!!");
+  }
 });
 ```
 
@@ -157,16 +151,17 @@ This is why I declare the parameter in the 2nd `then()` as a previousJSON, just 
 
 ```javascript
 fetch(request)
-.then(function(response){
-    if (response.ok){
-        return response.json();
-}})
-.then(function(previousJSON){
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    }
+  })
+  .then(function(previousJSON) {
     console.log(previousJSON.name);
-})
-.catch(function(error){
+  })
+  .catch(function(error) {
     console.log(error.message);
-});
+  });
 ```
 
 ## 7. Can I use them now?
@@ -192,3 +187,7 @@ Some of you may wonder why this library has such a strange prefix. Here is why:
 > The WHATWG was founded by individuals of Apple, the Mozilla Foundation, and Opera Software in 2004, after a W3C workshop. Apple, Mozilla and Opera were becoming increasingly concerned about the W3C’s direction with XHTML, lack of interest in HTML and apparent disregard for the needs of real-world authors.
 
 Yes, they are the standard! And they even list `fetch()` as a second line of their main focus standards.  And you can check the full details of this API [here](https://fetch.spec.whatwg.org/).
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

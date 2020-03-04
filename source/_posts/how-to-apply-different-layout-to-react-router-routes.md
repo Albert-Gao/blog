@@ -188,3 +188,7 @@ The previous 3 sections are all here. And we added a fallback path to `<Redirect
 ## 8. End
 
 That's all. Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

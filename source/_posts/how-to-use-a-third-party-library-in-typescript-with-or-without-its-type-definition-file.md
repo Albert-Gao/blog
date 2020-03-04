@@ -82,3 +82,7 @@ Yes, you can make a type definition file by yourself. And it is easy, you can fi
 ![](/images/Screen-Shot-2016-08-10-at-22.58.20-300x140.png)
 
 OK, pretty much of it, hope it helps someone :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

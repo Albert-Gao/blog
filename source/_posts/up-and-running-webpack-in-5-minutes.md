@@ -6,7 +6,7 @@ id: 123
 date: 2016-08-17 22:06:13
 ---
 
-Front end world has an incredible evolution speed. Especially for the tooling, new kids jump out everyday. Webpack is one of them and seems it will dominate for a while. You may hear its complexity and how it is going to  replace your current toolchain. Today, let's bundle webpack like it bundle scripts for us xD
+Front end world has an incredible evolution speed. Especially for the tooling, new kids jump out everyday. Webpack is one of them and seems it will dominate for a while. You may hear its complexity and how it is going to replace your current toolchain. Today, let's bundle webpack like it bundle scripts for us xD
 
 <!--more-->
 
@@ -49,6 +49,7 @@ module.exports = {
     ]
 };
 ```
+
 It feels... pretty easy, right? xD The next section will tell you how can these properties match with your work flow.
 
 ## 4. What happens when it need to processing files?
@@ -62,7 +63,7 @@ When webpack starts to executing, it will : (all the keywords below are the name
 3.  check `plugins` to see if there are more functionalities you want to extend to.
 4.  check `output` to see the where does it need to put the final bundle file.
 5.  Start to bundle.
-Let's look at the above sample again, does it make more sense now?
+    Let's look at the above sample again, does it make more sense now?
 
 ```javascript
 var webpack = require('webpack');
@@ -95,20 +96,20 @@ Of course, just add a loader, I told you, when you need to load anything other t
 
 ```javascript
 module: {
-     loaders: [
-         {
-             test: /\.css$/,
-             loader: ExtractTextPlugin.extract("css-loader"),
-             exclude: /node_modules/
-         },
-         {
-             test: /\.ts$/,
-             loader: 'awesome-typescript-loader',
-             exclude: /node_modules/
-         }
-     ]
- }
- ```
+  loaders: [
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract("css-loader"),
+      exclude: /node_modules/
+    },
+    {
+      test: /\.ts$/,
+      loader: "awesome-typescript-loader",
+      exclude: /node_modules/
+    }
+  ];
+}
+```
 
 ### 5.3 I've required multiple modules in my project, can webpack works well?
 
@@ -122,3 +123,7 @@ Furthermore, There are two ways to go:
 
 1.  Check the [official page](http://webpack.github.io/docs/configuration.html) to see if there are more properties in this object you can use.
 2.  Look through the [plugins](http://webpack.github.io/docs/list-of-plugins.html) and [loaders](http://webpack.github.io/docs/list-of-loaders.html) list to see if there are more features you need.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

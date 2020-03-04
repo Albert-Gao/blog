@@ -28,17 +28,12 @@ const Box = Column.extend`
 
 class ListItem extends Component {
   constructor(props) {
-    super(props)
-    this.ref = React.createRef()
+    super(props);
+    this.ref = React.createRef();
   }
 
-render() {
-    return (
-      <Box
-        innerRef={this.ref}
-      >
-      </Box>
-    );
+  render() {
+    return <Box innerRef={this.ref}></Box>;
   }
 }
 ```
@@ -71,3 +66,7 @@ Check the documentation on [MDN](https://developer.mozilla.org/en/docs/Web/API/E
 Beware of the browser compatibility. But seems good to me in some cases.
 
 Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -11,24 +11,29 @@ Do you know JSLint? A tool which can help you write quality JavaScript code, it 
 Yes, it may sound absurd at first, let's dive into to find out what the father wants to say xD
 
 <!--more-->
+
 ## 1. Weird code
+
 If you have follow me here from this article [What is a closure in JavaScript and why they are wrong](/2016/08/21/what-is-a-closure-in-javascript-and-why-they-are-wrong/). You may still curious about the following code. And if you don't know closure, you really should check [that article](/2016/08/21/what-is-a-closure-in-javascript-and-why-they-are-wrong/) first.
 
 ```javascript
 var funcs = [];
-for (var i = 0; i < 3; i++) {          // let's create 3 functions
-    funcs[i] = function() {            // and store them in funcs
-        console.log("My value: " + i); // each should log its value.
-    };
+for (var i = 0; i < 3; i++) {
+  // let's create 3 functions
+  funcs[i] = function() {
+    // and store them in funcs
+    console.log("My value: " + i); // each should log its value.
+  };
 }
 for (var j = 0; j < 3; j++) {
-    funcs[j]();                        // and now let's run each one to see
+  funcs[j](); // and now let's run each one to see
 }
 ```
 
 Simple code, create a loop first, for each loop, assign the current value `i` to to a newly created function. Then start a new loop, execute the functions one by one, something will be output into the console.
 
 This is the result you may expect.
+
 ```javascript
 My value: 0
 My value: 1
@@ -36,6 +41,7 @@ My value: 2
 ```
 
 But instead, it will output like this:
+
 ```javascript
 My value: 3
 My value: 3
@@ -45,19 +51,22 @@ My value: 3
 And before you run this code, Mr Douglas has already warned you, "**"Don't make functions within a loop"**". Yes, he make a point, but why?
 
 ## 2. Dissect the mystery.
+
 **It is simple because, in that anonymous function created in the loop, you have referred a variable which belongs to the outside scope, so the next time when you execute this function, the variable `i` is 3.** You will ask, what? Haven't we store that value during the loop? Let's rewrite the above code a little.
 
 ```javascript
 var i = 0,
-    j = 0;
+  j = 0;
 var funcs = [];
-for (i = 0; i < 3; i++) {              // let's create 3 functions
-    funcs[i] = function() {            // and store them in funcs
-        console.log("My value: " + i); // each should log its value.
-    };
+for (i = 0; i < 3; i++) {
+  // let's create 3 functions
+  funcs[i] = function() {
+    // and store them in funcs
+    console.log("My value: " + i); // each should log its value.
+  };
 }
 for (j = 0; j < 3; j++) {
-    funcs[j]();                        // and now let's run each one to see
+  funcs[j](); // and now let's run each one to see
 }
 ```
 
@@ -75,9 +84,10 @@ You know the `variable hoist` and `scope` in JavaScript, right? Which is JavaScr
 10. So, a `3` will be output.
 11. What happens afterwards for the second and third loop is totally the same from step 6~10.
 
->You see? The concept of **closure** in JavaScript makes it very dangerous to make new functions inside a loop. So, Mr Douglas has given us his advice with JSLint.
+> You see? The concept of **closure** in JavaScript makes it very dangerous to make new functions inside a loop. So, Mr Douglas has given us his advice with JSLint.
 
 ## 3. How to solve it?
+
 Since we know the cause, we can solve it now, by using the same concept.
 
 ### 3.1 I love functions and I will create it at any cost!
@@ -86,10 +96,10 @@ You may think that since the `i` is a primitive value, we could simple declare a
 
 ```javascript
 for (i = 0; i < 3; i++) {
-    funcs[i] = function() {
-        var my_i = i
-        console.log("My value: " + my_i);
-    };
+  funcs[i] = function() {
+    var my_i = i;
+    console.log("My value: " + my_i);
+  };
 }
 ```
 
@@ -107,17 +117,17 @@ var j = 0;
 var funcs = [];
 
 function printValue(num) {
-    return function() {
-        console.log("My value: ", num);
-    }
+  return function() {
+    console.log("My value: ", num);
+  };
 }
 
 for (i = 0; i < 3; i++) {
-    funcs[i] = printValue(i);
+  funcs[i] = printValue(i);
 }
 
 for (j = 0; j < 3; j++) {
-    funcs[j]();
+  funcs[j]();
 }
 ```
 
@@ -132,11 +142,17 @@ My value: 2
 What have we done? Simple, we create the function at first, and then, use it to the loop index inside that loop.
 
 ### 3.2 Does the father happy?
+
 OK, if you use JSHint, mostly good, but if you use JSLint, still there are some complaints, I told you before, `rigid`, some of the complaints may seems really weird like `unexpected ++`, yes, he means when you create that for loop, shouldn't use `i++`, WHAT?!?!?! Yes, father thinks you should use `i+=1`... OK, more of this is out of topic.
 
 ## 4. Finally
+
 Now you know why not making functions within a loop.
 
->Since the concept 'closure' in JavaScript will it tricky when dealing with the functions created inside a loop. You should always try to create the function first or execute it immediately after the creation.
+> Since the concept 'closure' in JavaScript will it tricky when dealing with the functions created inside a loop. You should always try to create the function first or execute it immediately after the creation.
 
 OK. You know why and you know how. That's the end of the story. Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

@@ -21,9 +21,9 @@ The environment is still the same:
 
 The folder structure looks like this:
 
->----root<br>
->--------client<br>
->--------public
+> ----root<br>
+> --------client<br>
+> --------public
 
 - root: back-end code
 - client: front-end code
@@ -75,4 +75,8 @@ We expose 3030, then set the production, and run `npm run start` at last.
 
 ## 3. End
 
- It is just that easy. Hope it helps.
+It is just that easy. Hope it helps.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

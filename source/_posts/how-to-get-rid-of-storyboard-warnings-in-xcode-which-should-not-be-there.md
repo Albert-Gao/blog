@@ -11,7 +11,11 @@ I previously got a storyboard in XCode. It said `prototype table cells must have
 
 It's just that easy. `Clean Cache`.
 
-1. Clean “DerivedData”  `~/Library/Developer/Xcode/DerivedData/`
+1. Clean “DerivedData” `~/Library/Developer/Xcode/DerivedData/`
 2. Restart Xcode
 
 Enjoy :)
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

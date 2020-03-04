@@ -18,8 +18,8 @@ It's kind of like Redux pattern - a nearly unidirectional data flow, where every
 
 There is a data source in your app. And its updates need to reflect multiple UI,
 
-* case 1: some UI maybe just need the whole data source
-* case 2: some UI needs to process the data first before showing on the UI
+- case 1: some UI maybe just need the whole data source
+- case 2: some UI needs to process the data first before showing on the UI
 
 You need to somehow create a single source of truth for all the UI and reflect the changes to them when something happens.
 
@@ -94,8 +94,8 @@ or more elegantly, you can bind the `LiveData` from view model directly to the `
 
 Well, you just update the model layer DIRECTLY. But the action will be started from one of the 2 layers
 
-* view layer (if it's from a user)
-* view model layer (if it's a side-effect).
+- view layer (if it's from a user)
+- view model layer (if it's a side-effect).
 
 But even it's from the view, the view should still call methods on view model, and view model will call some methods on the model layer or you can simply update it in the view model layer depends on the cases(because you get the single source of truth).
 
@@ -106,3 +106,7 @@ Because everything is now connected to a single source of truth(a shared model l
 ## 6. One more tip
 
 In order to get Transformations.map to work, you need to observe the result in the view, otherwise, that subscription from Transformations.map will not work at all.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.

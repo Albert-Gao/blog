@@ -65,3 +65,7 @@ new ApolloServer({
 ## 5. End
 
 It just works! Thanks.
+
+Thanks for reading!
+
+Follow me (<a href='https://twitter.com/albertgao' target="_blank" rel="noopener noreferrer">albertgao</a>) on twitter, if you want to hear more about my interesting ideas.
