@@ -118,6 +118,24 @@ plugins:
   - serverless-plugin-monorepo
 ```
 
+Also in `serverless.yml`, update this:
+
+```yaml
+functions:
+  hello:
+    handler: handler.hello
+```
+
+to
+
+```yaml
+functions:
+  hello:
+    handler: dist/handler.hello
+```
+
+We will point to the final transpiled code directly.
+
 Let's add the `./monorepo/serverless/tsconfig.json`
 
 ```json
