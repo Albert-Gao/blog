@@ -7,6 +7,7 @@ tags:
   - jest
   - supertest
   - es6
+  - express
 ---
 
 I recently changed from `Mocha`, `Chai` to `Jest`. Pretty lovely experiences. It took a while to figure out the right way to test an express route, but when it works, it works like a charm. I share my experiences here, hope it helps. I love jest assertion function more than `Chai`, seems more concise to me.
@@ -21,7 +22,7 @@ You need to install `babel-cli`, `babel-preset-env`, `jest`, `supertest` and `su
 npm install --save-dev babel-cli babel-preset-env jest supertest superagent
 ```
 
-## 2. Separate your `app` and `sever`
+## 2. Separate your `app` and `server`
 
 > The reason behind this is that it won't listen to the port after testing.
 
