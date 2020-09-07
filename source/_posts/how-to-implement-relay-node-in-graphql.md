@@ -17,7 +17,9 @@ You can use `toGlobalID()` and `fromGlobalID` from `graphql-relay` package. Then
 The benefit of having the `node()` query on your GraphQL root, is:
 
 - not only Relay can do the refetch via this `node()`,
-- but also you can use this node to query any entity that implements this interface. So instead of having separate query for `user()`, `company()` and `task()`, you can have this single `node()` query for getting `user`, `company` and `task` entities, if they all implement the `node interfaceType`.
+- but also you can use this node to query any entity that implements this interface.
+  - So instead of having separate query for `user()`, `company()` and `task()`
+  - you can have this single `node()` query for getting `user`, `company` and `task` entities, if they all implement the `node interfaceType`.
 
 ## 2. For the global unique ID
 
@@ -25,11 +27,16 @@ Firstly, you need to adopt a convention for your id, which is:
 
 > The id of an entity is combined by entity name and the real id.
 
-For example, if you have a `user`, the id should be `user_cyasjkajkas`. If you have a `task`, the id should be `task_asjksakjas-12jh12hj-sakjasjksw`.
+For example:
 
-Not only you can identify the entity of the object, you also paved the way for the next step, which is easily identity the incoming query in the GraphQL endpoint without any additional saving in your database.
+- If you have a `user`, the id should be `user_cyasjkajkas`.
+- If you have a `task`, the id should be `task_asjksakjas-12jh12hj-sakjasjksw`.
+
+Not only you can identify the entity of the object, but also you paved the way for the next step, which is easily identity the incoming query in the GraphQL endpoint without any additional saving in your database.
 
 And via doing this, you remove that unnecessary step for wrapping the id.
+
+> The ID you have now for each record is already global unique, think about it. :)
 
 ## 3. Define the ID mapper function
 
