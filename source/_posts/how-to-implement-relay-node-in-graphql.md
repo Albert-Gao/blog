@@ -1,5 +1,5 @@
 ---
-title: how-to-implement-relay-node-in-graphql
+title: How to implement Relay node in Graphql
 date: 2020-09-07 11:52:05
 tags:
   - graphql
