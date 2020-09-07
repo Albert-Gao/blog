@@ -91,6 +91,8 @@ schema.extendType({
 });
 ```
 
+BTW, what is that beautiful `ctx.db.task.findOne({ where: { id } })`? It's [`Prisma`](https://www.prisma.io/), and modern database access for Typescript and Node.js, auto generate all the types and very friendly to use.
+
 ## 5. Now You get the GraphQL schema
 
 ```javascript
