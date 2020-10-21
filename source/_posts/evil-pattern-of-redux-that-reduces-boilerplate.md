@@ -48,7 +48,7 @@ The reason we are inspecting of this, is we can do better in terms of how to wri
 
 ## 2. The 1st one: update with a special purpose
 
-You write your actions, give it an name, like `UPDATE_IS_AUTH`:
+You write your actions, give it an name, like `LOGIN`:
 
 ```javascript
 const updateIsAuth = (payload: { name: string, id: string }) => ({
