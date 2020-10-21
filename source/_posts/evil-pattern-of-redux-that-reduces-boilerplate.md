@@ -51,17 +51,15 @@ The reason we are inspecting of this, is we can do better in terms of how to wri
 You write your actions, give it an name, like `UPDATE_IS_AUTH`:
 
 ```javascript
-const TYPE = "UPDATE_IS_AUTH";
-
-const updateIsAuth = (isAuth: boolean) => ({
-  type: "UPDATE_IS_AUTH",
-  payload: isAuth,
+const updateIsAuth = (payload: { name: string, id: string }) => ({
+  type: "LOGIN",
+  payload,
 });
 ```
 
 Feel free to use tools to make this boilerplate free, I just show the idea here.
 
-There is no workaround here, you need to give it a sepcial name which is different than the others to make it stand out, so when debug, we know that the purpose of this action.
+There is no workaround here, you need to give it a special name which is different than the others to make it stand out, so when debug, we know that the purpose of this action.
 
 ## The 2nd type: just update state
 
@@ -70,10 +68,10 @@ This is where things get interesting. Sometimes, we just wanted to update arbitr
 The good news is **`We only need ONE actions`**.
 
 ```javascript
-const TYPE = "UPDATE_AUTH_STATE";
+const type = "UPDATE_AUTH_STATE";
 
 const updateAuthState = (newState: Partial<typeof initialAuthState>) => ({
-  type: "UPDATE_AUTH_STATE",
+  type,
   payload: newState,
 });
 ```
