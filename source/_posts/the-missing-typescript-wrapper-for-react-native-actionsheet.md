@@ -38,18 +38,8 @@ Seems simple, but you can soon imagine few problems here, what if we are adding 
 ## 2. What about something like this?
 
 ```typescript
-import { useActionSheet } from "@expo/react-native-action-sheet";
-
-export const WatchListDetailHeaderRight: React.FC<
-  StackScreenProps<"WatchlistDetail">
-> = ({ navigation, route }) => {
-  const { showActionSheetWithOptions } = useActionSheet();
-
-  function handleEdit() {}
-
-  function handleRemove() {}
-
-  const actionSheetParams = createActionSheetOptions({
+showActionSheetWithOptions(
+  ...createActionSheetOptions({
     title: "Update the watchlist",
     description: "change the settings of this watchlist",
     isCancelable: true,
@@ -58,19 +48,9 @@ export const WatchListDetailHeaderRight: React.FC<
       Remove: handleRemove,
     },
     destructiveButtonLabel: "Remove",
-  });
-
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        showActionSheetWithOptions(...createActionSheetOptions);
-      }}
-    />
-  );
-};
+  })
+);
 ```
-
-Do not worry about that `showActionSheetWithOptions` from an expo hook, the function is 100% match to the original React native version.
 
 So, here, You are still use `showActionSheetWithOptions`, the only difference is the `createActionSheetOptions()` function, you use this new readable object to define your ActionSheet.
 
