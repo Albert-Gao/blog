@@ -42,7 +42,7 @@ showActionSheetWithOptions(
   ...createActionSheetOptions({
     title: "Update the watchlist",
     description: "change the settings of this watchlist",
-    isCancelable: true,
+    cancelButton: true,
     buttons: {
       Edit: handleEdit,
       Remove: handleRemove,
@@ -77,117 +77,15 @@ The `destructiveButtonLabel` should equal to one of the keys from that `buttons`
 
 ## 3. Show me the code
 
-I will put two versions here, Typescript and Javascript.
-
-**Typescript**
-
-```typescript
-import type { ActionSheetProps } from "@expo/react-native-action-sheet";
-
-export function createActionSheetOptions<
-  Buttons extends Record<string, () => void>
->({
-  title,
-  description,
-  buttons,
-  isCancelable,
-  destructiveButtonLabel,
-}: {
-  title: string;
-  description?: string;
-  buttons: Buttons;
-  destructiveButtonLabel?: keyof Buttons;
-  isCancelable: boolean;
-}): Parameters<ActionSheetProps["showActionSheetWithOptions"]> {
-  let options = [];
-  let buttonCallbackMappingToIndex: Array<() => void> = [];
-
-  Object.entries(buttons).forEach(([key, value]) => {
-    options.push(key);
-    buttonCallbackMappingToIndex.push(value);
-  });
-
-  if (isCancelable) {
-    options.push("Cancel");
-  }
-
-  const cancelButtonIndex = options.length - 1;
-
-  const actionSheetOptions: Parameters<
-    ActionSheetProps["showActionSheetWithOptions"]
-  >[0] = {
-    title,
-    message: description,
-    options,
-    cancelButtonIndex,
-  };
-
-  if (destructiveButtonLabel) {
-    actionSheetOptions.destructiveButtonIndex = options.findIndex(
-      (text) => text === destructiveButtonLabel
-    );
-  }
-
-  return [
-    actionSheetOptions,
-    (buttonIndex) => {
-      if (buttonIndex !== cancelButtonIndex) {
-        buttonCallbackMappingToIndex[buttonIndex]();
-      }
-    },
-  ];
-}
-```
-
-And here comes the Javascript version
+All you need to do is
 
 ```javascript
-export function createActionSheetOptions({
-  title,
-  description,
-  buttons,
-  isCancelable,
-  destructiveButtonLabel,
-}) {
-  let options = [];
-  let buttonCallbackMappingToIndex = [];
-
-  Object.entries(buttons).forEach(([key, value]) => {
-    options.push(key);
-    buttonCallbackMappingToIndex.push(value);
-  });
-
-  if (isCancelable) {
-    options.push("Cancel");
-  }
-
-  const cancelButtonIndex = options.length - 1;
-
-  const actionSheetOptions = {
-    title,
-    message: description,
-    options,
-    cancelButtonIndex,
-  };
-
-  if (destructiveButtonLabel) {
-    actionSheetOptions.destructiveButtonIndex = options.findIndex(
-      (text) => text === destructiveButtonLabel
-    );
-  }
-
-  return [
-    actionSheetOptions,
-    (buttonIndex) => {
-      if (buttonIndex !== cancelButtonIndex) {
-        buttonCallbackMappingToIndex[buttonIndex]();
-      }
-    },
-  ];
-}
+import { createActionSheetOptions } from "react-native-actionsheet-helper";
 ```
 
 ## 4. End
+
+Wrote this 0 dependency and less than 1KB helper function.
 
 Hope it helps
 
