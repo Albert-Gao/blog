@@ -1,5 +1,5 @@
 ---
-title: How to debug Typescrpt in VS Code
+title: How to debug Typescript in VS Code
 date: 2021-06-10 11:28:39
 tags:
   - typescript
