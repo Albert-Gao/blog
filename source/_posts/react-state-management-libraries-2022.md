@@ -116,7 +116,8 @@ The `Context` is an official API to share state.
 #### usage:
 
 - Create a context `const MyContext = createContext()` outside the component
-- Feed it with an initial value with `<MyContext.Provider value={{name:'albert'}}>{children}</MyContext.Provider>`
+- Feed it with an initial value with
+  `<MyContext.Provider value={ {name:'albert'} }>{children} </MyContext.Provider>`
 - Consume it in the component body via: `const {name} = useContext(MyContext)`, the component must be a children of the above `<MyContext.Provider>`
 
 #### The Problem
