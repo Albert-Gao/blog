@@ -460,8 +460,8 @@ If you love plain React, this would be perfect choice. I love the fact that you 
 
 ### 4.4 Jotai
 
-- repo: https://github.com/dai-shi/react-tracked
-- documentation: https://react-tracked.js.org/docs/introduction/
+- repo: https://github.com/pmndrs/jotai
+- documentation: https://jotai.org/docs/introduction
 - author: [Daishi Kato](https://twitter.com/dai_shi) Yup, again :)
 
 #### Categorizing
